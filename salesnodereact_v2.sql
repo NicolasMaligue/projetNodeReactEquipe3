@@ -88,7 +88,7 @@ CREATE TABLE `quote` (
 
 CREATE TABLE `role` (
   `id` int(11) NOT NULL,
-  `name` enum('''admin'', ''trader'', ''boss''') NOT NULL
+  `name` enum('''hacker'', ''dealer'', ''Godfather''') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
