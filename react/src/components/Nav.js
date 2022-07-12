@@ -14,11 +14,7 @@ class Nav extends Component {
   render() {
     return (
         <>
-          <Routes><Route path="/quote" element={<Quote/>}/>
-            <Route path="/order" element={<Order/>}/>
-            <Route path="/invoice" element={<Invoice/>}/>
-            <Route path="/customer" element={<Customer/>}/></Routes>
-          <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <nav className="navbar navbar-dark bg-dark">
             <a className="navbar-brand ps-3" href="index.html">Start
               Bootstrap</a>
           </nav>
