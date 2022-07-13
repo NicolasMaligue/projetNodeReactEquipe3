@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
   const Customer = sequelize.define("customer", {
     /**
-     * Primary key 'id' auto added by sequelize
+     * Primary key 'id' auto added
      */
     firstname: {
       type: Sequelize.STRING,
@@ -36,19 +36,19 @@ module.exports = (sequelize, Sequelize) => {
       // },
     },
     /**
-     * field 'createdAt' auto added by sequelize
+     * field 'createdAt' auto added
      */
     /**
-     * field 'updatedAt' auto added by sequelize
+     * field 'updatedAt' auto added
      */
   });
 
   const User = require("./user.model.js")(sequelize, Sequelize);
   /**
-   * field creatorId auto added to the customer table by sequelize
+   * field creatorId auto added to the customer table
    * as foreign key for User.id
    */
   Customer.belongsTo(User, { as: "creator" }); //
 
   return Customer;
-};;
+};;;

@@ -1,18 +1,26 @@
 {
   "name": "projetnodereactequipe3",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node/React App Project - Equipe 3",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "prod": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NicolasMaligue/projetNodeReactEquipe3.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "node",
+    "nodejs",
+    "react",
+    "express",
+    "orm",
+    "sequelize"
+  ],
+  "author": "Carolanne, Anthony, Nicolas, Maxime B",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/NicolasMaligue/projetNodeReactEquipe3/issues"

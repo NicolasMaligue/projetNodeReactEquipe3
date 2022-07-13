@@ -34,7 +34,6 @@ exports.create = (req, res) => {
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
   const query_firstname = req.query.firstname;
-  const query_role = req.query.firstname;
 
   const condition = query_firstname
     ? { firstname: { [Op.like]: `%${query_firstname}%` } } // ie: field table firstname like '%firstname query value%'

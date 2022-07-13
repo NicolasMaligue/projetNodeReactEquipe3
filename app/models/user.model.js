@@ -3,7 +3,7 @@ const ENUM = require("../config/enum.config.js");
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("user", {
     /**
-     * Primary key 'id' auto added by sequelize
+     * Primary key 'id' auto added
      */
     firstname: {
       type: Sequelize.STRING,
@@ -14,15 +14,15 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     role: {
-      // To access enum values out there :  db.users.rawAttributes.role.values
+      // To access enum values without config :  User.rawAttributes.role.values
       type: Sequelize.ENUM(ENUM.user.role),
       allowNull: false,
     },
     /**
-     * field 'createdAt' auto added by sequelize
+     * field 'createdAt' auto added
      */
     /**
-     * field 'updatedAt' auto added by sequelize
+     * field 'updatedAt' auto added
      */
   });
 

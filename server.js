@@ -2,6 +2,7 @@
 // process.env.<ENV_VAR> available into whole server.js project
 const dotenv = require("dotenv");
 dotenv.config();
+// Get db config values
 const dbConfig = require("./app/config/db.config.js");
 
 // Framework Express
@@ -18,7 +19,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Add Node ORM Sequelize
+// db management by ORM Sequelize
 const db = require("./app/models");
 if (dbConfig.sync_forced) {
   db.sequelize.sync({ force: true }).then(() => {
@@ -33,12 +34,8 @@ app.use(bodyParser.json());
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/**
- * Autorisation avec le middleware
- *
- * Configuration des headers pour donner les accés aux différentes actions HTTP
- * GET POST PUT DELETE ....
- */
+
+// Add response header for middleware autorisations 
 app.all("", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
@@ -54,17 +51,12 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-// require customer routes controller
+// require all routes controller
 require("./app/routes/customer.routes.js")(app);
-// require user routes controller
 require("./app/routes/user.routes.js")(app);
-// require quote routes controller
 require("./app/routes/quote.routes.js")(app);
-// require order routes controller
 require("./app/routes/order.routes.js")(app);
-// require invoices route controller
-require('./app/routes/invoice.routes.js')(app);
-// require vehicle routes controller
+require("./app/routes/invoice.routes.js")(app);
 require("./app/routes/vehicle.routes.js")(app);
 
 // set port, listen for requests

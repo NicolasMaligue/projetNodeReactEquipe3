@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
   const Vehicle = sequelize.define("vehicle", {
     /**
-     * Primary key 'id' auto added by sequelize
+     * Primary key 'id' auto added
      */
     name: {
       type: Sequelize.STRING,
@@ -21,10 +21,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
     },
     /**
-     * field 'createdAt' auto added by sequelize
+     * field 'createdAt' auto added
      */
     /**
-     * field 'updatedAt' auto added by sequelize
+     * field 'updatedAt' auto added
      */
   });
 

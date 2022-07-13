@@ -1,7 +1,6 @@
 //const ENUM = require("../config/enum.config.js");
 const db = require("../models");
 const Customer = db.customers;
-const User = db.users;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Customer
@@ -13,10 +12,6 @@ exports.create = (req, res) => {
     });
     return;
   }
-
-  // console.log("req.body.creatorId=", req.body.creatorId);
-  // const creator = await User.findByPk(1);
-  // console.log("@@@ customer creator=", creator);
 
   // Create a Customer
   const customer = {

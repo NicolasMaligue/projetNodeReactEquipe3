@@ -1,11 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
-  const Invoice = sequelize.define('invoice', {});
+  const Invoice = sequelize.define("invoice", {}); // Primary key 'id' and field 'createdAt' and 'updateddAt' auto added
 
-  const Order = require('./order.model.js')(sequelize, Sequelize);
+  const Order = require("./order.model.js")(sequelize, Sequelize);
   /**
-   * foreign key order auto added to the invoice table by sequelize
+   * foreign key order auto added to the invoice table
    */
-   Invoice.belongsTo(Order, { as: "order" });
+  Invoice.belongsTo(Order, { as: "order" });
 
   return Invoice;
-};
+};;
