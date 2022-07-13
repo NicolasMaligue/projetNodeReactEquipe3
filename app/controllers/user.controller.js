@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.firstname || !req.body.lastname) {
     res.status(400).send({
-      message: "fields firstname et lastname can not be empty!",
+      message: "Fields firstname et lastname can not be empty!",
     });
     return;
   }

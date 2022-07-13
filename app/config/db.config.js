@@ -11,4 +11,5 @@ module.exports = {
     acquire: 30000,
     idle: 10000,
   },
+  sync_forced: process.env.DB_SYNC_FORCED, // true to force sync (drop tables), false to sync only new field
 };

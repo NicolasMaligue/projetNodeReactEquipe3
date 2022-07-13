@@ -2,6 +2,7 @@
 // process.env.<ENV_VAR> available into whole server.js project
 const dotenv = require("dotenv");
 dotenv.config();
+const dbConfig = require("./app/config/db.config.js");
 
 // Framework Express
 const express = require("express");
@@ -19,10 +20,13 @@ app.use(cors(corsOptions));
 
 // Add Node ORM Sequelize
 const db = require("./app/models");
-//db.sequelize.sync();
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+if (dbConfig.sync_forced) {
+  db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+  });
+} else {
+  db.sequelize.sync();
+}
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());

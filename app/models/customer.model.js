@@ -25,15 +25,15 @@ module.exports = (sequelize, Sequelize) => {
     },
     phone: {
       type: Sequelize.STRING,
-      validate: {
-        is: "/^+33[1-9][0-9]{8}$/i",
-      },
+      // validate: {
+      //   is: "/^+33[1-9][0-9]{8}$/i",
+      // },
     },
     mobile: {
       type: Sequelize.STRING,
-      validate: {
-        is: "/^+33[6-7][0-9]{8}$/i",
-      },
+      // validate: {
+      //   is: "/^+33[6-7][0-9]{8}$/i",
+      // },
     },
     /**
      * field 'createdAt' auto added by sequelize
@@ -45,9 +45,10 @@ module.exports = (sequelize, Sequelize) => {
 
   const User = require("./user.model.js")(sequelize, Sequelize);
   /**
-   * foreign key creator auto added to the customer table by sequelize
+   * field creatorId auto added to the customer table by sequelize
+   * as foreign key for User.id
    */
   Customer.belongsTo(User, { as: "creator" }); //
 
   return Customer;
-};
+};;
