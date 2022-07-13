@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 const db = require("./app/models");
 //db.sequelize.sync();
 db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.h");
+  console.log("Drop and re-sync db.");
 });
 
 // parse requests of content-type: application/json
@@ -55,6 +55,9 @@ require("./app/routes/customer.routes.js")(app);
 
 // require product routes controller
 require("./app/routes/user.routes.js")(app);
+
+// require product route controller
+require('./app/routes/invoice.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
