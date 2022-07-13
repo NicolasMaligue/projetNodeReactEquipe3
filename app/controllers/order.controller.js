@@ -4,17 +4,10 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new User
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.title) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
-  }
 
   // Create a User
   const order = {
-    status: req.body.status ? req.body.status : "pending", // enum "hacker", "dealer", "Godfather"
+    priority: req.body.priority ? req.body.priority : "Normal", // enum "hacker", "dealer", "Godfather"
   };
 
   // Save User in the database
@@ -31,8 +24,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-  const query_priority = req.body.priority;
-  var condition = query_priority ? { query_priority: { [Op.like]: `%${query_priority}%` } } : null;
+  const priority = req.body.priority;
+  var condition = priority ? { priority: { [Op.like]: `%${priority}%` } } : null;
 
   Order.findAll({ where: condition })
     .then((data) => {
