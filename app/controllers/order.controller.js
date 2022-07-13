@@ -2,15 +2,23 @@ const db = require("../models");
 const Order = db.orders;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new User
+// Create and Save a new Order
 exports.create = (req, res) => {
+  // Validate request
+  if (!req.body.quoteId) {
+    res.status(400).send({
+      message: "Field quoteId required",
+    });
+    return;
+  }
 
-  // Create a User
+  // Create a Order
   const order = {
-    priority: req.body.priority ? req.body.priority : "Normal", // enum "hacker", "dealer", "Godfather"
+    quoteId: req.body.quoteId,
+    priority: req.body.priority ? req.body.priority : "Normal", // "Très Urgent", "Urgent", "Normal", "Non prioritaire"
   };
 
-  // Save User in the database
+  // Save Order in the database
   Order.create(order)
     .then((data) => {
       res.send(data);
@@ -22,7 +30,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Users from the database.
+// Retrieve all Orders from the database.
 exports.findAll = (req, res) => {
   const priority = req.body.priority;
   var condition = priority ? { priority: { [Op.like]: `%${priority}%` } } : null;
@@ -38,7 +46,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single User with an id
+// Find a single Order with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -53,7 +61,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a User by the id in the request
+// Update a Order by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
@@ -78,7 +86,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a User with the specified id in the request
+// Delete a Order with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -92,7 +100,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete order with id=${id}. Maybe User was not found!`,
+          message: `Cannot delete order with id=${id}. Maybe Order was not found!`,
         });
       }
     })
@@ -103,14 +111,14 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Users from the database.
+// Delete all Orders from the database.
 exports.deleteAll = (req, res) => {
     Order.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Users were deleted successfully!` });
+      res.send({ message: `${nums} Orders were deleted successfully!` });
     })
     .catch((err) => {
       res.status(500).send({

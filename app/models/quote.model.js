@@ -13,8 +13,8 @@ module.exports = (sequelize, Sequelize) => {
     const Customer = require("./customer.model.js")(sequelize, Sequelize);
     Quote.belongsTo(Customer, { as: "customer" }); 
 
-    // const Vehicle = require("./vehicle.model.js")(sequelize, Sequelize);
-    // Quote.belongsTo(Vehicle, { as: "vehicle" }); 
+    const Vehicle = require("./vehicle.model.js")(sequelize, Sequelize);
+    Quote.belongsTo(Vehicle, { as: "vehicle" }); 
 
     const User = require("./user.model.js")(sequelize, Sequelize);
     Quote.belongsTo(User, { as: "creator" }); 

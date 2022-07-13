@@ -5,16 +5,20 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Quote
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.customerId || !req.body.vehicleId || !req.body.creatorId) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message:
+        "A quote need at least a customerId, a vehicleId and a creatorId",
     });
     return;
   }
 
   // Create a Quote
   const quote = {
-    status: req.body.status ? req.body.status : "pending", // enum "hacker", "dealer", "Godfather"
+    status: req.body.status ? req.body.status : "pending",
+    customerId: req.body.customerId,
+    vehicleId: req.body.vehicleId,
+    creatorId: req.body.creatorId,
   };
 
   // Save Quote in the database

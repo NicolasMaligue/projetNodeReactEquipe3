@@ -56,14 +56,11 @@ app.get("/", (req, res) => {
 
 // require customer routes controller
 require("./app/routes/customer.routes.js")(app);
-
 // require user routes controller
 require("./app/routes/user.routes.js")(app);
-
-// require product routes controller
+// require quote routes controller
 require("./app/routes/quote.routes.js")(app);
-
-// require product routes controller
+// require order routes controller
 require("./app/routes/order.routes.js")(app);
 // require invoices route controller
 require('./app/routes/invoice.routes.js')(app);

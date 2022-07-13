@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
   /**
    * foreign key order auto added to the invoice table by sequelize
    */
-  Order.belongsTo(Order, {as: 'order'});
+   Invoice.belongsTo(Order, { as: "order" });
 
   return Invoice;
 };
