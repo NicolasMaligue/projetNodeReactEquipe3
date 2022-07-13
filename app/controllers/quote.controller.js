@@ -31,8 +31,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Quotes from the database.
 exports.findAll = (req, res) => {
-  const query_status = req.body.status;
-  var condition = query_status ? { query_status: { [Op.like]: `%${query_status}%` } } : null;
+  const status = req.body.status;
+  var condition = status ? { status: { [Op.like]: `%${status}%` } } : null;
 
   Quote.findAll({ where: condition })
     .then((data) => {
