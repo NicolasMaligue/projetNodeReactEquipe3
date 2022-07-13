@@ -1,22 +1,33 @@
+//const ENUM = require("../config/enum.config.js");
 const db = require("../models");
 const Customer = db.customers;
+const User = db.users;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.firstname || !req.body.lastname) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Fields firstname et lastname can not be empty",
     });
     return;
   }
 
+  // console.log("req.body.creatorId=", req.body.creatorId);
+  // const creator = await User.findByPk(1);
+  // console.log("@@@ customer creator=", creator);
+
   // Create a Customer
   const customer = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
+    zip: req.body.zip,
+    city: req.body.lastname,
+    phone: req.body.lastname,
+    mobile: req.body.lastname,
+    creatorId: req.body.creatorId,
   };
 
   // Save Customer in the database
@@ -34,8 +45,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  const firstname = req.query.firstname;
+  var condition = firstname
+    ? { firstname: { [Op.like]: `%${firstname}%` } }
+    : null;
 
   Customer.findAll({ where: condition })
     .then((data) => {
@@ -127,20 +140,6 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all customers.",
-      });
-    });
-};
-
-// find all published Customer
-exports.findAllPublished = (req, res) => {
-  Customer.findAll({ where: { published: true } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving customers.",
       });
     });
 };
