@@ -1,3 +1,8 @@
+// Get environement variables
+// process.env.<ENV_VAR> available into whole server.js project
+const dotenv = require("dotenv");
+dotenv.config();
+
 // Framework Express
 const express = require("express");
 // API body-parser

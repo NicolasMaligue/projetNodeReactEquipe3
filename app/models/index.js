@@ -21,6 +21,16 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.users = require("./user.model.js")(sequelize, Sequelize);
-db.customers = require("./customer.model.js")(sequelize, Sequelize, db.users);
+db.customers = require("./customer.model.js")(sequelize, Sequelize);
+
+/**
+ * to access role ENUM values with User model
+ */
+// db.users.rawAttributes.role.values.reduce((acc, curr) => {
+// //   acc[curr] = curr;
+// //   return acc;
+// });
+
+console.log("User model created (db.users.attributes) ");
 
 module.exports = db;

@@ -1,3 +1,5 @@
+const ENUM = require("../config/enum.config.js");
+
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("user", {
     /**
@@ -12,7 +14,8 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     role: {
-      type: Sequelize.ENUM("hacker", "dealer", "Godfather"),
+      // To access enum values out there :  db.users.rawAttributes.role.values
+      type: Sequelize.ENUM(ENUM.user.role),
       allowNull: false,
     },
     /**

@@ -5,18 +5,18 @@ const Op = db.Sequelize.Op;
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.firstname || !req.body.lastname) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "fields firstname et lastname can not be empty!",
     });
     return;
   }
 
   // Create a User
   const user = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    role: req.body.role ? req.body.role : "dealer", // enum "hacker", "dealer", "Godfather"
   };
 
   // Save User in the database
@@ -33,8 +33,12 @@ exports.create = (req, res) => {
 
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  const query_firstname = req.query.firstname;
+  const query_role = req.query.firstname;
+
+  const condition = query_firstname
+    ? { firstname: { [Op.like]: `%${query_firstname}%` } } // ie: field table firstname like '%firstname query value%'
+    : null;
 
   User.findAll({ where: condition })
     .then((data) => {
@@ -128,9 +132,9 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// find all published User
-exports.findAllPublished = (req, res) => {
-  User.findAll({ where: { published: true } })
+// find all User by role
+exports.findAllByRole = (req, res) => {
+  User.findAll({ where: { role: req.query.role } })
     .then((data) => {
       res.send(data);
     })
