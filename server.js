@@ -65,6 +65,8 @@ require("./app/routes/quote.routes.js")(app);
 
 // require product routes controller
 require("./app/routes/order.routes.js")(app);
+// require invoices route controller
+require('./app/routes/invoice.routes.js')(app);
 // require vehicle routes controller
 require("./app/routes/vehicle.routes.js")(app);
 
