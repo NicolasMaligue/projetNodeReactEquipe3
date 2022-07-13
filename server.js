@@ -56,6 +56,12 @@ require("./app/routes/customer.routes.js")(app);
 // require product routes controller
 require("./app/routes/user.routes.js")(app);
 
+// require product routes controller
+require("./app/routes/quote.routes.js")(app);
+
+// require product routes controller
+require("./app/routes/order.routes.js")(app);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
