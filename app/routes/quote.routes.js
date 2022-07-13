@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const quotes = require("../controllers/order.controller.js");
+    const quotes = require("../controllers/quote.controller.js");
   
     var router = require("express").Router();
   
