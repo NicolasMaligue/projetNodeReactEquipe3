@@ -1,6 +1,6 @@
 module.exports = {
   user: {
-    role: ["hacker", "dealer", "Godfather"],
+    role: { admin: "hacker", dealer: "dealer", boss: "godfather" },
   },
   order: {
     priority: ["Très Urgent", "Urgent", "Normal", "Non prioritaire"],

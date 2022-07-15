@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/NicolasMaligue/projetNodeReactEquipe3#readme",
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "@faker-js/faker": "^7.3.0",
+    "nodemon": "^2.0.19",
+    "sequelize-fixtures": "^1.2.0"
   },
   "dependencies": {
     "body-parser": "^1.20.0",

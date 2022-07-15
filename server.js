@@ -21,12 +21,19 @@ app.use(cors(corsOptions));
 
 // db management by ORM Sequelize
 const db = require("./app/models");
+// Call fixtures function to load db
+const app_fixtures = () => require("./app/fixtures/")(db);
+
 if (dbConfig.sync_forced) {
   db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
+    console.log("ORM: Drop and re-sync db.");
+    // Import fixtures (test data) into db
+    app_fixtures();
   });
 } else {
-  db.sequelize.sync();
+  db.sequelize.sync().then(() => {
+    console.log("ORM: Sync missing fields.");
+  });
 }
 
 // parse requests of content-type: application/json

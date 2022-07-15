@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     role: {
       // To access enum values without config :  User.rawAttributes.role.values
-      type: Sequelize.ENUM(ENUM.user.role),
+      type: Sequelize.ENUM(Object.values(ENUM.user.role)),
       allowNull: false,
     },
     /**
