@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/");
 const Order = db.orders;
 const Op = db.Sequelize.Op;
 
@@ -33,7 +33,9 @@ exports.create = (req, res) => {
 // Retrieve all Orders from the database.
 exports.findAll = (req, res) => {
   const priority = req.body.priority;
-  var condition = priority ? { priority: { [Op.like]: `%${priority}%` } } : null;
+  var condition = priority
+    ? { priority: { [Op.like]: `%${priority}%` } }
+    : null;
 
   Order.findAll({ where: condition })
     .then((data) => {
@@ -113,7 +115,7 @@ exports.delete = (req, res) => {
 
 // Delete all Orders from the database.
 exports.deleteAll = (req, res) => {
-    Order.destroy({
+  Order.destroy({
     where: {},
     truncate: false,
   })
@@ -122,7 +124,8 @@ exports.deleteAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while removing all orders.",
+        message:
+          err.message || "Some error occurred while removing all orders.",
       });
     });
 };

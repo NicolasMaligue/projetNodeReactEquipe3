@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/");
 const Quote = db.quotes;
 const Op = db.Sequelize.Op;
 

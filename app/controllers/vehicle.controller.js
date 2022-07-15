@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/");
 const Vehicle = db.vehicles;
 const Op = db.Sequelize.Op;
 
@@ -29,7 +29,8 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Vehicle.",
+        message:
+          err.message || "Some error occurred while creating the Vehicle.",
       });
     });
 };
@@ -48,7 +49,8 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving vehicles.",
+        message:
+          err.message || "Some error occurred while retrieving vehicles.",
       });
     });
 };
@@ -129,8 +131,8 @@ exports.deleteAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while removing all vehicles.",
+        message:
+          err.message || "Some error occurred while removing all vehicles.",
       });
     });
 };
-

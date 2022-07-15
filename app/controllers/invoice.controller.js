@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require("../models/");
 const Invoice = db.invoices;
 
 // Create and Save a new Order
