@@ -1,5 +1,3 @@
-const ENUM = require("../config/enum.config.js");
-
 module.exports = {
   ouam: {
     img: "img/student/carolanne.webp",
@@ -30,6 +28,11 @@ module.exports = {
     img: "img/student/sebastien.webp",
     name: "Sebastien",
     desc: "Pas louper le tram",
+  },
+  mukhtar: {
+    img: "img/student/mukhtar.webp",
+    name: "Mukhtar",
+    desc: "Covidé",
   },
   roman: {
     img: "img/student/roman.webp",

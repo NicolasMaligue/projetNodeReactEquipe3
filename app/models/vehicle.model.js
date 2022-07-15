@@ -3,19 +3,22 @@ module.exports = (sequelize, Sequelize) => {
     /**
      * Primary key 'id' auto added
      */
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     model: {
       type: Sequelize.STRING,
       allowNull: false,
+    },
+    manufacturer: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    type: {
+      type: Sequelize.STRING,
     },
     description: {
       type: Sequelize.STRING,
     },
     price: {
-      type: Sequelize.DECIMAL,
+      type: Sequelize.DOUBLE(7, 2), // 7 digits, 2 decimals + return json number type whereas Sequelize.DECIMAL(7, 2) return json string
     },
     quantity: {
       type: Sequelize.INTEGER,

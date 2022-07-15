@@ -6,9 +6,14 @@ module.exports = (db) => {
   sequelize_fixtures
     .loadFile("./app/fixtures/users.fixtures.js", db)
     .then(() => {
-      console.log("Db users fixtures loaded");
+      console.log("Db: Users fixtures loaded");
       // Import customers fixtures into db
       sequelize_fixtures.loadFile("./app/fixtures/customers.fixtures.js", db);
     })
-    .then(() => console.log("Db customers fixtures loaded"));
+    .then(() => {
+      console.log("Db: customers fixtures loaded");
+      // Import customers fixtures into db
+      sequelize_fixtures.loadFile("./app/fixtures/vehicles.fixtures.js", db);
+    })
+    .then(() => console.log("Db: vehicles fixtures loaded"));
 };
