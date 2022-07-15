@@ -73,4 +73,5 @@ module.exports = {
     desc: "Coordinateur Pédagogique & formateur",
     role: ENUM.user.role.admin,
   },
+  // todo add yvan + christophe
 };

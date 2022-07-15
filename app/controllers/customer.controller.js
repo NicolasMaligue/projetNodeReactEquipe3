@@ -1,4 +1,3 @@
-//const ENUM = require("../config/enum.config.js");
 const db = require("../models");
 const Customer = db.customers;
 const Op = db.Sequelize.Op;

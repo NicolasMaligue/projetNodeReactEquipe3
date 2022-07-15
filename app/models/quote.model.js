@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
        * Primary key 'id' auto added
        */
       status: {
-        type: Sequelize.ENUM(ENUM.quote.status),
+        type: Sequelize.ENUM(Object.values(ENUM.quote.status)),
         allowNull: false,
       },
       /**
@@ -16,12 +16,12 @@ module.exports = (sequelize, Sequelize) => {
        * field 'updatedAt' auto added
        */
     });
-    
+
     const Customer = require("./customer.model.js")(sequelize, Sequelize);
-    Quote.belongsTo(Customer, { as: "customer" }); 
+    Quote.belongsTo(Customer); 
 
     const Vehicle = require("./vehicle.model.js")(sequelize, Sequelize);
-    Quote.belongsTo(Vehicle, { as: "vehicle" }); 
+    Quote.belongsTo(Vehicle); 
 
     const User = require("./user.model.js")(sequelize, Sequelize);
     Quote.belongsTo(User, { as: "creator" }); 
