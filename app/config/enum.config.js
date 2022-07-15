@@ -1,11 +1,16 @@
 module.exports = {
   user: {
-    role: { admin: "Hacker", dealer: "Dealer", boss: "Godfather" },
+    role: { admin: "Administrateur", dealer: "Commercial", boss: "Patron" },
   },
   order: {
-    priority: ["Très Urgent", "Urgent", "Normal", "Non prioritaire"],
+    priority: {
+      critical: "Très Urgent",
+      urgent: "Urgent",
+      normal: "Normal",
+      low: "Non prioritaire",
+    },
   },
   quote: {
-    status: { pending: "Pending", accepted: "Accepted", rejected: "Rejected" },
+    status: { pending: "En attente", accepted: "Accepté", rejected: "Rejeté" },
   },
 };

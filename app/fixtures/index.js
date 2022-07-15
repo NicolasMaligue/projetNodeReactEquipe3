@@ -29,7 +29,23 @@ module.exports = async (db) => {
           db
         );
       })
-      .then(() => console.log("Db: quotes fixtures loaded"));
+      .then(async () => {
+        console.log("Db: quotes fixtures loaded");
+        // Import orders fixtures into db
+        await sequelize_fixtures.loadFile(
+          "./app/fixtures/orders.fixtures.js",
+          db
+        );
+      })
+      .then(async () => {
+        console.log("Db: orders fixtures loaded");
+        // Import invoices fixtures into db
+        await sequelize_fixtures.loadFile(
+          "./app/fixtures/invoices.fixtures.js",
+          db
+        );
+      })
+      .then(() => console.log("Db: invoices fixtures loaded"));
   } catch (err) {
     console.log("Err: fucking fixtures error", err);
   }

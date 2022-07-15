@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
        * Primary key 'id' auto added
        */
       priority: {
-        type: Sequelize.ENUM(ENUM.order.priority),
+        type: Sequelize.ENUM(Object.values(ENUM.order.priority)),
         allowNull: false,
       },
       /**

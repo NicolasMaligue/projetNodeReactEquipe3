@@ -2,16 +2,16 @@ const { faker } = require("@faker-js/faker/locale/fr");
 const { random_number } = require("../utils/");
 const ENUM = require("../config/enum.config.js");
 
-const quotes = [];
+const orders = [];
 for (let index = 0; index < 20; index++) {
-  // Quote fixture
-  quotes.push({
-    model: "quotes",
+  // Order fixture
+  orders.push({
+    model: "orders",
     data: {
-      quoteId: random_number(3, 7),
-      priority: faker.helpers.arrayElement(Object.values(ENUM.quote.status)),
+      quoteId: random_number(1, 40), // todo : link only accepted orders
+      priority: faker.helpers.arrayElement(Object.values(ENUM.order.priority)),
     },
   });
 }
 
-module.exports = quotes;
+module.exports = orders;
