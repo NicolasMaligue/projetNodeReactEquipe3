@@ -6,7 +6,7 @@ for (let index = 0; index < 10; index++) {
   invoices.push({
     model: "invoices",
     data: {
-      orderId: random_number(1, 20),
+      orderId: random_number(1, 19),
     },
   });
 }

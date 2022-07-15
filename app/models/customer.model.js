@@ -51,4 +51,4 @@ module.exports = (sequelize, Sequelize) => {
   Customer.belongsTo(User, { as: "creator" }); //
 
   return Customer;
-};;;
+}

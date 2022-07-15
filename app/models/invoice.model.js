@@ -8,4 +8,4 @@ module.exports = (sequelize, Sequelize) => {
   Invoice.belongsTo(Order);
 
   return Invoice;
-};;
+}
