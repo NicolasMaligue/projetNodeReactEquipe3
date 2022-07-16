@@ -1,8 +1,8 @@
+// const { random_number } = require("../utils/");
+// const team_digi = require("./team_digi.js");
 const { faker } = require("@faker-js/faker/locale/fr");
 const student_digi = require("./student_digi.js");
 const db = require("../models/Db.class.js");
-// const { random_number } = require("../utils/");
-// const team_digi = require("./team_digi.js");
 
 // Find available creators (all users with role dealer)
 module.exports = db.models.user
@@ -11,9 +11,6 @@ module.exports = db.models.user
   .catch((err) => {
     console.log(`catch err`, err);
   });
-
-db.message += " + require on customer.fixtures ";
-console.log("db.message", db.message);
 
 const customer_fixtures = (creators_data) =>
   Object.values(student_digi).map((namic) => {

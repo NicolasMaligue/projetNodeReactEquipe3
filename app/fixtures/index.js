@@ -1,9 +1,6 @@
 const sequelize_fixtures = require("sequelize-fixtures");
 const db = require("../models/Db.class.js");
 
-db.message += " + require on index fixtures ";
-console.log("db.message", db.message);
-
 (async () => {
   try {
     // Import user fixtures into db
