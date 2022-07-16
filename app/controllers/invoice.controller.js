@@ -1,5 +1,5 @@
-const db = require("../models/");
-const Invoice = db.invoices;
+const db = require("../models/Db.class.js");
+const Invoice = db.models.invoice;
 
 // Create and Save a new Order
 exports.create = (req, res) => {

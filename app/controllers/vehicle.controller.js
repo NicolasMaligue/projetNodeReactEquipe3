@@ -1,5 +1,5 @@
-const db = require("../models/");
-const Vehicle = db.vehicles;
+const db = require("../models/Db.class.js");
+const Vehicle = db.models.vehicle;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Vehicle

@@ -1,5 +1,5 @@
-const db = require("../models/");
-const Quote = db.quotes;
+const db = require("../models/Db.class.js");
+const Quote = db.models.quote;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Quote

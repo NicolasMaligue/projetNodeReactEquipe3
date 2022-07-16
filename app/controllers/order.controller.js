@@ -1,5 +1,5 @@
-const db = require("../models/");
-const Order = db.orders;
+const db = require("../models/Db.class.js");
+const Order = db.models.order;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Order

@@ -1,16 +1,20 @@
 const sequelize_fixtures = require("sequelize-fixtures");
+const db = require("../models/Db.class.js");
 
-module.exports = async (db) => {
+db.message += " + require on index fixtures ";
+console.log("db.message", db.message);
+
+(async () => {
   try {
     // Import user fixtures into db
     await sequelize_fixtures
-      .loadFile("./app/fixtures/user.fixtures.js", db)
+      .loadFile("./app/fixtures/user.fixtures.js", db.models)
       .then(async () => {
         console.log("Db: User fixtures loaded");
         // Import customer fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/customer.fixtures.js",
-          db
+          db.models
         );
       })
       .then(async () => {
@@ -18,7 +22,7 @@ module.exports = async (db) => {
         // Import vehicle fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/vehicle.fixtures.js",
-          db
+          db.models
         );
       })
       .then(async () => {
@@ -26,7 +30,7 @@ module.exports = async (db) => {
         // Import quote fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/quote.fixtures.js",
-          db
+          db.models
         );
       })
       .then(async () => {
@@ -34,7 +38,7 @@ module.exports = async (db) => {
         // Import order fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/order.fixtures.js",
-          db
+          db.models
         );
       })
       .then(async () => {
@@ -42,11 +46,11 @@ module.exports = async (db) => {
         // Import order fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/invoice.fixtures.js",
-          db
+          db.models
         );
       })
-      .then(() => console.log("Db: order fixtures loaded"));
+      .then(() => console.log("Db: invoice fixtures loaded"));
   } catch (err) {
     console.log("Err: fucking fixtures error", err);
   }
-};
+})();

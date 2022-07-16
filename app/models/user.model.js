@@ -26,5 +26,20 @@ module.exports = (sequelize, Sequelize) => {
      */
   });
 
+  /**
+   * Find all users witch have dealer role
+   */
+  User.findAllCreator = async () => {
+    const condition = {
+      where: { role: { [Sequelize.Op.eq]: `${ENUM.user.role.dealer}` } },
+    };
+
+    return await User.findAll(condition) // todo where role = dealer
+      .then((data) => data)
+      .catch((err) => {
+        console.log(`catch err`, err);
+      });
+  };
+
   return User;
 };

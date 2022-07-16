@@ -5,7 +5,7 @@ const vehicles = [];
 for (let index = 0; index < 50; index++) {
   // Vehicle fixture
   vehicles.push({
-    model: "vehicles",
+    model: "vehicle",
     data: {
       model: faker.vehicle.model(),
       manufacturer: faker.vehicle.manufacturer(),

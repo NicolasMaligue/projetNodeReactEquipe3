@@ -1,5 +1,5 @@
-const db = require("../models/");
-const Customer = db.customers;
+const db = require("../models/Db.class.js");
+const Customer = db.models.customer;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Customer

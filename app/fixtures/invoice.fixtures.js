@@ -4,9 +4,9 @@ const invoices = [];
 for (let index = 0; index < 10; index++) {
   // Invoice fixture
   invoices.push({
-    model: "invoices",
+    model: "invoice",
     data: {
-      orderId: random_number(1, 19),
+      orderId: random_number(1, 20),
     },
   });
 }

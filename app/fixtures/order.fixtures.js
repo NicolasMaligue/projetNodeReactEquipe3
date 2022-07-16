@@ -15,17 +15,14 @@ for (let index = 0; index < id_max; index++) {
   const id = faker.helpers.arrayElement(quote_ids_available);
   quote_ids_available = quote_ids_available.filter((element) => element !== id);
 
-  console.log("order fixtures index", index);
   // Order fixture
   orders.push({
-    model: "orders",
+    model: "order",
     data: {
       quoteId: id,
       priority: faker.helpers.arrayElement(Object.values(ENUM.order.priority)),
     },
   });
 }
-
-console.log("@@@ orders", orders);
 
 module.exports = orders;

@@ -6,7 +6,7 @@ const quotes = [];
 for (let index = 0; index < 40; index++) {
   // Quote fixture
   quotes.push({
-    model: "quotes",
+    model: "quote",
     data: {
       creatorId: random_number(3, 7),
       customerId: random_number(1, 12),

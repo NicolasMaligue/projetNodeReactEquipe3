@@ -4,7 +4,7 @@ const team_digi = require("./team_digi.js");
 // User fixture
 module.exports = Object.values(team_digi).map((namic) => {
   return {
-    model: "users",
+    model: "user",
     data: {
       firstname: namic.name,
       lastname: faker.name.lastName(),

@@ -20,15 +20,13 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // db management by ORM Sequelize
-const db = require("./app/models");
+const db = require("./app/models/Db.class.js");
 // Call fixtures function to load db
-const app_fixtures = () => require("./app/fixtures/")(db);
-
 if (dbConfig.sync_forced) {
   db.sequelize.sync({ force: true }).then(() => {
     console.log("ORM: Drop and re-sync db.");
     // Import fixtures (test data) into db
-    app_fixtures();
+    require("./app/fixtures/");
   });
 } else {
   db.sequelize.sync().then(() => {
@@ -41,8 +39,7 @@ app.use(bodyParser.json());
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-// Add response header for middleware autorisations 
+// Add response header for middleware autorisations
 app.all("", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
