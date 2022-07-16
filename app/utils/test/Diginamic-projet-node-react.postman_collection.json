@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"tata\",\n    \"lastname\": \"tata@titi.fr\",\n    \"role\": \"godfather\"\n}",
+							"raw": "{\n        \"firstname\": \"Christophe\",\n        \"lastname\": \"Arnaud\",\n        \"role\": \"Commercial\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,7 +80,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"momo\",\n    \"lastname\": \"tata@titi.fr\",\n    \"role\": \"dealer\"\n}",
+							"raw": "{\n    \"role\": \"Administrateur\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -151,7 +151,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"boby\",\n    \"lastname\": \"toto\",\n    \"address\": \"au fond a gauche\",\n    \"zip\": \"34380\",\n    \"city\": \"Viols le fort\",\n    \"phone\": \"+33188481494\",\n    \"mobile\": \"+3368841494\",\n    \"creatorId\": 1\n}",
+							"raw": "    {\n        \"firstname\": \"Christophe\",\n        \"lastname\": \"Marchand\",\n        \"address\": \"1 Avenue Dauphine\",\n        \"zip\": \"87503\",\n        \"city\": \"Colombes\",\n        \"phone\": \"+33449867838\",\n        \"mobile\": \"+33652440792\",\n        \"creatorId\": 6\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -176,13 +176,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/customers/2",
+							"raw": "{{ api_url }}/customers/1",
 							"host": [
 								"{{ api_url }}"
 							],
 							"path": [
 								"customers",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -212,7 +212,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"mister\",\n    \"lastname\": \"maboule\",\n    \"address\": \"au fond a droite\",\n    \"zip\": \"34380\",\n    \"city\": \"Viols le fort\",\n    \"phone\": \"+33188481494\",\n    \"mobile\": \"+3368841494\",\n    \"creatorId\": 1\n}",
+							"raw": "{\n    \"firstname\": \"Christophe\",\n    \"address\": \"9567 Quai de la Chaussée-d'Antin\",\n    \"phone\": \"+33157862004\",\n    \"mobile\": \"+33657862004\",\n    \"creatorId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -435,7 +435,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"customerId\": 2,\n    \"vehicleId\": 1,\n    \"creatorId\": 1,\n    \"status\": \"rejected\"\n}",
+							"raw": "{\n    \"customerId\": 1,\n    \"vehicleId\": 1,\n    \"creatorId\": 1,\n    \"status\": \"Rejeté\"\n} ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -496,7 +496,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"customerId\": 2,\n    \"vehicleId\": 1,\n    \"creatorId\": 1,\n    \"status\": \"rejected\"\n}",
+							"raw": "{\n    \"customerId\": 2,\n    \"vehicleId\": 1,\n    \"creatorId\": 1,\n    \"status\": \"Accepté\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -566,7 +566,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"quoteId\": 2,\n    \"priority\": \"Normal\"\n}",
+							"raw": "{\n    \"quoteId\": 3,\n    \"priority\": \"Normal\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

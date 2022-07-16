@@ -32,7 +32,7 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Customer.",
+          "Some error occurred while creating the Customer." + " (" + err.message + ")",   // todo : err.message only for dev environement
       });
     });
 };
@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers.",
+          err.message || "Some error occurred while retrieving customers." + " (" + err.message + ")",
       });
     });
 };
@@ -66,7 +66,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Customer with id=" + id,
+        message: "Error retrieving Customer with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -85,13 +85,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!`,
+          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!` + " (" + err.message + ")", 
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Customer with id=" + id,
+        message: "Error updating Customer with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -110,13 +110,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
+          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Customer with id=" + id,
+        message: "Could not delete Customer with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -133,7 +133,7 @@ exports.deleteAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers.",
+          err.message || "Some error occurred while removing all customers." + " (" + err.message + ")",
       });
     });
 };

@@ -1,3 +1,4 @@
+const ENUM = require("../config/enum.config.js");
 const db = require("../models/Db.class.js");
 const User = db.models.user;
 const Op = db.Sequelize.Op;
@@ -7,7 +8,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.firstname || !req.body.lastname) {
     res.status(400).send({
-      message: "Fields firstname et lastname can not be empty!",
+      message: "Fields firstname et lastname can not be empty! (" + err.message + ")",
     });
     return;
   }
@@ -16,7 +17,7 @@ exports.create = (req, res) => {
   const user = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
-    role: req.body.role ? req.body.role : "dealer", // enum "hacker", "dealer", "Godfather"
+    role: req.body.role ? req.body.role : ENUM.user.role.dealer, // enum role : { admin: "Administrateur", dealer: "Commercial", boss: "Patron" }
   };
 
   // Save User in the database
@@ -26,7 +27,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the User.",
+        message: err.message || "Some error occurred while creating the User. (" + err.message + ")",
       });
     });
 };
@@ -45,7 +46,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving users.",
+        message: err.message || "Some error occurred while retrieving users. (" + err.message + ")",
       });
     });
 };
@@ -60,7 +61,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving User with id=" + id,
+        message: "Error retrieving User with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -79,13 +80,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`,
+          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id,
+        message: "Error updating User with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -104,13 +105,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete User with id=${id}. Maybe User was not found!`,
+          message: `Cannot delete User with id=${id}. Maybe User was not found!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete User with id=" + id,
+        message: "Could not delete User with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -126,7 +127,7 @@ exports.deleteAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while removing all users.",
+        message: err.message || "Some error occurred while removing all users. (" + err.message + ")",
       });
     });
 };
@@ -139,7 +140,7 @@ exports.findAllByRole = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving users.",
+        message: err.message || "Some error occurred while retrieving users. (" + err.message + ")",
       });
     });
 };

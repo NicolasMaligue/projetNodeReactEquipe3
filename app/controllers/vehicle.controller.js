@@ -30,7 +30,7 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Vehicle.",
+          err.message || "Some error occurred while creating the Vehicle. (" + err.message + ")",
       });
     });
 };
@@ -50,7 +50,7 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving vehicles.",
+          err.message || "Some error occurred while retrieving vehicles. (" + err.message + ")",
       });
     });
 };
@@ -65,7 +65,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Vehicle with id=" + id,
+        message: "Error retrieving Vehicle with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -84,13 +84,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Vehicle with id=${id}. Maybe Vehicle was not found or req.body is empty!`,
+          message: `Cannot update Vehicle with id=${id}. Maybe Vehicle was not found or req.body is empty!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Vehicle with id=" + id,
+        message: "Error updating Vehicle with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -109,13 +109,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Vehicle with id=${id}. Maybe Vehicle was not found!`,
+          message: `Cannot delete Vehicle with id=${id}. Maybe Vehicle was not found!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Vehicle with id=" + id,
+        message: "Could not delete Vehicle with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -132,7 +132,7 @@ exports.deleteAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all vehicles.",
+          err.message || "Some error occurred while removing all vehicles. (" + err.message + ")",
       });
     });
 };

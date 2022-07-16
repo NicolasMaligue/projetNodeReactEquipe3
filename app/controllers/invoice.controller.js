@@ -24,7 +24,7 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the" + " Invoice",
+          err.message || "Some error occurred while creating the invoice (" + err.message + ")",
       });
     });
 };
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving" + " invoices",
+          err.message || "Some error occurred while retrieving invoices (" + err.message + ")",
       });
     });
 };
@@ -54,7 +54,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Invoice with id=" + id,
+        message: "Error retrieving Invoice with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -73,13 +73,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Invoice with id=${id}. Maybe Invoice was not found or req.body is empty!`,
+          message: `Cannot update Invoice with id=${id}. Maybe Invoice was not found or req.body is empty!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Invoice with id=" + id,
+        message: "Error updating Invoice with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -98,13 +98,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Invoice with id=${id}. Maybe Invoice was not found!`,
+          message: `Cannot delete Invoice with id=${id}. Maybe Invoice was not found!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Invoice with id=" + id,
+        message: "Could not delete Invoice with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -123,7 +123,7 @@ exports.deleteAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all" + " invoices",
+          err.message || "Some error occurred while removing all invoices (" + err.message + ")",
       });
     });
 };
@@ -136,7 +136,7 @@ exports.findAllByOrder = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving invoices",
+        message: err.message || "Some error occurred while retrieving invoices (" + err.message + ")",
       });
     });
 };

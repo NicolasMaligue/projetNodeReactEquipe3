@@ -1,7 +1,7 @@
 const sequelize_fixtures = require("sequelize-fixtures");
 const db = require("../models/Db.class.js");
 
-(async () => {
+module.exports = (async () => {
   try {
     // Import user fixtures into db
     await sequelize_fixtures

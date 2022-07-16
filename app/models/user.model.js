@@ -34,7 +34,7 @@ module.exports = (sequelize, Sequelize) => {
       where: { role: { [Sequelize.Op.eq]: `${ENUM.user.role.dealer}` } },
     };
 
-    return await User.findAll(condition) // todo where role = dealer
+    return await User.findAll(condition)
       .then((data) => data)
       .catch((err) => {
         console.log(`catch err`, err);

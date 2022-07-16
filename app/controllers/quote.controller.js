@@ -1,3 +1,4 @@
+const ENUM = require("../config/enum.config.js");
 const db = require("../models/Db.class.js");
 const Quote = db.models.quote;
 const Op = db.Sequelize.Op;
@@ -15,7 +16,8 @@ exports.create = (req, res) => {
 
   // Create a Quote
   const quote = {
-    status: req.body.status ? req.body.status : "pending",
+    // enum status: { pending: "En attente", accepted: "Accepté", rejected: "Rejeté" }
+    status: req.body.status ? req.body.status : ENUM.quote.status.pending,
     customerId: req.body.customerId,
     vehicleId: req.body.vehicleId,
     creatorId: req.body.creatorId,
@@ -28,7 +30,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the quote.",
+        message: err.message || "Some error occurred while creating the quote. (" + err.message + ")",
       });
     });
 };
@@ -44,7 +46,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving quotes.",
+        message: err.message || "Some error occurred while retrieving quotes. (" + err.message + ")",
       });
     });
 };
@@ -59,7 +61,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Quote with id=" + id,
+        message: "Error retrieving Quote with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -78,13 +80,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update quote with id=${id}. Maybe quote was not found or req.body is empty!`,
+          message: `Cannot update quote with id=${id}. Maybe quote was not found or req.body is empty!` + " (" + err.message + ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating quote with id=" + id,
+        message: "Error updating quote with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -109,7 +111,7 @@ exports.delete = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete quote with id=" + id,
+        message: "Could not delete quote with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -125,7 +127,7 @@ exports.deleteAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while removing all quote.",
+        message: err.message || "Some error occurred while removing all quote. (" + err.message + ")",
       });
     });
 };

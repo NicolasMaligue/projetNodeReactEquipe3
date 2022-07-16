@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     const Quote = require("./quote.model.js")(sequelize, Sequelize);
-    Order.belongsTo(Quote, { as: "quote" }); 
+    Order.belongsTo(Quote, { as: "quote", foreignKey: { allowNull: false } }); 
   
     return Order;
   };

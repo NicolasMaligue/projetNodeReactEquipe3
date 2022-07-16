@@ -12,13 +12,13 @@ if (cmdArgs.indexOf("reload-db") != -1) {
   db.sequelize.sync({ force: true }).then(() => {
     console.log("ORM: Drop and re-sync db.");
     // Import fixtures (test data) into db
-    if(cmdArgs.indexOf("with-fixtures") != -1) {
+    if (cmdArgs.indexOf("with-fixtures") != -1) {
       require("./app/fixtures/");
     }
   });
 } else {
   db.sequelize.sync().then(() => {
-    console.log("ORM: Sync missing fields.");
+    console.log("ORM: Sync only missing fields.");
   });
 }
 
@@ -54,16 +54,13 @@ app.all("", function (req, res, next) {
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to fun4free, a Node.JS/React application." });
 });
 
 // require all routes controller
-require("./app/routes/customer.routes.js")(app);
-require("./app/routes/user.routes.js")(app);
-require("./app/routes/quote.routes.js")(app);
-require("./app/routes/order.routes.js")(app);
-require("./app/routes/invoice.routes.js")(app);
-require("./app/routes/vehicle.routes.js")(app);
+db.models_name.map((model_name) => {
+  require(`./app/routes/${model_name}.routes.js`)(app);
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

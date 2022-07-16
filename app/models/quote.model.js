@@ -18,13 +18,13 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     const Customer = require("./customer.model.js")(sequelize, Sequelize);
-    Quote.belongsTo(Customer); 
+    Quote.belongsTo(Customer, { foreignKey: { allowNull: false } }); 
 
     const Vehicle = require("./vehicle.model.js")(sequelize, Sequelize);
-    Quote.belongsTo(Vehicle); 
+    Quote.belongsTo(Vehicle, { foreignKey: { allowNull: false } }); 
 
     const User = require("./user.model.js")(sequelize, Sequelize);
-    Quote.belongsTo(User, { as: "creator" }); 
+    Quote.belongsTo(User, { as: "creator", foreignKey: { allowNull: false } }); 
   
     return Quote;
   };
