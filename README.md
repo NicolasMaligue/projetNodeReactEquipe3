@@ -4,14 +4,35 @@
 
 In the project directory, you can run :
 
-### `npm start`
-### `npm run dev`
+### First run or to reload db with fresh new data
+```bash
+# Start server.js with node and sync/reload db with sample data (fixtures)
+npm run fixtures
+```
 
-Runs the app in the development mode (nodemon).\
+### Dev 
+```bash
+# Start server.js with nodemon
+npm run dev
+```
+```bash
+# Start server.js with node
+npm start
+```
+```bash
+# Start server.js with node and sync/reload db (get empty db)
+npm run reload
+```
+
+Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm run prod`
-Runs the app in the production mode (lol).\
+### Prod
+```bash
+# Start server.js with node
+npm run prod
+```
+Runs the app in the production mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Postman config 

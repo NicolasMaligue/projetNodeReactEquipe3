@@ -4,7 +4,9 @@
   "description": "A Node/React App Project - Equipe 3",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "reload": "node server.js -- reload-db",
+    "fixtures": "node server.js -- reload-db with-fixtures",
+    "start": "node server.js",
     "dev": "nodemon server.js",
     "prod": "node server.js"
   },

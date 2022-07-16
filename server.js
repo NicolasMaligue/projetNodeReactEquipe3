@@ -2,8 +2,25 @@
 // process.env.<ENV_VAR> available into whole server.js project
 const dotenv = require("dotenv");
 dotenv.config();
-// Get db config values
-const dbConfig = require("./app/config/db.config.js");
+
+// db management by ORM Sequelize
+const db = require("./app/models/Db.class.js");
+// Call fixtures function to load db
+const cmdArgs = process.argv.slice(2);
+console.log("cmdArgs: ", cmdArgs);
+if (cmdArgs.indexOf("reload-db") != -1) {
+  db.sequelize.sync({ force: true }).then(() => {
+    console.log("ORM: Drop and re-sync db.");
+    // Import fixtures (test data) into db
+    if(cmdArgs.indexOf("with-fixtures") != -1) {
+      require("./app/fixtures/");
+    }
+  });
+} else {
+  db.sequelize.sync().then(() => {
+    console.log("ORM: Sync missing fields.");
+  });
+}
 
 // Framework Express
 const express = require("express");
@@ -18,21 +35,6 @@ const corsOptions = {
   origin: "*", //http://localhost:8080/
 };
 app.use(cors(corsOptions));
-
-// db management by ORM Sequelize
-const db = require("./app/models/Db.class.js");
-// Call fixtures function to load db
-if (dbConfig.sync_forced) {
-  db.sequelize.sync({ force: true }).then(() => {
-    console.log("ORM: Drop and re-sync db.");
-    // Import fixtures (test data) into db
-    require("./app/fixtures/");
-  });
-} else {
-  db.sequelize.sync().then(() => {
-    console.log("ORM: Sync missing fields.");
-  });
-}
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
