@@ -39,7 +39,8 @@ exports.findAll = (req, res) => {
     ? { priority: { [Op.like]: `%${priority}%` } }
     : null;
 
-  Order.findAll({ where: condition })
+  // Eager Loading : fetch data from all assiociated tables too
+  Order.findAll({ where: condition, include:[{ all: true, nested: true }]})
     .then((data) => {
       res.send(data);
     })
