@@ -5,10 +5,10 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Quote from './components/pages/Quote';
-import Order from './components/pages/Order';
-import Invoice from './components/pages/Invoice';
-import Customer from './components/pages/Customer';
+// import Quote from './components/pages/Quote';
+// import Order from './components/pages/Order';
+// import Invoice from './components/pages/Invoice';
+// import Customer from './components/pages/Customer';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
