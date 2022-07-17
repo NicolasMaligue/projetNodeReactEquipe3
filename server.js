@@ -51,14 +51,37 @@ app.all("", function (req, res, next) {
   next();
 });
 
-// simple route
+// middleware
+app.use(express.static("react/build"));
+
+// server root route for react app built
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to fun4free, a Node.JS/React application." });
+  res.sendFile(__dirname + "/react/build/index.html", (err) => {
+    // file ./react/build/index.html not found => maybe forgot to build react app
+    if (err.code === "ENOENT" && err.syscall === "stat") {
+      res
+        .status(404)
+        .sendFile(__dirname + "/app/views/errors/404-react-not-built");
+    }
+  });
 });
 
 // require all routes controller
 db.models_name.map((model_name) => {
   require(`./app/routes/${model_name}.routes.js`)(app);
+});
+
+// root route for react app built
+app.get("*", (req, res) => {
+  let ext = 'json';
+  const acceptIndex = req.rawHeaders.indexOf("Accept");
+  if(acceptIndex != -1) {
+    const contentType = req.rawHeaders[acceptIndex + 1];
+    if(contentType.indexOf('/html,') != -1) {
+      ext = 'html';
+    }
+  }
+  res.status(404).sendFile(__dirname + `/app/views/errors/404.${ext}`);
 });
 
 // set port, listen for requests
