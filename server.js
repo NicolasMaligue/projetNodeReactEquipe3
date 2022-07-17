@@ -7,7 +7,6 @@ dotenv.config();
 const db = require("./app/models/Db.class.js");
 // Call fixtures function to load db
 const cmdArgs = process.argv.slice(2);
-console.log("cmdArgs: ", cmdArgs);
 if (cmdArgs.indexOf("reload-db") != -1) {
   db.sequelize.sync({ force: true }).then(() => {
     console.log("ORM: Drop and re-sync db.");
@@ -63,7 +62,7 @@ db.models_name.map((model_name) => {
 });
 
 // set port, listen for requests
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+const API_PORT = process.env.API_PORT || 3001;
+app.listen(API_PORT, () => {
+  console.log(`Server is running on port ${API_PORT}.`);
 });

@@ -27,9 +27,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/users",
+							"raw": "{{api_url}}/users",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"users"
@@ -44,9 +44,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/users/1",
+							"raw": "{{api_url}}/users/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"users",
@@ -62,9 +62,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/users",
+							"raw": "{{api_url}}/users",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"users"
@@ -80,7 +80,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"role\": \"Administrateur\"\n}",
+							"raw": "{\n    \"lastname\": \"Durand\",\n    \"role\": \"Administrateur\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,9 +88,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/users/1",
+							"raw": "{{api_url}}/users/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"users",
@@ -106,9 +106,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/users/4",
+							"raw": "{{api_url}}/users/4",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"users",
@@ -124,9 +124,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/users/1",
+							"raw": "{{api_url}}/users/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"users",
@@ -159,9 +159,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/customers",
+							"raw": "{{api_url}}/customers",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"customers"
@@ -176,9 +176,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/customers/1",
+							"raw": "{{api_url}}/customers/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"customers",
@@ -194,9 +194,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/customers",
+							"raw": "{{api_url}}/customers",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"customers"
@@ -220,9 +220,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/customers/1",
+							"raw": "{{api_url}}/customers/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"customers",
@@ -238,9 +238,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/customers/1",
+							"raw": "{{api_url}}/customers/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"customers",
@@ -256,9 +256,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/customers/1",
+							"raw": "{{api_url}}/customers/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"customers",
@@ -291,9 +291,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/vehicles",
+							"raw": "{{api_url}}/vehicles",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"vehicles"
@@ -320,9 +320,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/vehicles/1",
+							"raw": "{{api_url}}/vehicles/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"vehicles",
@@ -338,9 +338,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/vehicles",
+							"raw": "{{api_url}}/vehicles",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"vehicles"
@@ -364,9 +364,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/vehicles/1",
+							"raw": "{{api_url}}/vehicles/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"vehicles",
@@ -391,9 +391,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/vehicles/2",
+							"raw": "{{api_url}}/vehicles/2",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"vehicles",
@@ -409,9 +409,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/vehicles",
+							"raw": "{{api_url}}/vehicles",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"vehicles"
@@ -443,9 +443,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/quotes",
+							"raw": "{{api_url}}/quotes",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"quotes"
@@ -460,9 +460,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/quotes/2",
+							"raw": "{{api_url}}/quotes/2",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"quotes",
@@ -478,9 +478,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/quotes",
+							"raw": "{{api_url}}/quotes",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"quotes"
@@ -504,9 +504,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/quotes/2",
+							"raw": "{{api_url}}/quotes/2",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"quotes",
@@ -522,9 +522,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/quotes/2",
+							"raw": "{{api_url}}/quotes/2",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"quotes",
@@ -540,9 +540,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/quotes",
+							"raw": "{{api_url}}/quotes",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"quotes"
@@ -574,9 +574,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/orders",
+							"raw": "{{api_url}}/orders",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"orders"
@@ -591,9 +591,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/orders/1",
+							"raw": "{{api_url}}/orders/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"orders",
@@ -609,9 +609,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/orders",
+							"raw": "{{api_url}}/orders",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"orders"
@@ -635,9 +635,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/orders/1",
+							"raw": "{{api_url}}/orders/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"orders",
@@ -653,9 +653,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/orders/2",
+							"raw": "{{api_url}}/orders/2",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"orders",
@@ -671,9 +671,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/orders",
+							"raw": "{{api_url}}/orders",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"orders"
@@ -705,9 +705,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/invoices",
+							"raw": "{{api_url}}/invoices",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"invoices"
@@ -722,9 +722,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/invoices/1",
+							"raw": "{{api_url}}/invoices/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"invoices",
@@ -740,9 +740,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/invoices/",
+							"raw": "{{api_url}}/invoices/",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"invoices",
@@ -767,9 +767,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ api_url }}/invoices/1",
+							"raw": "{{api_url}}/invoices/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"invoices",
@@ -785,9 +785,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/invoices/1",
+							"raw": "{{api_url}}/invoices/1",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"invoices",
@@ -803,9 +803,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ api_url }}/invoices",
+							"raw": "{{api_url}}/invoices",
 							"host": [
-								"{{ api_url }}"
+								"{{api_url}}"
 							],
 							"path": [
 								"invoices"
@@ -839,8 +839,18 @@
 	],
 	"variable": [
 		{
-			"key": " api_url ",
-			"value": "http://localhost:3000/api"
+			"key": "api_url",
+			"value": "http://{{api_host}}:{{api_port}}/api"
+		},
+		{
+			"key": "api_port",
+			"value": "3001",
+			"type": "string"
+		},
+		{
+			"key": "api_host",
+			"value": "localhost",
+			"type": "string"
 		}
 	]
 }

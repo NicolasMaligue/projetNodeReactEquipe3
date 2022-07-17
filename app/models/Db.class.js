@@ -1,5 +1,5 @@
 const dbConfig = require("../config/db.config.js");
-const Sequelize = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 
 class Db {
   constructor() {
@@ -34,8 +34,6 @@ class Db {
       host: dbConfig.HOST,
       dialect: dbConfig.dialect,
       port: dbConfig.port,
-      operatorsAliases: false,
-
       pool: {
         max: dbConfig.pool.max,
         min: dbConfig.pool.min,
