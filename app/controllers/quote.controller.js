@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
   const status = req.body.status;
   var condition = status ? { status: { [Op.like]: `%${status}%` } } : null;
 
-  Quote.findAll({ where: condition })
+  Quote.findAll({ where: condition, include:[{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
@@ -55,7 +55,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Quote.findByPk(id)
+  Quote.findByPk(id, { include:[{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })

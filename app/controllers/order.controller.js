@@ -55,7 +55,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Order.findByPk(id)
+  Order.findByPk(id, { include:[{ all: true, nested: true }]})
     .then((data) => {
       res.send(data);
     })

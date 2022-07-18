@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 // Retrieve all Invoices from the database
 exports.findAll = (req, res) => {
   const query_order = req.query.order;
-  Invoice.findAll()
+  Invoice.findAll({ include:[{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Invoice.findByPk(id)
+  Invoice.findByPk(id, { include:[{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })

@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
     ? { firstname: { [Op.like]: `%${firstname}%` } }
     : null;
 
-  Customer.findAll({ where: condition })
+  Customer.findAll({ where: condition, include:[{ all: true, nested: true }]})
     .then((data) => {
       res.send(data);
     })
@@ -60,7 +60,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Customer.findByPk(id)
+  Customer.findByPk(id, { include:[{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
