@@ -4,10 +4,11 @@ import Users from "./pages/Users";
 import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
 import Quotes from './pages/Quotes';
-// import Invoice from './pages/Invoice';
 import Customers from "./pages/Customers";
 import React from "react";
 import axios from 'axios';
+import Invoices from './pages/Invoices';
+import Vehicles from './pages/Vehicles';
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -26,7 +27,8 @@ const App = () => {
           <Route path="/" />
           <Route path="/quotes" element={<Quotes />} />
           <Route path="/orders" element={<Orders />} />
-          {/* <Route path="/invoice" element={<Invoice/>}/> */}
+          <Route path="/invoices" element={<Invoices/>}/>
+          <Route path="/vehicles" element={<Vehicles/>}/>
           <Route path="/customers" element={<Customers />} />
           <Route path="/users" element={<Users />} />
         </Routes>
