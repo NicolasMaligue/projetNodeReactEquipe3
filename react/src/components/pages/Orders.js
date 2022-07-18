@@ -45,55 +45,6 @@ const Orders = () => {
               {orders.map((order, index) => {
                 return <Order key={index} order={order}/>;
               })}
-
-              <tr>
-                <td>1392</td>
-                <td>
-                  <a href="/">James Yates</a>
-                </td>
-                <td>
-                  Web Designer
-                  <small className="d-block">
-                    Far far away, behind the word mountains
-                  </small>
-                </td>
-                <td>+63 983 0962 971</td>
-                <td>
-                  <a href="/" className="btn btn-warning">
-                    Pending
-                  </a>
-                </td>
-                <td>High</td>
-                <td>
-                  <a href="/" className="more">
-                    Details
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>1392</td>
-                <td>
-                  <a href="/">James Yates</a>
-                </td>
-                <td>
-                  Web Designer
-                  <small className="d-block">
-                    Far far away, behind the word mountains
-                  </small>
-                </td>
-                <td>+63 983 0962 971</td>
-                <td>
-                  <a href="/" className="btn btn-danger">
-                    Refused
-                  </a>
-                </td>
-                <td>Non prioritaire</td>
-                <td>
-                  <a href="/" className="more">
-                    Details
-                  </a>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

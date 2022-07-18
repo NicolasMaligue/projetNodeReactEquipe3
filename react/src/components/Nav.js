@@ -21,8 +21,9 @@ class Nav extends Component {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item px-3"><NavLink to="/">Dashboard</NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/quotes">Devis</NavLink></li>
-                <li className="nav-item px-3"><NavLink to="/orders">Commande</NavLink></li>
-                <li className="nav-item px-3"><NavLink to="/invoice">Facture</NavLink></li>
+                <li className="nav-item px-3"><NavLink to="/orders">Commandes</NavLink></li>
+                <li className="nav-item px-3"><NavLink to="/invoices">Factures</NavLink></li>
+                <li className="nav-item px-3"><NavLink to="/vehicles">Véhicules</NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/customers">Clients</NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/users">Utilisateurs</NavLink></li>
               </ul>
