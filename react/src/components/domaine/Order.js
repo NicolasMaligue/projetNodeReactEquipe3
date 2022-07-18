@@ -3,7 +3,7 @@ const Order = (props) => {
   const customer = order.quote.customer;
   const vehicle = order.quote.vehicle;
   return (
-    <tr>
+    <>
       <td>{order.id}</td>
       <td>
         <a href="/">
@@ -23,12 +23,7 @@ const Order = (props) => {
         </a>
       </td>
       <td>{order.priority}</td>
-      <td>
-        <a href="/" className="more">
-          Details
-        </a>
-      </td>
-    </tr>
+    </>
   );
 };
 

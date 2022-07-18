@@ -4,10 +4,9 @@ const FunRow = (props) => {
   return (
     <tr>
         {<NestedComponent data={props.nestedData}/>}
-      <td>
-        <a href="/" className="more">
-          Details
-        </a>
+      <td className="">
+        <button className="btn btn-warning me-2">Modifier</button>
+        <button className="btn btn-danger">Supprimer</button>
       </td>
     </tr>
   );
