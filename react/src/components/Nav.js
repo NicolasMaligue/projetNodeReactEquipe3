@@ -23,7 +23,7 @@ class Nav extends Component {
                 <li className="nav-item px-3"><NavLink to="/quote">Devis</NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/orders">Commande</NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/invoice">Facture</NavLink></li>
-                <li className="nav-item px-3"><NavLink to="/customer">Clients</NavLink></li>
+                <li className="nav-item px-3"><NavLink to="/customers">Clients</NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/users">Utilisateurs</NavLink></li>
               </ul>
               <form>

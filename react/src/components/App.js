@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
 // import Quote from './pages/Quote';
 // import Invoice from './pages/Invoice';
-import Customer from "./pages/Customer";
+import Customer from "./pages/Customers";
 import React from "react";
 import axios from 'axios';
 
@@ -27,7 +27,7 @@ const App = () => {
           {/* <Route path="/quote" element={<Quote/>}/> */}
           <Route path="/orders" element={<Orders />} />
           {/* <Route path="/invoice" element={<Invoice/>}/> */}
-          <Route path="/customer" element={<Customer />} />
+          <Route path="/customers" element={<Customer />} />
           <Route path="/users" element={<Users />} />
         </Routes>
       </main>
