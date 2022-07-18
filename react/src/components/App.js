@@ -9,6 +9,10 @@ import React from "react";
 import axios from 'axios';
 import Invoices from './pages/Invoices';
 import Vehicles from './pages/Vehicles';
+import React from "react";
+import FunLogin from './login/FunLogin';
+import axios from 'axios';
+import UseToken from './login/UseToken';
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -16,6 +20,13 @@ axios.defaults.baseURL = 'http://localhost:3001/api';
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const App = () => {
+  const { token, setToken } = UseToken();
+  // const [token, setToken] = useState();
+
+  if(!token) {
+    return <FunLogin setToken={setToken} />
+  }
+
   return (
 
     <div className="App">
