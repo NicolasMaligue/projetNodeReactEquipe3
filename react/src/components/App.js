@@ -9,6 +9,8 @@ import React from "react";
 import axios from 'axios';
 import Invoices from './pages/Invoices';
 import Vehicles from './pages/Vehicles';
+import Order from './domaine/Order';
+import FunList from "./fun/FunList";
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -31,6 +33,7 @@ const App = () => {
           <Route path="/vehicles" element={<Vehicles/>}/>
           <Route path="/customers" element={<Customers />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/orders" element={<FunList nestedComponent={Order} api_path="/orders" />} />
         </Routes>
       </main>
       <footer className="mt-4"></footer>
