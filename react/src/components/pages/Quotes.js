@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Quote from '../domaine/Quote';
+import Quote from '../domain/Quote';
 
 const Quotes = () => {
   const [quotes, setQuotes] = useState([]);

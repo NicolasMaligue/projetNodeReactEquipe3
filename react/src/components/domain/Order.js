@@ -1,9 +1,10 @@
 const Order = (props) => {
-  const customer = props.order.quote.customer;
-  const vehicle = props.order.quote.vehicle;
+  const order = props.data;
+  const customer = order.quote.customer;
+  const vehicle = order.quote.vehicle;
   return (
-    <tr>
-      <td>{props.order.id}</td>
+    <>
+      <td>{order.id}</td>
       <td>
         <a href="/">
           {customer.firstname} {customer.lastname}
@@ -18,16 +19,11 @@ const Order = (props) => {
       <td>{customer.mobile || customer.phone}</td>
       <td>
         <a href="/" className="btn btn-success">
-          {props.order.quote.status}
+          {order.quote.status}
         </a>
       </td>
-      <td>{props.order.priority}</td>
-      <td>
-        <a href="/" className="more">
-          Details
-        </a>
-      </td>
-    </tr>
+      <td>{order.priority}</td>
+    </>
   );
 };
 

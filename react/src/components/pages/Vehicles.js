@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Vehicle from "../domaine/Vehicle";
+import Vehicle from "../domain/Vehicle";
 
 const Vehicles = () => {
     const [vehicles, setVehicles] = useState([]);

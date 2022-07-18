@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Invoice from "../domaine/Invoice";
+import Invoice from "../domain/Invoice";
 
 const Invoices = () => {
     const [invoices, setInvoices] = useState([]);

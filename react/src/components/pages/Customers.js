@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Customer from "../domaine/Customer";
+import Customer from "../domain/Customer";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);

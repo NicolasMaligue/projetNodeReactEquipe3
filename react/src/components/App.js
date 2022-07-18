@@ -1,5 +1,4 @@
 import "../App.css";
-import Orders from "./pages/Orders";
 import Users from "./pages/Users";
 import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
@@ -9,10 +8,10 @@ import React from "react";
 import axios from 'axios';
 import Invoices from './pages/Invoices';
 import Vehicles from './pages/Vehicles';
-import React from "react";
 import FunLogin from './login/FunLogin';
-import axios from 'axios';
 import UseToken from './login/UseToken';
+import Order from './domain/Order';
+import FunList from "./fun/FunList";
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -28,7 +27,6 @@ const App = () => {
   }
 
   return (
-
     <div className="App">
       <header>
         <Nav />
@@ -37,11 +35,11 @@ const App = () => {
         <Routes>
           <Route path="/" />
           <Route path="/quotes" element={<Quotes />} />
-          <Route path="/orders" element={<Orders />} />
           <Route path="/invoices" element={<Invoices/>}/>
           <Route path="/vehicles" element={<Vehicles/>}/>
           <Route path="/customers" element={<Customers />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/orders" element={<FunList nestedComponent={Order} api_path="/orders" />} />
         </Routes>
       </main>
       <footer className="mt-4"></footer>
