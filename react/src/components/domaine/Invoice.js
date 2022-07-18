@@ -5,6 +5,8 @@ const Invoice = (props) => {
     return (
         <tr>
             <td>{props.invoice.id}</td>
+            <td>{props.invoice.order.quote.customer.lastname}</td>
+            <td>{props.invoice.order.quote.customer.firstname}</td>
             <td>
                 {date.toLocaleDateString()}
             </td>
