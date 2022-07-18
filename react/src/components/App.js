@@ -1,5 +1,6 @@
 import "../App.css";
 import Orders from "./pages/Orders";
+import Users from "./pages/Users";
 import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
 // import Quote from './pages/Quote';
@@ -15,7 +16,7 @@ axios.defaults.baseURL = 'http://localhost:3001/api';
 
 const App = () => {
   return (
-    
+
     <div className="App">
       <header>
         <Nav />
@@ -26,7 +27,8 @@ const App = () => {
           {/* <Route path="/quote" element={<Quote/>}/> */}
           <Route path="/orders" element={<Orders />} />
           {/* <Route path="/invoice" element={<Invoice/>}/> */}
-          <Route path="/customer" element={<Customer />} />*
+          <Route path="/customer" element={<Customer />} />
+          <Route path="/users" element={<Users />} />
         </Routes>
       </main>
       <footer className="mt-4"></footer>
