@@ -5,8 +5,10 @@ import { Route, Routes } from "react-router-dom";
 // import Quote from './pages/Quote';
 // import Invoice from './pages/Invoice';
 import Customer from "./pages/Customer";
-import React from "react";
+import React, { useState } from "react";
+import FunLogin from './login/FunLogin';
 import axios from 'axios';
+import UseToken from './login/UseToken';
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -14,6 +16,13 @@ axios.defaults.baseURL = 'http://localhost:3001/api';
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const App = () => {
+  const { token, setToken } = UseToken();
+  // const [token, setToken] = useState();
+
+  if(!token) {
+    return <FunLogin setToken={setToken} />
+  }
+
   return (
     
     <div className="App">
