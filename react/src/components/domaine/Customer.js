@@ -8,7 +8,7 @@ const Customer = (props) => {
       <td>{props.customer.zip}</td>
       <td>{props.customer.city}</td>
       <td>{props.customer.mobile || props.customer.phone}</td>
-      <td><a href="/">{props.customer.creatorId}</a></td>
+      <td><a href="/">{props.customer.creator.firstname} {props.customer.creator.lastname}</a></td>
       {/* données créateur */}
       <td>
         <a href="/" className="more">

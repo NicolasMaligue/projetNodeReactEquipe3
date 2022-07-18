@@ -32,7 +32,7 @@ const Customers = () => {
           <table className="table table-striped custom-table">
             <thead>
               <tr>
-                <th scope="col">Customer</th>
+                <th scope="col">N° de client</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Adresse</th>

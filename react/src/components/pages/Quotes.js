@@ -32,12 +32,10 @@ const Quotes = () => {
           <table className="table table-striped custom-table">
             <thead>
               <tr>
-                <th scope="col">Quote</th>
-                <th scope="col">Id client</th>
-                <th scope="col">Id véhicule</th>
-                <th scope="col">Créateur</th>
+                <th scope="col">N° de devis</th>
+                <th scope="col">Client</th>
+                <th scope="col">Véhicule</th>
                 <th scope="col">Date du devis</th>
-                <th scope="col">Clôture du devis</th>
                 <th scope="col">Status</th>
                 <th scope="col"></th>
               </tr>
