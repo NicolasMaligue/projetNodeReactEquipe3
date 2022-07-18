@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Order from "../domaine/Order";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const api_path = "/orders";
 
-  // same as componentDidMount() only => the key is [] 
+  // same as componentDidMount() only => the key is []
   useEffect(() => {
     axios
       .get(api_path)
@@ -41,32 +42,9 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, index) => (
-                <tr key={index}>
-                  <td>1392</td>
-                  <td>
-                    <a href="/">James Yates</a>
-                  </td>
-                  <td>
-                    Web Designer
-                    <small className="d-block">
-                      Far far away, behind the word mountains
-                    </small>
-                  </td>
-                  <td>+63 983 0962 971</td>
-                  <td>
-                    <a href="/" className="btn btn-success">
-                      Accepted
-                    </a>
-                  </td>
-                  <td>Very High</td>
-                  <td>
-                    <a href="/" className="more">
-                      Details
-                    </a>
-                  </td>
-                </tr>
-              ))}
+              {orders.map((order, index) => {
+                return <Order key={index} order={order}/>;
+              })}
 
               <tr>
                 <td>1392</td>
