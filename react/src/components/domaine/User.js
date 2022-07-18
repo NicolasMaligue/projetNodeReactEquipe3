@@ -2,8 +2,7 @@ const User = (props) => {
   return (
     <tr>
       <td>{props.user.id}</td>
-      <td>
-        <a href="/">{props.user.lastname}</a>
+      <td>{props.user.lastname}
       </td>
       <td>
         {props.user.firstname}

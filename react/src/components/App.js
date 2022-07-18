@@ -3,9 +3,9 @@ import Orders from "./pages/Orders";
 import Users from "./pages/Users";
 import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
-// import Quote from './pages/Quote';
+import Quotes from './pages/Quotes';
 // import Invoice from './pages/Invoice';
-import Customer from "./pages/Customers";
+import Customers from "./pages/Customers";
 import React from "react";
 import axios from 'axios';
 
@@ -24,10 +24,10 @@ const App = () => {
       <main className="container mt-2">
         <Routes>
           <Route path="/" />
-          {/* <Route path="/quote" element={<Quote/>}/> */}
+          <Route path="/quotes" element={<Quotes />} />
           <Route path="/orders" element={<Orders />} />
           {/* <Route path="/invoice" element={<Invoice/>}/> */}
-          <Route path="/customers" element={<Customer />} />
+          <Route path="/customers" element={<Customers />} />
           <Route path="/users" element={<Users />} />
         </Routes>
       </main>
