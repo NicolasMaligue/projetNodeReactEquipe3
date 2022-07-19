@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Invoice from "../domain/Invoice";
+import InvoiceRow from "./InvoiceRow";
 
-const Invoices = () => {
+const InvoicesList = () => {
     const [invoices, setInvoices] = useState([]);
     const api_path = "/invoices";
 
@@ -33,7 +33,7 @@ const Invoices = () => {
                         </thead>
                         <tbody>
                         {invoices.map((invoice, index) => {
-                            return <Invoice key={index} invoice={invoice}/>;
+                            return <InvoiceRow key={index} invoice={invoice}/>;
                         })}
                         </tbody>
                     </table>
@@ -43,4 +43,4 @@ const Invoices = () => {
     );
 };
 
-export default Invoices;
+export default InvoicesList;

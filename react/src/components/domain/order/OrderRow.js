@@ -1,9 +1,13 @@
-const Order = (props) => {
+import FunActions from "../../fun/FunActions";
+
+const OrderRow = (props) => {
   const customer = props.order.quote.customer;
   const vehicle = props.order.quote.vehicle;
+  const id = props.order.id;
+
   return (
     <tr>
-      <td>{props.order.id}</td>
+      <td>{id}</td>
       <td>
         <a href="/">
           {customer.firstname} {customer.lastname}
@@ -22,8 +26,9 @@ const Order = (props) => {
         </a>
       </td>
       <td>{props.order.priority}</td>
+      <FunActions id={id} />
     </tr>
   );
 };
 
-export default Order;
+export default OrderRow;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Customer from "../domain/Customer";
+import CustomerRow from "./CustomerRow";
 
-const Customers = () => {
+const CustomersList = () => {
   const [customers, setCustomers] = useState([]);
   const api_path = "/customers";
 
@@ -36,7 +36,7 @@ const Customers = () => {
             <tbody>
               {customers.map((customer, index) => {
                 return (
-                  <Customer key={index} customer={customer} />
+                  <CustomerRow key={index} customer={customer} />
                 )
               })}
             </tbody>
@@ -47,4 +47,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default CustomersList;
