@@ -10,6 +10,7 @@ class Db {
     // DB Model names used by orm
     this.models_name = [
       "user",
+      "login",
       "customer",
       "quote",
       "order",
