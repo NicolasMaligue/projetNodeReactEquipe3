@@ -12,7 +12,12 @@ import FunLogin from './login/FunLogin';
 import UseToken from './login/UseToken';
 import Order from './domain/Order';
 import FunList from "./fun/FunList";
-import OrderDetail from './fun/OrderDetail';
+import OrderView from './fun/OrderView';
+import CustomerView from './fun/CustomerView';
+import QuoteView from './fun/QuoteView';
+import InvoiceView from './fun/InvoiceView';
+import VehicleView from './fun/VehicleView';
+import UserView from './fun/UserView';
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -41,7 +46,12 @@ const App = () => {
           <Route path="/customers" element={<Customers />} />
           <Route path="/users" element={<Users />} />
           <Route path="/orders" element={<FunList nestedComponent={Order} api_path="/orders" />} />
-          <Route path="/orders/1" element={<OrderDetail />} />
+          <Route path="/orders/1" element={<OrderView />} />
+          <Route path="/customers/1" element={<CustomerView />} />
+          <Route path="/quotes/1" element={<QuoteView />} />
+          <Route path="/invoices/1" element={<InvoiceView />} />
+          <Route path="/vehicles/1" element={<VehicleView />} />
+          <Route path="/users/1" element={<UserView />} />
         </Routes>
       </main>
       <footer className="mt-4"></footer>
