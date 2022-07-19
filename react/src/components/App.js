@@ -10,8 +10,7 @@ import Invoices from './pages/Invoices';
 import Vehicles from './pages/Vehicles';
 import FunLogin from './login/FunLogin';
 import UseToken from './login/UseToken';
-import Order from './domain/Order';
-import FunList from "./fun/FunList";
+import Orders from './pages/Orders';
 
 // Axios default api config values
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -32,15 +31,17 @@ const App = () => {
         <Nav />
       </header>
       <main className="container mt-2">
+
         <Routes>
           <Route path="/" />
-          <Route path="/quotes" element={<Quotes />} />
-          <Route path="/invoices" element={<Invoices/>}/>
-          <Route path="/vehicles" element={<Vehicles/>}/>
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/orders" element={<FunList nestedComponent={Order} api_path="/orders" />} />
+          <Route path="/quotes/*" element={<Quotes />} />
+          <Route path="/invoices/*" element={<Invoices/>}/>
+          <Route path="/vehicles/*" element={<Vehicles/>}/>
+          <Route path="/customers/*" element={<Customers />} />
+          <Route path="/users/*" element={<Users />} />
+          <Route path="/orders/*" element={<Orders />} />
         </Routes>
+
       </main>
       <footer className="mt-4"></footer>
     </div>

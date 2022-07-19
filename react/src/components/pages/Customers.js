@@ -10,18 +10,8 @@ const Customers = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(function (response) {
-        // handle success
-        console.log("response.data =>", response.data);
-        setCustomers(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .then(response => setCustomers(response.data))
+      .catch(error => console.log(error))
   }, []);
 
   return (

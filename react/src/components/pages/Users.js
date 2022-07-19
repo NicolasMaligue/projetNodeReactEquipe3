@@ -10,18 +10,8 @@ const Users = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(function (response) {
-        // handle success
-        console.log("response.data =>", response.data);
-        setUsers(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .then(response => setUsers(response.data))
+      .catch(error => console.log(error))
   }, []);
 
   return (

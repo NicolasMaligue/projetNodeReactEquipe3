@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Quote from '../domain/Quote';
+import Quote from "../domain/Quote";
 
 const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
@@ -10,18 +10,8 @@ const Quotes = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(function (response) {
-        // handle success
-        console.log("response.data =>", response.data);
-        setQuotes(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .then((response) => setQuotes(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -42,9 +32,7 @@ const Quotes = () => {
             </thead>
             <tbody>
               {quotes.map((quote, index) => {
-                return (
-                  <Quote key={index} quote={quote} />
-                )
+                return <Quote key={index} quote={quote} />;
               })}
             </tbody>
           </table>
