@@ -1,32 +1,35 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useContext } from "react";
+import { ApiContext } from "../../App";
 
-const OrderView = () => {
-  const [order, setOrder] = useState({});
+const OrderView = async () => {
+  const { id } = useParams(); // Unpacking and retrieve id
+
+  const api = useContext(ApiContext);
+  // Custom Hook from context Api
   const [quote, setQuote] = useState({});
   const [customer, setCustomer] = useState({});
   const [vehicle, setVehicle] = useState({});
-  const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
+  const [order /*, pending, error*/] = api.get(`/orders/${id}`);
+
+  useEffect(() => {
+    setQuote(order.quote);
+    setCustomer(order.quote.customer);
+    setVehicle(order.quote.vehicle);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order]);
+
+  // const quote = order.quote;
+  // const customer = order.quote.customer;
+  // const vehicle = order.quote.vehicle;
 
   const date_order = new Date(order.createdAt);
 
-  console.log("OrderView: id: ", id);
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => {
-        console.log("OrderView: data api : ", response.data);
-        setOrder(response.data);
-        setQuote(response.data.quote);
-        setCustomer(response.data.quote.customer);
-        setVehicle(response.data.quote.vehicle);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // check id type as int
+  // if (isNaN(id) || (parseFloat(id) | 0) !== parseFloat(id)) {
+  //   // todo: do it better
+  //   return <h1>OrdersEdit Error: param 'id' is not an integer</h1>;
+  // }
 
   return (
     <div className="content">
@@ -36,12 +39,16 @@ const OrderView = () => {
         <table class="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" colSpan="2">Détails</th>
+              <th scope="col" colSpan="2">
+                Détails
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° de la commande</th>
+              <th scope="row" className="col-4">
+                N° de la commande
+              </th>
               <td>{order.id}</td>
             </tr>
             <tr>
@@ -62,17 +69,25 @@ const OrderView = () => {
         <table class="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="row" colSpan="2">Informations Client</th>
+              <th scope="row" colSpan="2">
+                Informations Client
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">Nom et Prénom</th>
-              <td>{customer.lastname} {customer.firstname}</td>
+              <th scope="row" className="col-4">
+                Nom et Prénom
+              </th>
+              <td>
+                {customer.lastname} {customer.firstname}
+              </td>
             </tr>
             <tr>
               <th scope="row">Adresse</th>
-              <td>{customer.address}, {customer.zip} {customer.city}</td>
+              <td>
+                {customer.address}, {customer.zip} {customer.city}
+              </td>
             </tr>
             <tr>
               <th scope="row">Téléphone</th>
@@ -84,12 +99,16 @@ const OrderView = () => {
         <table class="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="row" colSpan="2">Informations Véhicule</th>
+              <th scope="row" colSpan="2">
+                Informations Véhicule
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">Modèle</th>
+              <th scope="row" className="col-4">
+                Modèle
+              </th>
               <td>{vehicle.model}</td>
             </tr>
             <tr>
@@ -113,6 +132,6 @@ const OrderView = () => {
       </div>
     </div>
   );
-};
+};;
 
 export default OrderView;
