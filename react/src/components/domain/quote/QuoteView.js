@@ -2,28 +2,29 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const OrderView = () => {
-  const [order, setOrder] = useState({});
-  const [quote, setQuote] = useState({});
+const QuoteView = () => {
+  const [quote, setQuote] = useState([]);
+  const [creator, setCreator] = useState([]);
   const [customer, setCustomer] = useState({});
   const [vehicle, setVehicle] = useState({});
   const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
+  const api_path = `/quotes/${id}`;
 
-  const date_order = new Date(order.createdAt);
+  const date_created_quote = new Date(quote.createdAt);
+  const date_updated_quote = new Date(quote.updatedAt);
 
-  console.log("OrderView: id: ", id);
+  console.log("QuoteView: id: ", id);
 
   // same as componentDidMount() only => the key is []
   useEffect(() => {
     axios
       .get(api_path)
       .then((response) => {
-        console.log("OrderView: data api : ", response.data);
-        setOrder(response.data);
-        setQuote(response.data.quote);
-        setCustomer(response.data.quote.customer);
-        setVehicle(response.data.quote.vehicle);
+        console.log("QuoteView: data api : ", response.data);
+        setQuote(response.data);
+        setCreator(response.data.creator);
+        setCustomer(response.data.customer);
+        setVehicle(response.data.vehicle);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -31,7 +32,7 @@ const OrderView = () => {
   return (
     <div className="content">
       <div className="container">
-        <h1 className="mb-5">Informations sur la commande</h1>
+        <h1 className="mb-5">Informations sur le devis</h1>
 
         <table class="table table-responsive table-striped table-bordered">
           <thead>
@@ -41,20 +42,24 @@ const OrderView = () => {
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° de la commande</th>
-              <td>{order.id}</td>
-            </tr>
-            <tr>
-              <th scope="row">Date de la commande</th>
-              <td>{date_order.toLocaleDateString()}</td>
-            </tr>
-            <tr>
-              <th scope="row">N° du devis</th>
+              <th scope="row" className="col-4">N° du devis</th>
               <td>{quote.id}</td>
             </tr>
             <tr>
-              <th scope="row">Priorité</th>
-              <td>{order.priority}</td>
+              <th scope="row">Date du devis</th>
+              <td>{date_created_quote.toLocaleDateString()}</td>
+            </tr>
+            <tr>
+              <th scope="row">Date de clôture du devis</th>
+              <td>{date_updated_quote.toLocaleDateString()}</td>
+            </tr>
+            <tr>
+              <th scope="row">Statut</th>
+              <td>{quote.status}</td>
+            </tr>
+            <tr>
+              <th scope="row">Créateur du devis</th>
+              <td>{creator.lastname} {creator.firstname}</td>
             </tr>
           </tbody>
         </table>
@@ -97,14 +102,6 @@ const OrderView = () => {
               <td>{vehicle.manufacturer}</td>
             </tr>
             <tr>
-              <th scope="row">Type</th>
-              <td>{vehicle.type}</td>
-            </tr>
-            <tr>
-              <th scope="row">Description</th>
-              <td>{vehicle.description}</td>
-            </tr>
-            <tr>
               <th scope="row">Prix</th>
               <td>{vehicle.price} €</td>
             </tr>
@@ -115,4 +112,4 @@ const OrderView = () => {
   );
 };
 
-export default OrderView;
+export default QuoteView;

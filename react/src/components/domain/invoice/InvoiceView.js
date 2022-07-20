@@ -2,28 +2,33 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const OrderView = () => {
+const InvoiceView = () => {
+  const [invoice, setInvoice] = useState([]);
   const [order, setOrder] = useState({});
   const [quote, setQuote] = useState({});
+  const [creator, setCreator] = useState({});
   const [customer, setCustomer] = useState({});
   const [vehicle, setVehicle] = useState({});
   const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
+  const api_path = `/invoices/${id}`;
 
-  const date_order = new Date(order.createdAt);
+  const date_created_invoice = new Date(invoice.createdAt);
+  const date_created_order = new Date(order.createdAt);
 
-  console.log("OrderView: id: ", id);
+  console.log("InvoiceView: id: ", id);
 
   // same as componentDidMount() only => the key is []
   useEffect(() => {
     axios
       .get(api_path)
       .then((response) => {
-        console.log("OrderView: data api : ", response.data);
-        setOrder(response.data);
-        setQuote(response.data.quote);
-        setCustomer(response.data.quote.customer);
-        setVehicle(response.data.quote.vehicle);
+        console.log("InvoiceView: data api : ", response.data);
+        setInvoice(response.data);
+        setOrder(response.data.order);
+        setQuote(response.data.order.quote);
+        setCreator(response.data.order.quote.creator);
+        setCustomer(response.data.order.quote.customer);
+        setVehicle(response.data.order.quote.vehicle);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -31,7 +36,7 @@ const OrderView = () => {
   return (
     <div className="content">
       <div className="container">
-        <h1 className="mb-5">Informations sur la commande</h1>
+        <h1 className="mb-5">Informations sur la facture</h1>
 
         <table class="table table-responsive table-striped table-bordered">
           <thead>
@@ -41,20 +46,34 @@ const OrderView = () => {
           </thead>
           <tbody>
             <tr>
+              <th scope="row" className="col-4">N° de facture</th>
+              <td>{invoice.id}</td>
+            </tr>
+            <tr>
+              <th scope="row">Date de la facture</th>
+              <td>{date_created_invoice.toLocaleDateString()}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-responsive table-striped table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" colSpan="2">Informations sur la commande</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
               <th scope="row" className="col-4">N° de la commande</th>
               <td>{order.id}</td>
             </tr>
             <tr>
               <th scope="row">Date de la commande</th>
-              <td>{date_order.toLocaleDateString()}</td>
+              <td>{date_created_order.toLocaleDateString()}</td>
             </tr>
             <tr>
-              <th scope="row">N° du devis</th>
-              <td>{quote.id}</td>
-            </tr>
-            <tr>
-              <th scope="row">Priorité</th>
-              <td>{order.priority}</td>
+              <th scope="row">Créateur du devis</th>
+              <td>{creator.lastname} {creator.firstname}</td>
             </tr>
           </tbody>
         </table>
@@ -115,4 +134,4 @@ const OrderView = () => {
   );
 };
 
-export default OrderView;
+export default InvoiceView;
