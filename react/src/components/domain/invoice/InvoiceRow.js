@@ -1,7 +1,19 @@
 import FunActions from "../../fun/FunActions";
+import axios from 'axios';
 const InvoiceRow = (props) => {
   const date = new Date(props.invoice.createdAt);
   const id = props.invoice.id;
+  const api_path = `/invoices`
+
+  const onDelete = () => {
+      axios.delete(`${api_path}/${id}`).then(
+          () => {console.log('DELETE GOOD');}
+      ).catch(() => {console.log('DELETE FAILED');})
+      const invoices_copy = [...props.invoices]
+      invoices_copy.splice(props.index, 1)
+      props.setInvoices(invoices_copy)
+      console.log(invoices_copy);
+  }
 
   return (
     <tr>
@@ -14,7 +26,7 @@ const InvoiceRow = (props) => {
       </td>
       <td>{date.toLocaleDateString()}</td>
       <td>{props.invoice.orderId}</td>
-      <FunActions id={id} />
+      <FunActions id={id} onDelete={onDelete} />
     </tr>
   );
 };
