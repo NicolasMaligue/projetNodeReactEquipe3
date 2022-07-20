@@ -14,6 +14,11 @@ import UseToken from "./login/UseToken";
 import NotFound from "./NotFound";
 import OrderEdit from "./domain/order/OrderEdit";
 import OrderView from "./domain/order/OrderView";
+import QuoteView from "./domain/quote/QuoteView";
+import CustomerView from "./domain/customer/CustomerView";
+import VehicleView from "./domain/vehicle/VehicleView";
+import UserView from "./domain/user/UserView";
+import InvoiceView from "./domain/invoice/InvoiceView";
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -24,7 +29,6 @@ export const ApiContext = createContext();
 
 const App = () => {
   const { token, setToken } = UseToken();
-  // const [token, setToken] = useState();
 
   if (!token) {
     return <FunLogin setToken={setToken} />;
@@ -50,25 +54,22 @@ const App = () => {
             <Route path="/orders/add" element={<OrderEdit />} />
 
             <Route path="/quotes" element={<QuotesList />} />
-            <Route path="/quotes/:id/view" element={<h1>QuoteView</h1>} />
+            <Route path="/quotes/:id/view" element={<QuoteView />} />
             <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
             <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
 
             <Route path="/invoices" element={<InvoicesList />} />
-            <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />
+            <Route path="/invoices/:id/view" element={<InvoiceView />} />
             <Route path="/invoices/:id/edit" element={<h1>InvoiceEdit </h1>} />
             <Route path="/invoices/add" element={<h1>InvoiceEdit </h1>} />
 
             <Route path="/vehicles" element={<VehiclesList />} />
-            <Route path="/vehicles/:id/view" element={<h1>VehicleView </h1>} />
+            <Route path="/vehicles/:id/view" element={<VehicleView />} />
             <Route path="/vehicles/:id/edit" element={<h1>VehicleEdit </h1>} />
             <Route path="/vehicles/add" element={<h1>VehicleEdit </h1>} />
 
             <Route path="/customers" element={<CustomersList />} />
-            <Route
-              path="/customers/:id/view"
-              element={<h1>CustomerView </h1>}
-            />
+            <Route path="/customers/:id/view" element={<CustomerView />} />
             <Route
               path="/customers/:id/edit"
               element={<h1>CustomerEdit </h1>}
@@ -76,7 +77,7 @@ const App = () => {
             <Route path="/customers/add" element={<h1>CustomerEdit </h1>} />
 
             <Route path="/users" element={<UsersList />} />
-            <Route path="/users/:id/view" element={<h1>UserView </h1>} />
+            <Route path="/users/:id/view" element={<UserView />} />
             <Route path="/users/:id/edit" element={<h1>UserEdit </h1>} />
             <Route path="/users/add" element={<h1>UserEdit </h1>} />
 
