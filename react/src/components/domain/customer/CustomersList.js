@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Customer from "../domain/Customer";
+import CustomerRow from "./CustomerRow";
 
-const Customers = () => {
+const CustomersList = () => {
   const [customers, setCustomers] = useState([]);
   const api_path = "/customers";
 
@@ -10,18 +10,8 @@ const Customers = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(function (response) {
-        // handle success
-        console.log("response.data =>", response.data);
-        setCustomers(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .then(response => setCustomers(response.data))
+      .catch(error => console.log(error))
   }, []);
 
   return (
@@ -46,7 +36,7 @@ const Customers = () => {
             <tbody>
               {customers.map((customer, index) => {
                 return (
-                  <Customer key={index} customer={customer} />
+                  <CustomerRow key={index} customer={customer} />
                 )
               })}
             </tbody>
@@ -57,4 +47,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default CustomersList;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Vehicle from "../domain/Vehicle";
+import VehicleRow from "./VehicleRow";
 
-const Vehicles = () => {
+const VehiclesList = () => {
     const [vehicles, setVehicles] = useState([]);
     const api_path = "/vehicles";
 
@@ -10,18 +10,8 @@ const Vehicles = () => {
     useEffect(() => {
         axios
         .get(api_path)
-        .then(function (response) {
-            // handle success
-            console.log("response.data =>", response.data);
-            setVehicles(response.data);
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-        .then(function () {
-            // always executed
-        });
+        .then((response) => setVehicles(response.data))
+        .catch((error) => console.log(error));
     }, []);
 
     return (
@@ -44,7 +34,7 @@ const Vehicles = () => {
                         </thead>
                         <tbody>
                         {vehicles.map((vehicle, index) => {
-                            return <Vehicle key={index} vehicle={vehicle}/>;
+                            return <VehicleRow key={index} vehicle={vehicle}/>;
                         })}
                         </tbody>
                     </table>
@@ -54,4 +44,4 @@ const Vehicles = () => {
     );
 };
 
-export default Vehicles;
+export default VehiclesList;

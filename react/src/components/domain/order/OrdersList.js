@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Order from "../domaine/Order";
+import OrderRow from "./OrderRow";
 
-const Orders = () => {
+const OrdersList = () => {
   const [orders, setOrders] = useState([]);
   const api_path = "/orders";
 
@@ -10,18 +10,8 @@ const Orders = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(function (response) {
-        // handle success
-        console.log("response.data =>", response.data);
-        setOrders(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .then((response) => setOrders(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -43,7 +33,7 @@ const Orders = () => {
             </thead>
             <tbody>
               {orders.map((order, index) => {
-                return <Order key={index} order={order}/>;
+                return <OrderRow key={index} order={order} />;
               })}
             </tbody>
           </table>
@@ -53,4 +43,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default OrdersList;

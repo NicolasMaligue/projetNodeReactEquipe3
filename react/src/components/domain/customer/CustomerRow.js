@@ -1,4 +1,8 @@
-const Customer = (props) => {
+import FunActions from "../../fun/FunActions";
+
+const CustomerRow = (props) => {
+  const id = props.customer.id;
+
   return (
     <tr>
       <td>{props.customer.id}</td>
@@ -8,15 +12,15 @@ const Customer = (props) => {
       <td>{props.customer.zip}</td>
       <td>{props.customer.city}</td>
       <td>{props.customer.mobile || props.customer.phone}</td>
-      <td><a href="/">{props.customer.creator.firstname} {props.customer.creator.lastname}</a></td>
-      {/* données créateur */}
       <td>
-        <a href="/" className="more">
-          Details
+        <a href="/">
+          {props.customer.creator.firstname} {props.customer.creator.lastname}
         </a>
       </td>
+      {/* données créateur */}
+      <FunActions id={id} />
     </tr>
   );
 };
 
-export default Customer;
+export default CustomerRow;

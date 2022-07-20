@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import User from "../domain/User";
+import UserRow from "./UserRow";
 
-const Users = () => {
+const UsersList = () => {
   const [users, setUsers] = useState([]);
   const api_path = "/users";
 
@@ -10,18 +10,8 @@ const Users = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(function (response) {
-        // handle success
-        console.log("response.data =>", response.data);
-        setUsers(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .then(response => setUsers(response.data))
+      .catch(error => console.log(error))
   }, []);
 
   return (
@@ -41,7 +31,7 @@ const Users = () => {
             </thead>
             <tbody>
               {users.map((user, index) => {
-                return <User key={index} user={user} />
+                return <UserRow key={index} user={user} />
               })}
             </tbody>
           </table>
@@ -51,4 +41,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UsersList;
