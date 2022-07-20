@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { response } from "express";
 // import { useHistory } from 'react-router-dom';
 
 // async function loginUser(log) {
@@ -20,16 +21,22 @@ export default function FunLogin() {
     const [name, setName] = useState();
     const [password, setPassword] = useState();
     const [msg, setMsg] = useState('');
+    const [success, setSuccess] = useState(false);
     // const history = useHistory();
 
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log(name + password);
           await axios.get('/logins', {
               identifier: name,
               password: password
-          });
+          }).then(response => {
+            console.log(response);
+            return {
+                setSuccess: true,
+                success
+            }
+          })
           // history.push("/dashboard");
       } catch (error) {
           if (error.response) {
