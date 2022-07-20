@@ -1,18 +1,10 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import { ApiContext } from "../../App";
 import OrderRow from "./OrderRow";
 
 const OrdersList = () => {
-  const [orders, setOrders] = useState([]);
-  const api_path = "/orders";
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => setOrders(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  const api = useContext(ApiContext);
+  const [orders] = api.get("/orders"); // Custom Hook from context Api
 
   return (
     <div className="content">

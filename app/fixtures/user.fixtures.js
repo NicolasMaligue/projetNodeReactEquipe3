@@ -9,6 +9,7 @@ module.exports = Object.values(team_digi).map((namic) => {
       firstname: namic.name,
       lastname: faker.name.lastName(),
       role: namic.role,
+      active: true,
     },
   };
 });

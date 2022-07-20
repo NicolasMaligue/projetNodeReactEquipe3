@@ -18,6 +18,11 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.ENUM(Object.values(ENUM.user.role)),
       allowNull: false,
     },
+    active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+      allowNull: false,
+    },
     /**
      * field 'createdAt' auto added
      */
