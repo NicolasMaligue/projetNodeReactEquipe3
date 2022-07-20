@@ -14,6 +14,7 @@ import UseToken from "./login/UseToken";
 import NotFound from "./NotFound";
 import OrderEdit from "./domain/order/OrderEdit";
 import OrderView from './domain/order/OrderView';
+import InvoiceEdit from './domain/invoice/InvoiceEdit';
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -49,7 +50,7 @@ const App = () => {
           
           <Route path="/invoices" element={<InvoicesList />} />
           <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />
-          <Route path="/invoices/:id/edit" element={<h1>InvoiceEdit </h1>} />
+          <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
           <Route path="/invoices/add" element={<h1>InvoiceEdit </h1>} />
           
           <Route path="/vehicles" element={<VehiclesList />} />
