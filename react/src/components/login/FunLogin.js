@@ -1,30 +1,62 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import axios from '../api/axios';
 
-async function loginUser(log) {
-    return fetch('http://localhost:3001/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(log)
-    })
-      .then(data => data.json())
-   }
+const LOGIN_URL = '/logins';
 
+export default function FunLogin() {
 
-export default function FunLogin( { setToken } ) {
-
-    const [email, setEmail] = useState();
+    const [name, setName] = useState();
     const [password, setPassword] = useState();
+    const [errMsg, setErrMsg] = useState();
 
-    const handleSubmit = async e => {
+    // const nameRef = useRef();
+    const errRef = useRef();
+    
+    const { setAuth } = useAuth();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [name, password])
+
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginUser({
-          email,
-          password
-        });
-        setToken(token);
+        try {
+            const response = await axios.get(LOGIN_URL, 
+                {
+                    name, password 
+                },
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(response);
+            setAuth( name, password );
+            setName('');
+            setPassword('');
+            navigate(from, { replace: true });
+        } catch (err) {
+            if (!err?.response) {
+                console.log(err);
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                console.log(err);
+                setErrMsg('Unauthorized');
+            } else {
+                console.log(err);
+                setErrMsg('Login Failed');
+            }
+            
+            errRef.current.focus();
+        }
       }
     
 
@@ -32,16 +64,12 @@ export default function FunLogin( { setToken } ) {
         <form className="form-signin" onSubmit={handleSubmit}>
             <img className="mb-4" src="https://www.kindpng.com/picc/m/230-2305239_meme-vector-png-surprised-meme-face-transparent-png.png" alt="" width="72" height="72" />
             <h1 className="h3 mb-3 font-weight-normal">Connecte toi pour plus de fun</h1>
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <label htmlFor="inputEmail" className="sr-only">Identifiant</label>
-            <input type="name" id="login" className="form-control" placeholder="Email address" required="" autoFocus="" onChange={e => setEmail(e.target.value)}/>
+            <input type="text" id="login" className="form-control" placeholder="Email address" required="" autoFocus="" onChange={e => setName(e.target.value)}/>
             <label htmlFor="inputPassword" className="sr-only">Password</label>
             <input type="password" id="password" className="form-control" placeholder="Password" required="" onChange={e => setPassword(e.target.value)}/>
             <button className="btn btn-lg btn-primary btn-block" type="submit">Envoyer</button>
         </form>
     );
-}
-
-
-FunLogin.propTypes = {
-    setToken: PropTypes.func.isRequired
 }
