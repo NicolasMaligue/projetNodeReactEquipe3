@@ -15,6 +15,7 @@ class Db {
       "order",
       "invoice",
       "vehicle",
+      "stock",
     ];
 
     // DB Models

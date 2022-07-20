@@ -26,6 +26,7 @@ const invoice_fixtures = (order_data) => {
       model: "invoice",
       data: {
         orderId: id,
+        sellingPrice: faker.finance.amount(6000, 30000, 1),
       },
     });
   }

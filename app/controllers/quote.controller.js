@@ -2,6 +2,7 @@ const ENUM = require("../config/enum.config.js");
 const db = require("../models/Db.class.js");
 const Quote = db.models.quote;
 const Op = db.Sequelize.Op;
+const orderid = require("order-id");
 
 // Create and Save a new Quote
 exports.create = (req, res) => {
@@ -16,6 +17,9 @@ exports.create = (req, res) => {
 
   // Create a Quote
   const quote = {
+    number: "Q" + orderid.generate(),
+    quantity: req.body.quantity,
+    // unit_price: req.body.unit_price,
     // enum status: { pending: "En attente", accepted: "Accepté", rejected: "Rejeté" }
     status: req.body.status ? req.body.status : ENUM.quote.status.pending,
     customerId: req.body.customerId,
@@ -30,7 +34,9 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the quote. (" + err.message + ")",
+        message:
+          err.message ||
+          "Some error occurred while creating the quote. (" + err.message + ")",
       });
     });
 };

@@ -1,5 +1,6 @@
 const db = require("../models/Db.class.js");
 const Invoice = db.models.invoice;
+const orderid = require("order-id");
 
 // Create and Save a new Order
 exports.create = (req, res) => {
@@ -14,6 +15,8 @@ exports.create = (req, res) => {
   // Create a Invoice
   const invoice = {
     orderId: req.body.orderId,
+    number: "I" + orderid.generate(),
+    sellingPrice: req.body.sellingPrice,
   };
 
   // Save order in the database
@@ -24,7 +27,10 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the invoice (" + err.message + ")",
+          err.message ||
+          "Some error occurred while creating the invoice (" +
+            err.message +
+            ")",
       });
     });
 };

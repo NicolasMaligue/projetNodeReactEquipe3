@@ -2,6 +2,7 @@ const ENUM = require("../config/enum.config.js");
 const db = require("../models/Db.class.js");
 const Order = db.models.order;
 const Op = db.Sequelize.Op;
+const orderid = require("order-id");
 
 // Create and Save a new Order
 exports.create = (req, res) => {
@@ -16,8 +17,13 @@ exports.create = (req, res) => {
   // Create a Order
   const order = {
     quoteId: req.body.quoteId,
+    number: "O" + orderid.generate(),
+    // enum status : {new: "Nouvelle", validated: "Validée", delivred: "Livrée"}
+    status: req.body.status ? req.body.status : ENUM.order.status.new,
     // enum priority : {critical: "Très Urgent", urgent: "Urgent", normal: "Normal", low: "Non prioritaire"}
-    priority: req.body.priority ? req.body.priority : ENUM.order.priority.normal, 
+    priority: req.body.priority
+      ? req.body.priority
+      : ENUM.order.priority.normal,
   };
 
   // Save Order in the database
@@ -27,7 +33,9 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the order. (" + err.message + ")",
+        message:
+          err.message ||
+          "Some error occurred while creating the order. (" + err.message + ")",
       });
     });
 };
@@ -40,13 +48,15 @@ exports.findAll = (req, res) => {
     : null;
 
   // Eager Loading : fetch data from all assiociated tables too
-  Order.findAll({ where: condition, include:[{ all: true, nested: true }]})
+  Order.findAll({ where: condition, include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving order. (" + err.message + ")",
+        message:
+          err.message ||
+          "Some error occurred while retrieving order. (" + err.message + ")",
       });
     });
 };
@@ -55,13 +65,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Order.findByPk(id, { include:[{ all: true, nested: true }]})
+  Order.findByPk(id, { include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving order with id=" + id + " (" + err.message + ")",
+        message:
+          "Error retrieving order with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -80,13 +91,18 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update order with id=${id}. Maybe order was not found or req.body is empty!` + " (" + err.message + ")",
+          message:
+            `Cannot update order with id=${id}. Maybe order was not found or req.body is empty!` +
+            " (" +
+            err.message +
+            ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating order with id=" + id + " (" + err.message + ")",
+        message:
+          "Error updating order with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -105,13 +121,18 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete order with id=${id}. Maybe Order was not found!` + " (" + err.message + ")",
+          message:
+            `Cannot delete order with id=${id}. Maybe Order was not found!` +
+            " (" +
+            err.message +
+            ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete order with id=" + id + " (" + err.message + ")",
+        message:
+          "Could not delete order with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -128,7 +149,10 @@ exports.deleteAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all orders. (" + err.message + ")",
+          err.message ||
+          "Some error occurred while removing all orders. (" +
+            err.message +
+            ")",
       });
     });
 };

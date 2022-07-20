@@ -18,7 +18,7 @@ exports.create = (req, res) => {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     role: req.body.role ? req.body.role : ENUM.user.role.dealer, // enum role : { admin: "Administrateur", dealer: "Commercial", boss: "Patron" }
-    active: true,
+    active: req.body.active,
   };
 
   // Save User in the database

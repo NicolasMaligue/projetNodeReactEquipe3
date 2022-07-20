@@ -24,6 +24,14 @@ module.exports = (async () => {
       })
       .then(async () => {
         console.log("Db: vehicle fixtures loaded");
+        // Import stock fixtures into db
+        await sequelize_fixtures.loadFile(
+          "./app/fixtures/stock.fixtures.js",
+          db.models
+        );
+      })
+      .then(async () => {
+        console.log("Db: stock fixtures loaded");
         // Import quote fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/quote.fixtures.js",
