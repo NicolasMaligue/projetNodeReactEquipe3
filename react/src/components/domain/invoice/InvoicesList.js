@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import InvoiceRow from "./InvoiceRow";
+import {useNavigate} from 'react-router-dom';
 
 const InvoicesList = () => {
     const [invoices, setInvoices] = useState([]);
     const api_path = "/invoices";
+    const navigate = useNavigate();
 
     // same as componentDidMount() only => the key is []
     useEffect(() => {
@@ -28,12 +30,12 @@ const InvoicesList = () => {
                             <th scope="col">Véhicule</th>
                             <th scope="col">Date de création</th>
                             <th scope="col">Order</th>
-                            <th scope="col"></th>
+                            <th scope="col"><button className="btn btn-success me-2" onClick={() => navigate(`${api_path}/add`)}>Créer</button></th>
                         </tr>
                         </thead>
                         <tbody>
                         {invoices.map((invoice, index) => {
-                            return <InvoiceRow key={index} invoice={invoice}/>;
+                            return <InvoiceRow key={index} invoice={invoice} index={index} invoices={invoices} setInvoices={setInvoices}/>;
                         })}
                         </tbody>
                     </table>
