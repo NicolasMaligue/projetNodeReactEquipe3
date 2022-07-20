@@ -5,6 +5,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { AuthProvider } from './components/context/AuthProvider';
 // import Quote from './components/pages/Quote';
 // import Order from './components/pages/Order';
 // import Invoice from './components/pages/Invoice';
@@ -12,12 +13,14 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={ <App /> }>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={ <App /> }>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 

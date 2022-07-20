@@ -10,7 +10,6 @@ import OrdersList from "./domain/order/OrdersList";
 import InvoicesList from "./domain/invoice/InvoicesList";
 import VehiclesList from "./domain/vehicle/VehiclesList";
 import FunLogin from "./login/FunLogin";
-import UseToken from "./login/UseToken";
 import NotFound from "./NotFound";
 import OrderEdit from "./domain/order/OrderEdit";
 import OrderView from './domain/order/OrderView';
@@ -26,13 +25,7 @@ axios.defaults.baseURL = "http://localhost:3001/api";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const App = () => {
-  const { token, setToken } = UseToken();
-  // const [token, setToken] = useState();
-
-  if (!token) {
-    return <FunLogin setToken={setToken} />;
-  }
-
+  
   return (
     <div className="App">
       <header>
@@ -40,7 +33,12 @@ const App = () => {
       </header>
       <main className="container mt-2">
         <Routes>
+<<<<<<< HEAD
           <Route path="/" element={<h1>Futur Dashboard ?</h1>} />
+=======
+          <Route path="/logins" element={<FunLogin />} />
+          <Route path="/" element={<h1>Futur Dashboard ?</h1>}/>
+>>>>>>> wip_nico_ui_login
 
           <Route path="/orders" element={<OrdersList />} />
           <Route path="/orders/:id/view" element={<OrderView />} />
