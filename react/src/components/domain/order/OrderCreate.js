@@ -1,17 +1,15 @@
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const OrderEdit = () => {
+const OrderCreate = () => {
   const [order, setOrder] = useState({});
   const [priority, setPriority] = useState();
-  const [order_id, setOrderId] = useState();
   const [quote_id, setQuoteId] = useState();
   const [quotes_list, setQuotesList] = useState({});
   const priority_list = ["Très Urgent", "Urgent", "Normal", "Non prioritaire"];
 
-  const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
+  const api_path = `/orders`;
   const quotes_path = "/quotes";
   const navigate = useNavigate();
 
@@ -19,40 +17,26 @@ const OrderEdit = () => {
     e.preventDefault();
     console.log(quotes_list);
     const order_copy = { ...order };
-    order_copy.id = order_id;
     order_copy.quoteId = quote_id;
     order_copy.priority = priority;
     console.log(order_copy);
     setOrder(order_copy);
     axios
-      .put(`http://localhost:3001/api${api_path}`, {
-        id: order_id,
+      .post(`http://localhost:3001/api${api_path}`, {
         quoteId: quote_id,
         priority: priority,
       })
       .then(() => {
-        console.log("PUT GOOD");
+        console.log("POST GOOD");
       })
       .catch(() => {
-        console.log("PUT FAIL");
+        console.log("POST FAIL");
       });
     navigate("/orders", { replace: true });
   };
 
-  console.log("OrderEdit: id: ", id);
-
   // same as componentDidMount() only => the key is []
   useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => {
-        console.log("OrderEdit: data api : ", response.data);
-        setOrder(response.data);
-        setOrderId(response.data.id);
-        setQuoteId(response.data.quoteId);
-        setPriority(response.data.priority);
-      })
-      .catch((error) => console.log(error));
     axios
       .get(quotes_path)
       .then((response) => {
@@ -63,16 +47,10 @@ const OrderEdit = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  // check id type as int
-  if (isNaN(id) || (parseFloat(id) | 0) !== parseFloat(id)) {
-    // todo: do it better
-    return <h1>InvoiceEdit Error: param 'id' is not an integer</h1>;
-  }
-
   return (
     <div className="content">
       <div className="container">
-        <h1 className="mb-5">Modification de la commande</h1>
+        <h1 className="mb-5">Création de la commande</h1>
 
         <form className="d-flex row gap-3" onSubmit={handleSubmit}>
           <table className="table table-responsive table-striped table-bordered">
@@ -84,21 +62,6 @@ const OrderEdit = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row" className="col-4">
-                  N° de la commande
-                </th>
-                <td>
-                  <input
-                    className="text-center"
-                    type="number"
-                    required
-                    min="0"
-                    value={order_id || ""}
-                    onChange={(e) => setOrderId(e.target.value)}
-                  ></input>
-                </td>
-              </tr>
               <tr>
                 <th scope="row">Priorité</th>
                 <td>
@@ -149,4 +112,4 @@ const OrderEdit = () => {
   );
 };
 
-export default OrderEdit;
+export default OrderCreate;

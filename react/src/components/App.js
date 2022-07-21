@@ -24,6 +24,7 @@ import InvoiceCreate from "./domain/invoice/InvoiceCreate";
 import VehicleCreate from "./domain/vehicle/VehicleCreate";
 import CustomerEdit from "./domain/customer/CustomerEdit";
 import CustomerCreate from "./domain/customer/CustomerCreate";
+import OrderCreate from "./domain/order/OrderCreate";
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -51,7 +52,7 @@ const App = () => {
             <Route path="/orders" element={<OrdersList />} />
             <Route path="/orders/:id/view" element={<OrderView />} />
             <Route path="/orders/:id/edit" element={<OrderEdit />} />
-            <Route path="/orders/add" element={<OrderEdit />} />
+            <Route path="/orders/add" element={<OrderCreate />} />
 
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
@@ -75,7 +76,7 @@ const App = () => {
             <Route path="/orders" element={<OrdersList />} />
             <Route path="/orders/:id/view" element={<OrderView />} />
             <Route path="/orders/:id/edit" element={<OrderEdit />} />
-            <Route path="/orders/add" element={<OrderEdit />} />
+            <Route path="/orders/add" element={<OrderCreate />} />
 
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
