@@ -10,8 +10,8 @@ const CustomersList = () => {
   useEffect(() => {
     axios
       .get(api_path)
-      .then(response => setCustomers(response.data))
-      .catch(error => console.log(error))
+      .then((response) => setCustomers(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -36,8 +36,14 @@ const CustomersList = () => {
             <tbody>
               {customers.map((customer, index) => {
                 return (
-                  <CustomerRow key={index} customer={customer} />
-                )
+                  <CustomerRow
+                    key={index}
+                    customer={customer}
+                    index={index}
+                    customers={customers}
+                    setCustomers={setCustomers}
+                  />
+                );
               })}
             </tbody>
           </table>
