@@ -5,7 +5,7 @@ import { ApiContext } from "../../App";
 const OrdersEdit = () => {
   const { id } = useParams(); // Unpacking and retrieve id
   const api = useContext(ApiContext);
-  const [order, pending, error] = api.get(`/orders/${id}`); // Custom Hook from context Api
+  const [order, pending, error] = api.useApiEffect(`/orders/${id}`); // Custom Hook from context Api
 
   // check id type as int
   if (isNaN(id) || (parseFloat(id) | 0) !== parseFloat(id)) {
@@ -45,6 +45,6 @@ const OrdersEdit = () => {
       <p> Le chargement des données va bientôt commencer </p>
     </>
   );
-};;
+};
 
 export default OrdersEdit;

@@ -2,41 +2,32 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { ApiContext } from "../../App";
 
-const OrderView = async () => {
+const OrderView = () => {
   const { id } = useParams(); // Unpacking and retrieve id
 
+  // Custom hook api.useApi
   const api = useContext(ApiContext);
-  // Custom Hook from context Api
+  const [order /*, pending, error*/] = api.useApiEffect(`/orders/${id}`);
+
+  // State for related models data
   const [quote, setQuote] = useState({});
   const [customer, setCustomer] = useState({});
   const [vehicle, setVehicle] = useState({});
-  const [order /*, pending, error*/] = api.get(`/orders/${id}`);
-
+  // componentDidUpdate equivalent
   useEffect(() => {
-    setQuote(order.quote);
-    setCustomer(order.quote.customer);
-    setVehicle(order.quote.vehicle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (order.quote) {
+      setQuote(order.quote);
+      if (order.quote.customer) setCustomer(order.quote.customer);
+      if (order.quote.vehicle) setVehicle(order.quote.vehicle);
+    }
   }, [order]);
-
-  // const quote = order.quote;
-  // const customer = order.quote.customer;
-  // const vehicle = order.quote.vehicle;
-
-  const date_order = new Date(order.createdAt);
-
-  // check id type as int
-  // if (isNaN(id) || (parseFloat(id) | 0) !== parseFloat(id)) {
-  //   // todo: do it better
-  //   return <h1>OrdersEdit Error: param 'id' is not an integer</h1>;
-  // }
 
   return (
     <div className="content">
       <div className="container">
         <h1 className="mb-5">Informations sur la commande</h1>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
               <th scope="col" colSpan="2">
@@ -53,7 +44,7 @@ const OrderView = async () => {
             </tr>
             <tr>
               <th scope="row">Date de la commande</th>
-              <td>{date_order.toLocaleDateString()}</td>
+              <td>{new Date(order.createdAt).toLocaleDateString()}</td>
             </tr>
             <tr>
               <th scope="row">N° du devis</th>
@@ -66,7 +57,7 @@ const OrderView = async () => {
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
               <th scope="row" colSpan="2">
@@ -96,7 +87,7 @@ const OrderView = async () => {
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
               <th scope="row" colSpan="2">
@@ -132,6 +123,6 @@ const OrderView = async () => {
       </div>
     </div>
   );
-};;
+};
 
 export default OrderView;

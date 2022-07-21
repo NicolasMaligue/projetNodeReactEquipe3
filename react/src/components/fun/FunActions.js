@@ -6,17 +6,23 @@ const FunActions = (props) => {
   const id = props.id;
 
   return (
-    <td className="">
-      <button className="btn btn-info me-2" onClick={() => navigate(`${pathname}/${id}/view`)}>
+    <>
+      <button
+        className="btn btn-success me-2"
+        onClick={() => navigate(`${pathname}/${id}/view`)}
+      >
         Visualiser
       </button>
-      <button className="btn btn-primary me-2" onClick={() => navigate(`${pathname}/${id}/edit`)}>
+      <button
+        className="btn btn-warning me-2"
+        onClick={() => navigate(`${pathname}/${id}/edit`)}
+      >
         Modifier
       </button>
-      <button className="btn btn-warning" onClick={props.onDelete}>
+      <button className="btn btn-danger" onClick={props.onDelete}>
         Supprimer
       </button>
-    </td>
+    </>
   );
 };
 

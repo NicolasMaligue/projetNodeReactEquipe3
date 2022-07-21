@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
+import { ApiContext } from "../../App";
 import VehicleRow from "./VehicleRow";
 
 const VehiclesList = () => {
-  const [vehicles, setVehicles] = useState([]);
-  const api_path = "/vehicles";
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => setVehicles(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [vehicles /*, pending, error*/] = api.useApiEffect(`/vehicles`);
 
   return (
     <div className="content">

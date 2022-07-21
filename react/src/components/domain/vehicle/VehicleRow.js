@@ -13,7 +13,9 @@ const VehicleRow = (props) => {
       <td>{props.vehicle.description}</td>
       <td>{price}€</td>
       <td>{props.vehicle.quantity}</td>
-      <FunActions id={id} />
+      <td>
+        <FunActions id={id} />
+      </td>
     </tr>
   );
 };

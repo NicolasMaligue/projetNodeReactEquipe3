@@ -19,7 +19,9 @@ const QuoteRow = (props) => {
           {props.quote.status}
         </a>
       </td>
-      <FunActions id={id} />
+      <td>
+        <FunActions id={id} />
+      </td>
     </tr>
   );
 };

@@ -38,15 +38,19 @@ const InvoiceView = () => {
       <div className="container">
         <h1 className="mb-5">Informations sur la facture</h1>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" colSpan="2">Détails</th>
+              <th scope="col" colSpan="2">
+                Détails
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° de facture</th>
+              <th scope="row" className="col-4">
+                N° de facture
+              </th>
               <td>{invoice.id}</td>
             </tr>
             <tr>
@@ -56,15 +60,19 @@ const InvoiceView = () => {
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" colSpan="2">Informations sur la commande</th>
+              <th scope="col" colSpan="2">
+                Informations sur la commande
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° de la commande</th>
+              <th scope="row" className="col-4">
+                N° de la commande
+              </th>
               <td>{order.id}</td>
             </tr>
             <tr>
@@ -73,25 +81,35 @@ const InvoiceView = () => {
             </tr>
             <tr>
               <th scope="row">Créateur du devis</th>
-              <td>{creator.lastname} {creator.firstname}</td>
+              <td>
+                {creator.lastname} {creator.firstname}
+              </td>
             </tr>
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="row" colSpan="2">Informations Client</th>
+              <th scope="row" colSpan="2">
+                Informations Client
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">Nom et Prénom</th>
-              <td>{customer.lastname} {customer.firstname}</td>
+              <th scope="row" className="col-4">
+                Nom et Prénom
+              </th>
+              <td>
+                {customer.lastname} {customer.firstname}
+              </td>
             </tr>
             <tr>
               <th scope="row">Adresse</th>
-              <td>{customer.address}, {customer.zip} {customer.city}</td>
+              <td>
+                {customer.address}, {customer.zip} {customer.city}
+              </td>
             </tr>
             <tr>
               <th scope="row">Téléphone</th>
@@ -100,15 +118,19 @@ const InvoiceView = () => {
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="row" colSpan="2">Informations Véhicule</th>
+              <th scope="row" colSpan="2">
+                Informations Véhicule
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">Modèle</th>
+              <th scope="row" className="col-4">
+                Modèle
+              </th>
               <td>{vehicle.model}</td>
             </tr>
             <tr>

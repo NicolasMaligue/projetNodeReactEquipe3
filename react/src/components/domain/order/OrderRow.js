@@ -26,7 +26,9 @@ const OrderRow = (props) => {
         </a>
       </td>
       <td>{props.order.priority}</td>
-      <FunActions id={id} />
+      <td>
+        <FunActions id={id} />
+      </td>
     </tr>
   );
 };

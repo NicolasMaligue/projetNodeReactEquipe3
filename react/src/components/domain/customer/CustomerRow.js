@@ -18,7 +18,9 @@ const CustomerRow = (props) => {
         </a>
       </td>
       {/* données créateur */}
-      <FunActions id={id} />
+      <td>
+        <FunActions id={id} />
+      </td>
     </tr>
   );
 };

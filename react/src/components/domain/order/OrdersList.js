@@ -4,7 +4,7 @@ import OrderRow from "./OrderRow";
 
 const OrdersList = () => {
   const api = useContext(ApiContext);
-  const [orders] = api.get("/orders"); // Custom Hook from context Api
+  const [orders /*, pending, error*/] = api.useApiEffect("/orders"); // Custom Hook from context Api
 
   return (
     <div className="content">

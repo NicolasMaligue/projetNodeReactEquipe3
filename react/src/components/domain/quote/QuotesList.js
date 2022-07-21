@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
+import { ApiContext } from "../../App";
 import QuoteRow from "./QuoteRow";
 
 const QuotesList = () => {
-  const [quotes, setQuotes] = useState([]);
-  const api_path = "/quotes";
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => setQuotes(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [quotes /*, pending, error*/] = api.useApiEffect(`/quotes`);
 
   return (
     <div className="content">

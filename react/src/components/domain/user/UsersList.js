@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
+import { ApiContext } from "../../App";
 import UserRow from "./UserRow";
 
 const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const api_path = "/users";
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then(response => setUsers(response.data))
-      .catch(error => console.log(error))
-  }, []);
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [users/*, pending, error*/] = api.useApiEffect(`/users`);
 
   return (
     <div className="content">
@@ -31,7 +24,7 @@ const UsersList = () => {
             </thead>
             <tbody>
               {users.map((user, index) => {
-                return <UserRow key={index} user={user} />
+                return <UserRow key={index} user={user} />;
               })}
             </tbody>
           </table>
