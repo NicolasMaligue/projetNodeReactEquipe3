@@ -1,7 +1,7 @@
 import "../App.css";
 import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
-import { useState, useEffect, createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import UsersList from "./domain/user/UsersList";
 import CustomersList from "./domain/customer/CustomersList";
@@ -13,15 +13,17 @@ import VehicleEdit from "./domain/vehicle/VehicleEdit";
 import FunLogin from "./login/FunLogin";
 import NotFound from "./NotFound";
 import OrderEdit from "./domain/order/OrderEdit";
-import OrderView from './domain/order/OrderView';
-import QuoteView from './domain/quote/QuoteView';
-import CustomerView from './domain/customer/CustomerView';
-import VehicleView from './domain/vehicle/VehicleView';
-import UserView from './domain/user/UserView';
-import InvoiceView from './domain/invoice/InvoiceView';
-import InvoiceEdit from './domain/invoice/InvoiceEdit';
-import InvoiceCreate from './domain/invoice/InvoiceCreate';
-import VehicleCreate from './domain/vehicle/VehicleCreate';
+import OrderView from "./domain/order/OrderView";
+import QuoteView from "./domain/quote/QuoteView";
+import CustomerView from "./domain/customer/CustomerView";
+import VehicleView from "./domain/vehicle/VehicleView";
+import UserView from "./domain/user/UserView";
+import InvoiceView from "./domain/invoice/InvoiceView";
+import InvoiceEdit from "./domain/invoice/InvoiceEdit";
+import InvoiceCreate from "./domain/invoice/InvoiceCreate";
+import VehicleCreate from "./domain/vehicle/VehicleCreate";
+import CustomerEdit from "./domain/customer/CustomerEdit";
+import CustomerCreate from "./domain/customer/CustomerCreate";
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -31,7 +33,6 @@ axios.defaults.baseURL = "http://localhost:3001/api";
 export const ApiContext = createContext();
 
 const App = () => {
-
   return (
     <ApiContext.Provider
       value={{
@@ -47,30 +48,30 @@ const App = () => {
             <Route path="/" element={<h1>Futur Dashboard ?</h1>} />
             <Route path="/logins" element={<FunLogin />} />
 
-          <Route path="/orders" element={<OrdersList />} />
-          <Route path="/orders/:id/view" element={<OrderView />} />
-          <Route path="/orders/:id/edit" element={<OrderEdit />} />
-          <Route path="/orders/add" element={<OrderEdit />} />
-          
-          <Route path="/quotes" element={<QuotesList />} />
-          <Route path="/quotes/:id/view" element={<QuoteView />} />
-          <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
-          <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
-          
-          <Route path="/invoices" element={<InvoicesList />} />
-          <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />
-          <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
-          <Route path="/invoices/add" element={<InvoiceCreate />} />
-          
-          <Route path="/vehicles" element={<VehiclesList />} />
-          <Route path="/vehicles/:id/view" element={<VehicleView />} />
-          <Route path="/vehicles/:id/edit" element={<VehicleEdit />} />
-          <Route path="/vehicles/add" element={<VehicleCreate />} />
-          
-          <Route path="/customers" element={<CustomersList />} />
-          <Route path="/customers/:id/view" element={<h1>CustomerView </h1>} />
-          <Route path="/customers/:id/edit" element={<h1>CustomerEdit </h1>} />
-          <Route path="/customers/add" element={<h1>CustomerEdit </h1>} />
+            <Route path="/orders" element={<OrdersList />} />
+            <Route path="/orders/:id/view" element={<OrderView />} />
+            <Route path="/orders/:id/edit" element={<OrderEdit />} />
+            <Route path="/orders/add" element={<OrderEdit />} />
+
+            <Route path="/quotes" element={<QuotesList />} />
+            <Route path="/quotes/:id/view" element={<QuoteView />} />
+            <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
+            <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
+
+            <Route path="/invoices" element={<InvoicesList />} />
+            <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />
+            <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
+            <Route path="/invoices/add" element={<InvoiceCreate />} />
+
+            <Route path="/vehicles" element={<VehiclesList />} />
+            <Route path="/vehicles/:id/view" element={<VehicleView />} />
+            <Route path="/vehicles/:id/edit" element={<VehicleEdit />} />
+            <Route path="/vehicles/add" element={<VehicleCreate />} />
+
+            <Route path="/customers" element={<CustomersList />} />
+            <Route path="/customers/:id/view" element={<CustomerView />} />
+            <Route path="/customers/:id/edit" element={<CustomerEdit />} />
+            <Route path="/customers/add" element={<CustomerCreate />} />
             <Route path="/orders" element={<OrdersList />} />
             <Route path="/orders/:id/view" element={<OrderView />} />
             <Route path="/orders/:id/edit" element={<OrderEdit />} />

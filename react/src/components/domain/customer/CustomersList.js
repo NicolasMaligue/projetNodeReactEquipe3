@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CustomerRow from "./CustomerRow";
+import { useNavigate } from "react-router-dom";
 
 const CustomersList = () => {
   const [customers, setCustomers] = useState([]);
   const api_path = "/customers";
+  const navigate = useNavigate();
 
   // same as componentDidMount() only => the key is []
   useEffect(() => {
@@ -30,7 +32,14 @@ const CustomersList = () => {
                 <th scope="col">Ville</th>
                 <th scope="col">Contact</th>
                 <th scope="col">Créateur</th>
-                <th scope="col"></th>
+                <th scope="col">
+                  <button
+                    className="btn btn-success me-2"
+                    onClick={() => navigate(`${api_path}/add`)}
+                  >
+                    Créer
+                  </button>
+                </th>
               </tr>
             </thead>
             <tbody>
