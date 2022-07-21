@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuoteRow from "./QuoteRow";
+import {useNavigate} from 'react-router-dom';
 
 const QuotesList = () => {
   const [quotes, setQuotes] = useState([]);
   const api_path = "/quotes";
+  const navigate = useNavigate();
 
   // same as componentDidMount() only => the key is []
   useEffect(() => {
@@ -27,12 +29,12 @@ const QuotesList = () => {
                 <th scope="col">Véhicule</th>
                 <th scope="col">Date du devis</th>
                 <th scope="col">Status</th>
-                <th scope="col"></th>
+                <th scope="col"><button className="btn btn-success me-2" onClick={() => navigate(`${api_path}/add`)}>Créer</button></th>
               </tr>
             </thead>
             <tbody>
               {quotes.map((quote, index) => {
-                return <QuoteRow key={index} quote={quote} />;
+                return <QuoteRow key={index} index={index} quote={quote} quotes={quotes} setQuotes={setQuotes}/>;
               })}
             </tbody>
           </table>

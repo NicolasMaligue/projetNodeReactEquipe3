@@ -5,9 +5,9 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Vehicle
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.model) {
+  if (!req.body.model) {
     res.status(400).send({
-      message: "fields name and model can not be empty!",
+      message: "field model can not be empty!",
     });
     return;
   }
@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   // Create a Vehicle
   const vehicle = {
     model: req.body.model,
-    manufacturer: req.body.name,
+    manufacturer: req.body.manufacturer,
     type: req.body.type,
     description: req.body.description,
     price: req.body.price,

@@ -18,9 +18,9 @@ exports.create = (req, res) => {
     lastname: req.body.lastname,
     address: req.body.address,
     zip: req.body.zip,
-    city: req.body.lastname,
-    phone: req.body.lastname,
-    mobile: req.body.lastname,
+    city: req.body.city,
+    phone: req.body.phone,
+    mobile: req.body.mobile,
     creatorId: req.body.creatorId,
   };
 
@@ -32,7 +32,10 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          "Some error occurred while creating the Customer." + " (" + err.message + ")",   // todo : err.message only for dev environement
+          "Some error occurred while creating the Customer." +
+          " (" +
+          err.message +
+          ")", // todo : err.message only for dev environement
       });
     });
 };
@@ -44,14 +47,18 @@ exports.findAll = (req, res) => {
     ? { firstname: { [Op.like]: `%${firstname}%` } }
     : null;
 
-  Customer.findAll({ where: condition, include:[{ all: true, nested: true }]})
+  Customer.findAll({ where: condition, include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers." + " (" + err.message + ")",
+          err.message ||
+          "Some error occurred while retrieving customers." +
+            " (" +
+            err.message +
+            ")",
       });
     });
 };
@@ -60,13 +67,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Customer.findByPk(id, { include:[{ all: true, nested: true }] })
+  Customer.findByPk(id, { include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Customer with id=" + id + " (" + err.message + ")",
+        message:
+          "Error retrieving Customer with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -85,13 +93,18 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!` + " (" + err.message + ")", 
+          message:
+            `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!` +
+            " (" +
+            err.message +
+            ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Customer with id=" + id + " (" + err.message + ")",
+        message:
+          "Error updating Customer with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -110,13 +123,18 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!` + " (" + err.message + ")",
+          message:
+            `Cannot delete Customer with id=${id}. Maybe Customer was not found!` +
+            " (" +
+            err.message +
+            ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Customer with id=" + id + " (" + err.message + ")",
+        message:
+          "Could not delete Customer with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -133,7 +151,11 @@ exports.deleteAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers." + " (" + err.message + ")",
+          err.message ||
+          "Some error occurred while removing all customers." +
+            " (" +
+            err.message +
+            ")",
       });
     });
 };

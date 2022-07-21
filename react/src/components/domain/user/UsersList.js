@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UserRow from "./UserRow";
+import { useNavigate } from "react-router-dom";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
   const api_path = "/users";
+  const navigate = useNavigate();
 
   // same as componentDidMount() only => the key is []
   useEffect(() => {
     axios
       .get(api_path)
-      .then(response => setUsers(response.data))
-      .catch(error => console.log(error))
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -26,12 +28,27 @@ const UsersList = () => {
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Rôle</th>
-                <th scope="col"></th>
+                <th scope="col">
+                  <button
+                    className="btn btn-success me-2"
+                    onClick={() => navigate(`${api_path}/add`)}
+                  >
+                    Créer
+                  </button>
+                </th>
               </tr>
             </thead>
             <tbody>
               {users.map((user, index) => {
-                return <UserRow key={index} user={user} />
+                return (
+                  <UserRow
+                    key={index}
+                    user={user}
+                    index={index}
+                    users={users}
+                    setUsers={setUsers}
+                  />
+                );
               })}
             </tbody>
           </table>
