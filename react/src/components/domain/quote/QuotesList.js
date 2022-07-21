@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
+import { ApiContext } from "../../App";
 import QuoteRow from "./QuoteRow";
 import {useNavigate} from 'react-router-dom';
 
 const QuotesList = () => {
-  const [quotes, setQuotes] = useState([]);
   const api_path = "/quotes";
   const navigate = useNavigate();
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => setQuotes(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [quotes, setQuotes /*, pending, error*/] = api.useApiEffect(api_path);
 
   return (
     <div className="content">

@@ -25,7 +25,9 @@ const onDelete = () => {
       <td>{props.vehicle.description}</td>
       <td>{price}€</td>
       <td>{props.vehicle.quantity}</td>
-      <FunActions id={id} onDelete={onDelete} />
+      <td>
+        <FunActions id={id} onDelete={onDelete} />
+      </td>
     </tr>
   );
 };

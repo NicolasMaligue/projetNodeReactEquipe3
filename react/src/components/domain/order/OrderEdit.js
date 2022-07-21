@@ -1,18 +1,31 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ApiContext } from "../../App";
+import { ENUM } from "../../../config/enum.config.js";
 
 const OrderEdit = () => {
-  const [order, setOrder] = useState({});
+  const { id } = useParams(); // Unpacking and retrieve id
+  console.log("OrderEdit: id: ", id);
+
+  const api_path = `/orders/${id}`;
+  const api = useContext(ApiContext);
+  const [order, setOrder] = api.useApiEffect(api_path); // Custom Hook from context Api
+
+  // State for related models data
   const [priority, setPriority] = useState();
   const [order_id, setOrderId] = useState();
   const [quote_id, setQuoteId] = useState();
-  const [quotes_list, setQuotesList] = useState({});
-  const priority_list = ["Très Urgent", "Urgent", "Normal", "Non prioritaire"];
+  // componentDidUpdate equivalent
+  useEffect(() => {
+    if (order.id) setOrderId(order.id);
+    if (order.quoteId) setQuoteId(order.quoteId);
+    if (order.priority) setPriority(order.priority);
+  }, [order]);
 
-  const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
-  const quotes_path = "/quotes";
+  const [quotes_list] = api.useApiEffect("/quotes"); // Custom Hook from context Api
+
+  const priority_list = Object.values(ENUM.order.priority);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -38,30 +51,6 @@ const OrderEdit = () => {
       });
     navigate("/orders", { replace: true });
   };
-
-  console.log("OrderEdit: id: ", id);
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => {
-        console.log("OrderEdit: data api : ", response.data);
-        setOrder(response.data);
-        setOrderId(response.data.id);
-        setQuoteId(response.data.quoteId);
-        setPriority(response.data.priority);
-      })
-      .catch((error) => console.log(error));
-    axios
-      .get(quotes_path)
-      .then((response) => {
-        console.log("Quotes: ", response.data);
-        setQuotesList(response.data);
-        console.log(quotes_list);
-      })
-      .catch((error) => console.log(error));
-  }, []);
 
   // check id type as int
   if (isNaN(id) || (parseFloat(id) | 0) !== parseFloat(id)) {
@@ -147,6 +136,6 @@ const OrderEdit = () => {
       </div>
     </div>
   );
-};
+};;
 
 export default OrderEdit;

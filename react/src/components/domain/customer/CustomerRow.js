@@ -35,7 +35,9 @@ const CustomerRow = (props) => {
         </a>
       </td>
       {/* données créateur */}
-      <FunActions id={id} onDelete={onDelete} />
+      <td>
+        <FunActions id={id} onDelete={onDelete} />
+      </td>
     </tr>
   );
 };

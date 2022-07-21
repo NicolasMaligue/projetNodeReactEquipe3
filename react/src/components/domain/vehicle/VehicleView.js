@@ -1,39 +1,35 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import { ApiContext } from "../../App";
 
 const VehicleView = () => {
-  const [vehicle, setVehicle] = useState([]);
   const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/vehicles/${id}`;
-
   console.log("VehicleView: id: ", id);
 
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => {
-        console.log("VehicleView: data api : ", response.data);
-        setVehicle(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [vehicle /*, setVehicle, pending, error*/] = api.useApiEffect(
+    `/vehicles/${id}`
+  );
 
   return (
     <div className="content">
       <div className="container">
         <h1 className="mb-5">Informations sur le véhicule</h1>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" colSpan="2">Détails</th>
+              <th scope="col" colSpan="2">
+                Détails
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° du véhicule</th>
+              <th scope="row" className="col-4">
+                N° du véhicule
+              </th>
               <td>{vehicle.id}</td>
             </tr>
             <tr>
@@ -56,15 +52,11 @@ const VehicleView = () => {
               <th scope="row">Prix</th>
               <td>{vehicle.price} €</td>
             </tr>
-            <tr>
-              <th scope="row">En stock</th>
-              <td>{vehicle.quantity}</td>
-            </tr>
           </tbody>
         </table>
       </div>
     </div>
   );
-};
+};;
 
 export default VehicleView;

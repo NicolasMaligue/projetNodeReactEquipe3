@@ -31,7 +31,9 @@ const QuoteRow = (props) => {
           {props.quote.status}
         </a>
       </td>
-      <FunActions id={id} onDelete={onDelete} />
+      <td>
+        <FunActions id={id} onDelete={onDelete} />
+      </td>
     </tr>
   );
 };

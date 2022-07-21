@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import { ApiContext } from "../../App";
 import UserRow from "./UserRow";
 import { useNavigate } from "react-router-dom";
 
 const UsersList = () => {
-  const [users, setUsers] = useState([]);
   const api_path = "/users";
-  const navigate = useNavigate();
+    // Custom hook api.useApi
+    const api = useContext(ApiContext);
+    const [users, setUsers/*, pending, error*/] = api.useApiEffect(api_path);
 
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => setUsers(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  const navigate = useNavigate();
 
   return (
     <div className="content">

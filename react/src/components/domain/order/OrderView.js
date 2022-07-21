@@ -1,52 +1,50 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useContext } from "react";
+import { ApiContext } from "../../App";
 
 const OrderView = () => {
-  const [order, setOrder] = useState({});
+  const { id } = useParams(); // Unpacking and retrieve id
+
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [order /*, pending, error*/] = api.useApiEffect(`/orders/${id}`);
+
+  // State for related models data
   const [quote, setQuote] = useState({});
   const [customer, setCustomer] = useState({});
   const [vehicle, setVehicle] = useState({});
-  const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
-
-  const date_order = new Date(order.createdAt);
-
-  console.log("OrderView: id: ", id);
-
-  // same as componentDidMount() only => the key is []
+  // componentDidUpdate equivalent
   useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => {
-        console.log("OrderView: data api : ", response.data);
-        setOrder(response.data);
-        setQuote(response.data.quote);
-        setCustomer(response.data.quote.customer);
-        setVehicle(response.data.quote.vehicle);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (order.quote) {
+      setQuote(order.quote);
+      if (order.quote.customer) setCustomer(order.quote.customer);
+      if (order.quote.vehicle) setVehicle(order.quote.vehicle);
+    }
+  }, [order]);
 
   return (
     <div className="content">
       <div className="container">
         <h1 className="mb-5">Informations sur la commande</h1>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" colSpan="2">Détails</th>
+              <th scope="col" colSpan="2">
+                Détails
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° de la commande</th>
+              <th scope="row" className="col-4">
+                N° de la commande
+              </th>
               <td>{order.id}</td>
             </tr>
             <tr>
               <th scope="row">Date de la commande</th>
-              <td>{date_order.toLocaleDateString()}</td>
+              <td>{new Date(order.createdAt).toLocaleDateString()}</td>
             </tr>
             <tr>
               <th scope="row">N° du devis</th>
@@ -59,20 +57,28 @@ const OrderView = () => {
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="row" colSpan="2">Informations Client</th>
+              <th scope="row" colSpan="2">
+                Informations Client
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">Nom et Prénom</th>
-              <td>{customer.lastname} {customer.firstname}</td>
+              <th scope="row" className="col-4">
+                Nom et Prénom
+              </th>
+              <td>
+                {customer.lastname} {customer.firstname}
+              </td>
             </tr>
             <tr>
               <th scope="row">Adresse</th>
-              <td>{customer.address}, {customer.zip} {customer.city}</td>
+              <td>
+                {customer.address}, {customer.zip} {customer.city}
+              </td>
             </tr>
             <tr>
               <th scope="row">Téléphone</th>
@@ -81,15 +87,19 @@ const OrderView = () => {
           </tbody>
         </table>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="row" colSpan="2">Informations Véhicule</th>
+              <th scope="row" colSpan="2">
+                Informations Véhicule
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">Modèle</th>
+              <th scope="row" className="col-4">
+                Modèle
+              </th>
               <td>{vehicle.model}</td>
             </tr>
             <tr>

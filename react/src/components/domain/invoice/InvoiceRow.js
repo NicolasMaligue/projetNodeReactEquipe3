@@ -26,7 +26,9 @@ const InvoiceRow = (props) => {
       </td>
       <td>{date.toLocaleDateString()}</td>
       <td>{props.invoice.orderId}</td>
-      <FunActions id={id} onDelete={onDelete} />
+      <td>
+        <FunActions id={id} onDelete={onDelete} />
+      </td>
     </tr>
   );
 };

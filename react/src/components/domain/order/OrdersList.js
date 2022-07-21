@@ -1,20 +1,13 @@
 import OrderRow from "./OrderRow";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ApiContext } from "../../App";
 
 const OrdersList = () => {
-  const [orders, setOrders] = useState([]);
   const api_path = "/orders";
+  const api = useContext(ApiContext);
+  const [orders, setOrders /*, pending, error*/] = api.useApiEffect(api_path); // Custom Hook from context Api
   const navigate = useNavigate();
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => setOrders(response.data))
-      .catch((error) => console.log(error));
-  }, []);
 
   return (
     <div className="content">

@@ -43,7 +43,9 @@ const OrderRow = (props) => {
         </a>
       </td>
       <td>{props.order.priority}</td>
-      <FunActions id={id} onDelete={onDelete} />
+      <td>
+        <FunActions id={id} onDelete={onDelete} />
+      </td>
     </tr>
   );
 };

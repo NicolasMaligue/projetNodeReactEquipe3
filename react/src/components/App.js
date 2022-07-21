@@ -41,7 +41,8 @@ const App = () => {
   return (
     <ApiContext.Provider
       value={{
-        get: useApiGet,
+        useApi: useApi,
+        useApiEffect: useApiEffect,
       }}
     >
       <div className="App">
@@ -119,27 +120,38 @@ const App = () => {
   );
 };
 
-const useApiGet = (api_path) => {
+const useApi = (api_path, data_body, method = "get") => {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
+  const effectCallback = () => {
     if (api_path && !pending) {
       setPending(true);
-      axios
-        .get(api_path)
+      axios[method](api_path, data_body)
         .then((response) => {
-          console.log(`useGetApi(${api_path}) data: `, response.data);
+          console.log(`useApiSave(${api_path}) response: `, response);
           setData(response.data);
         })
         .catch((error) => setError(error))
         .then(() => setPending(false));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [api_path]);
+  };
 
-  return [data, pending, error];
+  return [data, setData, effectCallback, pending, error];
+};
+
+const useApiEffect = (api_path, data_body, method = "get") => {
+  const [data, setData, effectCallback, pending, error] = useApi(
+    api_path,
+    data_body,
+    method
+  );
+  // componentDidMount equivalent
+  useEffect(() => effectCallback(), []);
+
+  return [data, setData, pending, error];
 };
 
 export default App;

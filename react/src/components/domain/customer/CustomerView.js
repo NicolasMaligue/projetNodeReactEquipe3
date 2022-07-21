@@ -28,15 +28,19 @@ const CustomerView = () => {
       <div className="container">
         <h1 className="mb-5">Informations sur le client</h1>
 
-        <table class="table table-responsive table-striped table-bordered">
+        <table className="table table-responsive table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" colSpan="2">Détails</th>
+              <th scope="col" colSpan="2">
+                Détails
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row" className="col-4">N° Client</th>
+              <th scope="row" className="col-4">
+                N° Client
+              </th>
               <td>{customer.id}</td>
             </tr>
             <tr>
@@ -69,7 +73,9 @@ const CustomerView = () => {
             </tr>
             <tr>
               <th scope="row">Fiche créée par</th>
-              <td>{creator.lastname} {creator.firstname}</td>
+              <td>
+                {creator.lastname} {creator.firstname}
+              </td>
             </tr>
           </tbody>
         </table>
