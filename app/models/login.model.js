@@ -15,10 +15,10 @@ module.exports = (sequelize, Sequelize) => {
 
   const User = require("./user.model.js")(sequelize, Sequelize);
   /**
-   * field creatorId auto added to the login table
+   * field userId auto added to the login table
    * as foreign key for User.id
    */
-  Login.belongsTo(User, { as: "creator", foreignKey: { allowNull: false } });
+  Login.belongsTo(User, { foreignKey: { allowNull: false } });
 
   return Login;
 };

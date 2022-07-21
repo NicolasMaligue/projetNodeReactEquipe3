@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1f962899-8c79-4f4e-84e9-e08c68a9f734",
+		"_postman_id": "c1fef9ef-d382-4cc3-85b1-bb84a4f3d90e",
 		"name": "Diginamic-projet-node-react",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16458167"
@@ -176,13 +176,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api_url}}/customers/1",
+							"raw": "{{api_url}}/customers/5",
 							"host": [
 								"{{api_url}}"
 							],
 							"path": [
 								"customers",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -212,7 +212,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\": \"Christophe\",\n    \"address\": \"9567 Quai de la Chaussée-d'Antin\",\n    \"phone\": \"+33157862004\",\n    \"mobile\": \"+33657862004\",\n    \"creatorId\": 1\n}",
+							"raw": "{\n    \"mobile\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -220,13 +220,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_url}}/customers/1",
+							"raw": "{{api_url}}/customers/5",
 							"host": [
 								"{{api_url}}"
 							],
 							"path": [
 								"customers",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -283,7 +283,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Clio\",\n    \"model\": \"Renault\",\n    \"description\": \"noir, 18 pouces\",\n    \"price\": 14000,\n    \"quantity\": 2\n}",
+							"raw": "{\n    \"name\": \"Clio\",\n    \"model\": \"Renault\",\n    \"description\": \"noir, 18 pouces\",\n    \"price\": 14000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -356,7 +356,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Clio\",\n    \"model\": \"Renault\",\n    \"description\": \"noir, 18 pouces\",\n    \"price\": 13000,\n    \"quantity\": 2\n}",
+							"raw": "{\n    \"name\": \"Clio\",\n    \"model\": \"Renault\",\n    \"description\": \"noir, 18 pouces\",\n    \"price\": 13000,\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -415,6 +415,158 @@
 							],
 							"path": [
 								"vehicles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock",
+			"item": [
+				{
+					"name": "Add stock",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 2,\n    \"vehicleId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/stocks",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get stock",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/stocks/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/stocks",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update stock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 3,\n    \"vehicleId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/stocks/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete stock",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/stocks/2",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"stocks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all stock",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/stocks",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"stocks"
 							]
 						}
 					},
@@ -635,13 +787,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_url}}/orders/1",
+							"raw": "{{api_url}}/orders/5",
 							"host": [
 								"{{api_url}}"
 							],
 							"path": [
 								"orders",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -677,6 +829,167 @@
 							],
 							"path": [
 								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logins",
+			"item": [
+				{
+					"name": "Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"lionel\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/logins/auth",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"admin\",\n    \"password\": \"admin\",\n    \"userId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/logins",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/logins/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all logins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/logins",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update login",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"admin\",\n    \"password\": \"admin\",\n    \"userId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/logins/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete login",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/logins/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all logins",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/logins",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"logins"
 							]
 						}
 					},
@@ -815,6 +1128,32 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Add login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifier\": \"Nicolas\",\n    \"password\": \"P@$$word\",\n    \"lastname\": \"toto\",\n    \"creatorId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/logins",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"logins"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

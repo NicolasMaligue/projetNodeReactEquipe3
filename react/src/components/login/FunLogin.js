@@ -1,75 +1,133 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
-import axios from '../api/axios';
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import axios from "axios";
+import { ApiContext } from "../App";
 
-const LOGIN_URL = '/logins';
+const LOGIN_URL = "/logins/auth";
 
 export default function FunLogin() {
+  const [name, setName] = useState();
+  const [password, setPassword] = useState();
+  const [errMsg, setErrMsg] = useState();
 
-    const [name, setName] = useState();
-    const [password, setPassword] = useState();
-    const [errMsg, setErrMsg] = useState();
+  // const nameRef = useRef();
+  const errRef = useRef();
 
-    // const nameRef = useRef();
-    const errRef = useRef();
-    
-    const { setAuth } = useAuth();
+  const { setAuth } = useAuth();
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-    useEffect(() => {
-        setErrMsg('');
-    }, [name, password])
+  useEffect(() => {
+    setErrMsg("");
+  }, [name, password]);
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.get(LOGIN_URL, 
-                {
-                    name, password 
-                },
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(response);
-            setAuth( name, password );
-            setName('');
-            setPassword('');
-            navigate(from, { replace: true });
-        } catch (err) {
-            if (!err?.response) {
-                console.log(err);
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 401) {
-                console.log(err);
-                setErrMsg('Unauthorized');
-            } else {
-                console.log(err);
-                setErrMsg('Login Failed');
-            }
-            
-            errRef.current.focus();
-        }
+  const api = useContext(ApiContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      console.log("name", name, "password", password);
+      const auth_body = {
+        data: {
+          identifier: name,
+          password: password,
+        },
+      };
+      // const [login, setLogin, effectCallback] = api.useApi(
+      //   LOGIN_URL,
+      //   auth_body
+      // ); // Custom Hook from context Api
+      // console.log("login", login);
+
+      axios
+        .get(
+          LOGIN_URL + `?identifier=${name}&password=password` /*, auth_body*/
+        )
+        .then((response) => {
+          console.log("response.data", response.data);
+        });
+
+      // const response = await axios.get(LOGIN_URL, {
+      //   identifier: name,
+      //   password: password,
+      // }, {
+      //   headers: { "Content-Type": "application/json" },
+      //   withCredentials: true,
+      // });
+      // console.log(response);
+      setAuth(name, password);
+      setName("");
+      setPassword("");
+      //          navigate(from, { replace: true });
+    } catch (err) {
+      if (!err?.response) {
+        console.log(err);
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        console.log(err);
+        setErrMsg("Unauthorized");
+      } else {
+        console.log(err);
+        setErrMsg("Login Failed");
       }
-    
 
-    return (
-        <form className="form-signin" onSubmit={handleSubmit}>
-            <img className="mb-4" src="https://www.kindpng.com/picc/m/230-2305239_meme-vector-png-surprised-meme-face-transparent-png.png" alt="" width="72" height="72" />
-            <h1 className="h3 mb-3 font-weight-normal">Connecte toi pour plus de fun</h1>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <label htmlFor="inputEmail" className="sr-only">Identifiant</label>
-            <input type="text" id="login" className="form-control" placeholder="Email address" required="" autoFocus="" onChange={e => setName(e.target.value)}/>
-            <label htmlFor="inputPassword" className="sr-only">Password</label>
-            <input type="password" id="password" className="form-control" placeholder="Password" required="" onChange={e => setPassword(e.target.value)}/>
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Envoyer</button>
-        </form>
-    );
+      errRef.current.focus();
+    }
+  };
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [name, password]);
+
+  return (
+    <form className="form-signin" onSubmit={handleSubmit}>
+      <img
+        className="mb-4"
+        src="https://www.kindpng.com/picc/m/230-2305239_meme-vector-png-surprised-meme-face-transparent-png.png"
+        alt=""
+        width="72"
+        height="72"
+      />
+      <h1 className="h3 mb-3 font-weight-normal">
+        Connecte toi pour plus de fun
+      </h1>
+      <p
+        ref={errRef}
+        className={errMsg ? "errmsg" : "offscreen"}
+        aria-live="assertive"
+      >
+        {errMsg}
+      </p>
+      <label htmlFor="inputEmail" className="sr-only">
+        Identifiant
+      </label>
+      <input
+        type="text"
+        id="login"
+        className="form-control"
+        placeholder="Email address"
+        required=""
+        autoFocus=""
+        onChange={(e) => setName(e.target.value)}
+      />
+      <label htmlFor="inputPassword" className="sr-only">
+        Password
+      </label>
+      <input
+        type="password"
+        id="password"
+        className="form-control"
+        placeholder="Password"
+        required=""
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button className="btn btn-lg btn-primary btn-block" type="submit">
+        Envoyer
+      </button>
+    </form>
+  );
 }

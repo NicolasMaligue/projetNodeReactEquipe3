@@ -121,11 +121,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message:
-            `Cannot delete order with id=${id}. Maybe Order was not found!` +
-            " (" +
-            err.message +
-            ")",
+          message: `Cannot delete order with id=${id}. Maybe Order was not found!`,
         });
       }
     })

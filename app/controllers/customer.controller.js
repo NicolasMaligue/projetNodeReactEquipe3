@@ -93,11 +93,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message:
-            `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!` +
-            " (" +
-            err.message +
-            ")",
+          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!`,
         });
       }
     })
@@ -123,11 +119,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message:
-            `Cannot delete Customer with id=${id}. Maybe Customer was not found!` +
-            " (" +
-            err.message +
-            ")",
+          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
         });
       }
     })

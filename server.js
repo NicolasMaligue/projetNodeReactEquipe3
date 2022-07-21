@@ -34,11 +34,6 @@ const corsOptions = {
   origin: "*", //http://localhost:3000/
 };
 app.use(cors(corsOptions));
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
-});
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());

@@ -8,6 +8,14 @@ module.exports = (async () => {
       .loadFile("./app/fixtures/user.fixtures.js", db.models)
       .then(async () => {
         console.log("Db: User fixtures loaded");
+        // Import login fixtures into db
+        await sequelize_fixtures.loadFile(
+          "./app/fixtures/login.fixtures.js",
+          db.models
+        );
+      })
+      .then(async () => {
+        console.log("Db: Login fixtures loaded");
         // Import customer fixtures into db
         await sequelize_fixtures.loadFile(
           "./app/fixtures/customer.fixtures.js",

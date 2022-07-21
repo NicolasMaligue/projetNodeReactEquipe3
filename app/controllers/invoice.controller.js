@@ -104,7 +104,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Invoice with id=${id}. Maybe Invoice was not found!` + " (" + err.message + ")",
+          message: `Cannot delete Invoice with id=${id}. Maybe Invoice was not found!`,
         });
       }
     })

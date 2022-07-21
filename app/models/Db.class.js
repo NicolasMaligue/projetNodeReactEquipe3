@@ -16,6 +16,7 @@ class Db {
       "invoice",
       "vehicle",
       "stock",
+      "login",
     ];
 
     // DB Models
@@ -25,6 +26,15 @@ class Db {
         this.sequelize,
         this.Sequelize
       );
+    });
+
+    // Sequences Models
+    const sequences_tables = require(`./seq_numbers.model.js`)(
+      this.sequelize,
+      this.Sequelize
+    );
+    Object.keys(sequences_tables).map((seq) => {
+      this.models[seq] = sequences_tables[seq];
     });
 
     this.message = "Db: DB init success";

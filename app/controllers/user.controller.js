@@ -106,7 +106,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete User with id=${id}. Maybe User was not found!` + " (" + err.message + ")",
+          message: `Cannot delete User with id=${id}. Maybe User was not found!`,
         });
       }
     })

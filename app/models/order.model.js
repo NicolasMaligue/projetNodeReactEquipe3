@@ -34,4 +34,4 @@ module.exports = (sequelize, Sequelize) => {
   Order.belongsTo(Quote, { as: "quote", foreignKey: { allowNull: false } });
 
   return Order;
-};;;
+};

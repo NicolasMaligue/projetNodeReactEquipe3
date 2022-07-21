@@ -2,6 +2,46 @@ const db = require("../models/Db.class.js");
 const Login = db.models.login;
 const Op = db.Sequelize.Op;
 
+// Retrieve all Logins from the database.
+exports.auth = (req, res) => {
+  // Validate request
+  console.log("req.body", req.query);
+  if (!req.query.identifier || !req.query.password) {
+    res.status(400).send({
+      message: "Fields identifier et password can not be empty",
+    });
+    return;
+  }
+
+  const identifier = req.query.identifier.trim();
+  const password = req.query.password.trim();
+  var condition = {
+    identifier: { [Op.eq]: `${identifier}` },
+    password: { [Op.eq]: `${password}` },
+  };
+
+  Login.findAll({ where: condition, include: [{ all: true, nested: true }] })
+    .then((data) => {
+      if (data.length > 0) {
+        res.send({ role: data[0].user.role });
+      } else {
+        res.status(404).send({
+          message: "No user found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving customers." +
+            " (" +
+            err.message +
+            ")",
+      });
+    });
+};
+
 // Create and Save a new Login
 exports.create = (req, res) => {
   // Validate request
@@ -14,9 +54,9 @@ exports.create = (req, res) => {
 
   // Create a Login
   const login = {
-    identifier: req.body.identifier,
-    password: req.body.password,
-    creatorId: req.body.creatorId,
+    identifier: req.body.identifier.trim(),
+    password: req.body.password.trim(),
+    userId: req.body.userId,
   };
 
   // Save Login in the database
@@ -27,7 +67,10 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          "Some error occurred while creating the Login." + " (" + err.message + ")",   // todo : err.message only for dev environement
+          "Some error occurred while creating the Login." +
+          " (" +
+          err.message +
+          ")", // todo : err.message only for dev environement
       });
     });
 };
@@ -39,14 +82,18 @@ exports.findAll = (req, res) => {
     ? { identifier: { [Op.like]: `%${identifier}%` } }
     : null;
 
-  Login.findAll({ where: condition, include:[{ all: true, nested: true }]})
+  Login.findAll({ where: condition, include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers." + " (" + err.message + ")",
+          err.message ||
+          "Some error occurred while retrieving customers." +
+            " (" +
+            err.message +
+            ")",
       });
     });
 };
@@ -55,13 +102,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Login.findByPk(id, { include:[{ all: true, nested: true }] })
+  Login.findByPk(id, { include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Login with id=" + id + " (" + err.message + ")",
+        message:
+          "Error retrieving Login with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -80,13 +128,18 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Login with id=${id}. Maybe Login was not found or req.body is empty!` + " (" + err.message + ")", 
+          message:
+            `Cannot update Login with id=${id}. Maybe Login was not found or req.body is empty!` +
+            " (" +
+            err.message +
+            ")",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Login with id=" + id + " (" + err.message + ")",
+        message:
+          "Error updating Login with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -105,13 +158,14 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Login with id=${id}. Maybe Login was not found!` + " (" + err.message + ")",
+          message: `Cannot delete Login with id=${id}. Maybe Login was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Login with id=" + id + " (" + err.message + ")",
+        message:
+          "Could not delete Login with id=" + id + " (" + err.message + ")",
       });
     });
 };
@@ -128,7 +182,11 @@ exports.deleteAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers." + " (" + err.message + ")",
+          err.message ||
+          "Some error occurred while removing all customers." +
+            " (" +
+            err.message +
+            ")",
       });
     });
 };

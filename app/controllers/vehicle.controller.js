@@ -109,7 +109,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Vehicle with id=${id}. Maybe Vehicle was not found!` + " (" + err.message + ")",
+          message: `Cannot delete Vehicle with id=${id}. Maybe Vehicle was not found!`,
         });
       }
     })

@@ -5,9 +5,9 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Stock
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.model) {
+  if (!req.body.quantity || !req.body.vehicleId) {
     res.status(400).send({
-      message: "fields name and model can not be empty!",
+      message: "fields quantity and vehicleId can not be empty!",
     });
     return;
   }
@@ -113,11 +113,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message:
-            `Cannot delete Stock with id=${id}. Maybe Stock was not found!` +
-            " (" +
-            err.message +
-            ")",
+          message: `Cannot delete Stock with id=${id}. Maybe Stock was not found!`,
         });
       }
     })
