@@ -23,6 +23,7 @@ import InvoiceView from "./domain/invoice/InvoiceView";
 import InvoiceEdit from "./domain/invoice/InvoiceEdit";
 import InvoiceCreate from "./domain/invoice/InvoiceCreate";
 import VehicleCreate from "./domain/vehicle/VehicleCreate";
+import QuoteCreate from "./domain/quote/QuoteCreate";
 import CustomerEdit from "./domain/customer/CustomerEdit";
 import CustomerCreate from "./domain/customer/CustomerCreate";
 
@@ -57,7 +58,7 @@ const App = () => {
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
             <Route path="/quotes/:id/edit" element={<QuoteEdit />} />
-            <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
+            <Route path="/quotes/add" element={<QuoteCreate />} />
 
             <Route path="/invoices" element={<InvoicesList />} />
             <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />

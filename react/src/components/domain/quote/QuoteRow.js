@@ -10,7 +10,7 @@ const QuoteRow = (props) => {
     axios.delete(`${api_path}/${id}`).then(
         () => {console.log('DELETE GOOD');}
     ).catch(() => {console.log('DELETE FAILED');})
-    const quotes_copy = [props.quote]
+    const quotes_copy = [...props.quotes]
     quotes_copy.splice(props.index, 1)
     props.setQuotes(quotes_copy)
     console.log(quotes_copy);

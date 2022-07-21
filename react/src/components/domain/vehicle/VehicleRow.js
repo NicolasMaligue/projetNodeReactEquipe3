@@ -10,7 +10,7 @@ const onDelete = () => {
   axios.delete(`${api_path}/${id}`).then(
       () => {console.log('DELETE GOOD');}
   ).catch(() => {console.log('DELETE FAILED');})
-  const vehicles_copy = [props.vehicle]
+  const vehicles_copy = [...props.vehicles]
   vehicles_copy.splice(props.index, 1)
   props.setVehicles(vehicles_copy)
   console.log(vehicles_copy);
