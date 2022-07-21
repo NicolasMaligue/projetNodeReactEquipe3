@@ -1,24 +1,11 @@
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { ApiContext } from "../../App";
 
 const OrdersEdit = () => {
-  const [order, setOrder] = useState({});
   const { id } = useParams(); // Unpacking and retrieve id
-  const api_path = `/orders/${id}`;
-
-  console.log("OrdersEdit: id: ", id);
-
-  // same as componentDidMount() only => the key is []
-  useEffect(() => {
-    axios
-      .get(api_path)
-      .then((response) => {
-        console.log("OrdersEdit: data api : ", response.data);
-        setOrder(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  const api = useContext(ApiContext);
+  const [order, pending, error] = api.get(`/orders/${id}`); // Custom Hook from context Api
 
   // check id type as int
   if (isNaN(id) || (parseFloat(id) | 0) !== parseFloat(id)) {
@@ -26,7 +13,38 @@ const OrdersEdit = () => {
     return <h1>OrdersEdit Error: param 'id' is not an integer</h1>;
   }
 
-  return <h1>OrderEdit</h1>;
-};
+  const titre = <h1>OrderEdit</h1>;
+
+  if (pending)
+    return (
+      <>
+        {titre}
+        <p>Chargement en cours...</p>
+      </>
+    );
+
+  if (error)
+    return (
+      <>
+        {titre}
+        <p>{error.message}</p>
+      </>
+    );
+
+  if (order)
+    return (
+      <>
+        {titre}
+        <p>{JSON.stringify(order)}</p>
+      </>
+    );
+
+  return (
+    <>
+      {titre}
+      <p> Le chargement des données va bientôt commencer </p>
+    </>
+  );
+};;
 
 export default OrdersEdit;
