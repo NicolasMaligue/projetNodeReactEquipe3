@@ -15,6 +15,7 @@ import NotFound from "./NotFound";
 import OrderEdit from "./domain/order/OrderEdit";
 import OrderView from "./domain/order/OrderView";
 import QuoteView from "./domain/quote/QuoteView";
+import QuoteEdit from "./domain/quote/QuoteEdit";
 import CustomerView from "./domain/customer/CustomerView";
 import VehicleView from "./domain/vehicle/VehicleView";
 import UserView from "./domain/user/UserView";
@@ -22,6 +23,7 @@ import InvoiceView from "./domain/invoice/InvoiceView";
 import InvoiceEdit from "./domain/invoice/InvoiceEdit";
 import InvoiceCreate from "./domain/invoice/InvoiceCreate";
 import VehicleCreate from "./domain/vehicle/VehicleCreate";
+import QuoteCreate from "./domain/quote/QuoteCreate";
 import CustomerEdit from "./domain/customer/CustomerEdit";
 import CustomerCreate from "./domain/customer/CustomerCreate";
 import OrderCreate from "./domain/order/OrderCreate";
@@ -58,8 +60,8 @@ const App = () => {
 
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
-            <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
-            <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
+            <Route path="/quotes/:id/edit" element={<QuoteEdit />} />
+            <Route path="/quotes/add" element={<QuoteCreate />} />
 
             <Route path="/invoices" element={<InvoicesList />} />
             <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />
@@ -82,7 +84,7 @@ const App = () => {
 
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
-            <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
+            <Route path="/quotes/:id/edit" element={<QuoteEdit />} />
             <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
 
             <Route path="/invoices" element={<InvoicesList />} />

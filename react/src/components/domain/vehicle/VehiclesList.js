@@ -36,7 +36,7 @@ const VehiclesList = () => {
                         </thead>
                         <tbody>
                         {vehicles.map((vehicle, index) => {
-                            return <VehicleRow key={index} vehicle={vehicle}/>;
+                            return <VehicleRow key={index} vehicle={vehicle} index={index} vehicles={vehicles} setVehicles={setVehicles}/>;
                         })}
                         </tbody>
                     </table>
