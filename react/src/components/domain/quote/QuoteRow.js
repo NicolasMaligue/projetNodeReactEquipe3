@@ -1,8 +1,20 @@
 import FunActions from "../../fun/FunActions";
+import axios from 'axios';
 
 const QuoteRow = (props) => {
   const create_date = new Date(props.quote.createdAt);
   const id = props.quote.id;
+  const api_path = `/quotes`
+
+  const onDelete = () => {
+    axios.delete(`${api_path}/${id}`).then(
+        () => {console.log('DELETE GOOD');}
+    ).catch(() => {console.log('DELETE FAILED');})
+    const quotes_copy = [props.quote]
+    quotes_copy.splice(props.index, 1)
+    props.setQuotes(quotes_copy)
+    console.log(quotes_copy);
+  }
 
   return (
     <tr>
@@ -19,7 +31,7 @@ const QuoteRow = (props) => {
           {props.quote.status}
         </a>
       </td>
-      <FunActions id={id} />
+      <FunActions id={id} onDelete={onDelete} />
     </tr>
   );
 };

@@ -15,6 +15,7 @@ import NotFound from "./NotFound";
 import OrderEdit from "./domain/order/OrderEdit";
 import OrderView from "./domain/order/OrderView";
 import QuoteView from "./domain/quote/QuoteView";
+import QuoteEdit from "./domain/quote/QuoteEdit";
 import CustomerView from "./domain/customer/CustomerView";
 import VehicleView from "./domain/vehicle/VehicleView";
 import UserView from "./domain/user/UserView";
@@ -55,7 +56,7 @@ const App = () => {
 
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
-            <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
+            <Route path="/quotes/:id/edit" element={<QuoteEdit />} />
             <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
 
             <Route path="/invoices" element={<InvoicesList />} />
@@ -79,7 +80,7 @@ const App = () => {
 
             <Route path="/quotes" element={<QuotesList />} />
             <Route path="/quotes/:id/view" element={<QuoteView />} />
-            <Route path="/quotes/:id/edit" element={<h1>QuoteEdit</h1>} />
+            <Route path="/quotes/:id/edit" element={<QuoteEdit />} />
             <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
 
             <Route path="/invoices" element={<InvoicesList />} />
