@@ -96,7 +96,7 @@ const OrderCreate = () => {
             </tbody>
           </table>
           <button className="btn btn-success" type="submit">
-            Sauvegarder
+            Créer
           </button>
           <button
             className="btn btn-danger"

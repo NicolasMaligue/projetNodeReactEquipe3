@@ -25,6 +25,8 @@ import VehicleCreate from "./domain/vehicle/VehicleCreate";
 import CustomerEdit from "./domain/customer/CustomerEdit";
 import CustomerCreate from "./domain/customer/CustomerCreate";
 import OrderCreate from "./domain/order/OrderCreate";
+import UserEdit from "./domain/user/UserEdit";
+import UserCreate from "./domain/user/UserCreate";
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -103,8 +105,8 @@ const App = () => {
 
             <Route path="/users" element={<UsersList />} />
             <Route path="/users/:id/view" element={<UserView />} />
-            <Route path="/users/:id/edit" element={<h1>UserEdit </h1>} />
-            <Route path="/users/add" element={<h1>UserEdit </h1>} />
+            <Route path="/users/:id/edit" element={<UserEdit />} />
+            <Route path="/users/add" element={<UserCreate />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
