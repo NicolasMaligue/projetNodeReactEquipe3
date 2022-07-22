@@ -26,11 +26,7 @@ const QuoteRow = (props) => {
         {props.quote.vehicle.model} {props.quote.vehicle.manufacturer}
       </td>
       <td>{create_date.toLocaleDateString()}</td>
-      <td>
-        <a href="/" className="btn btn-warning">
-          {props.quote.status}
-        </a>
-      </td>
+      <td>{props.quote.status}</td>
       <td>
         <FunActions id={id} onDelete={onDelete} />
       </td>

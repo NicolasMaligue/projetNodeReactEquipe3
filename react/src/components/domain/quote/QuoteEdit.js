@@ -171,7 +171,7 @@ const QuoteEdit = () => {
                     </button>
                     <button className="btn btn-danger"
                             onClick={() => {
-                                navigate(api_path - 1, {replace: true});
+                                navigate("/quotes", {replace: true});
                             }}>Annuler
                     </button>
                 </form>
