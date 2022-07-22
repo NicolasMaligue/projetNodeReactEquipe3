@@ -23,7 +23,7 @@ exports.auth = (req, res) => {
   Login.findAll({ where: condition, include: [{ all: true, nested: true }] })
     .then((data) => {
       if (data.length > 0) {
-        res.send({ role: data[0].user.role });
+        res.send(data[0].user);
       } else {
         res.status(401).send({
           message: "Unauthorized credentials",
