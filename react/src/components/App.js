@@ -28,6 +28,7 @@ import CustomerCreate from "./domain/customer/CustomerCreate";
 import OrderCreate from "./domain/order/OrderCreate";
 import UserEdit from "./domain/user/UserEdit";
 import UserCreate from "./domain/user/UserCreate";
+import Dashboard from "./Dashboard";
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -42,7 +43,7 @@ const App = () => {
       </header>
       <main className="container mt-2">
         <Routes>
-          <Route path="/" element={<h1>Futur Dashboard ?</h1>} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/logins" element={<FunLogin />} />
 
           <Route path="/orders" element={<OrdersList />} />
