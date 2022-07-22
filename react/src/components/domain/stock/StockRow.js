@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const StockRow = (props) => {
   const id = props.stock.id;
+  const vehicle = props.stock.vehicle;
   const api_path = `/stocks`
 
 const onDelete = () => {
@@ -22,10 +23,10 @@ const onDelete = () => {
 
   return (
     <tr>
-      <td>{props.stock.id}</td>
+      <td>{vehicle.id}</td>
+      <td>{vehicle.model}</td>
+      <td>{vehicle.manufacturer}</td>
       <td>{props.stock.quantity}</td>
-      {/* <td>{props.vehicle.manufacturer}</td>
-      <td>{price} €</td> */}
       <td>
         <FunActions id={id} onDelete={onDelete} />
       </td>

@@ -18,8 +18,8 @@ const StocksList = () => {
               <tr>
                 <th scope="col">Véhicule</th>
                 <th scope="col">Modèle</th>
-                {/* <th scope="col">Marque</th>
-                <th scope="col">Prix</th> */}
+                <th scope="col">Marque</th>
+                <th scope="col">Quantité</th>
                 <th scope="col">
                   <button
                     className="btn btn-success me-2"

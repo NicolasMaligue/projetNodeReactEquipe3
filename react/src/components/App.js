@@ -121,9 +121,9 @@ const App = () => {
             <Route path="/users/add" element={<UserCreate />} />
 
           <Route path="/stocks" element={<StocksList />} />
-          {/* <Route path="/stocks/:id/view" element={<StockView />} />
+          <Route path="/stocks/:id/view" element={<StockView />} />
           <Route path="/stocks/:id/edit" element={<StockEdit />} />
-          <Route path="/stocks/add" element={<StockCreate />} /> */}
+          {/*<Route path="/stocks/add" element={<StockCreate />} /> */}
 
             <Route path="*" element={<NotFound />} />
           </Routes>
