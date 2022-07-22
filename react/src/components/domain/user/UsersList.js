@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ApiContext } from "../../App";
 import UserRow from "./UserRow";
 import { useNavigate } from "react-router-dom";
+import { useApiEffect } from "../../hook/useApi";
 
 const UsersList = (props) => {
   const api_path = "/users";
