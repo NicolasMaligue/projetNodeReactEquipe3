@@ -33,6 +33,7 @@ import StocksList from './domain/stock/StocksList';
 import StockView from './domain/stock/StockView';
 import StockEdit from './domain/stock/StockEdit';
 import StockCreate from './domain/stock/StockCreate';
+import Dashboard from './Dashboard';
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
