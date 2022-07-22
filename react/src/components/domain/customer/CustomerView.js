@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const CustomerView = () => {
@@ -7,7 +7,6 @@ const CustomerView = () => {
   const [creator, setCreator] = useState([]);
   const { id } = useParams(); // Unpacking and retrieve id
   const api_path = `/customers/${id}`;
-
 
   console.log("CustomerView: id: ", id);
 

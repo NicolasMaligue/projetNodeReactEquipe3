@@ -1,9 +1,39 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FunActions = (props) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const id = props.id;
+
+  const show = () => {
+    if (props.role === "boss" || props.role === "admin") {
+      return (
+        <>
+          <button
+            className="btn btn-warning me-2"
+            onClick={() => navigate(`${pathname}/${id}/edit`)}
+          >
+            Modifier
+          </button>
+          <button className="btn btn-danger" onClick={props.onDelete}>
+            Supprimer
+          </button>
+        </>
+      );
+    }
+    if (props.role === "dealer") {
+      return (
+        <>
+          <button
+            className="btn btn-warning me-2"
+            onClick={() => navigate(`${pathname}/${id}/edit`)}
+          >
+            Modifier
+          </button>
+        </>
+      );
+    }
+  };
 
   return (
     <>
@@ -13,15 +43,7 @@ const FunActions = (props) => {
       >
         Visualiser
       </button>
-      <button
-        className="btn btn-warning me-2"
-        onClick={() => navigate(`${pathname}/${id}/edit`)}
-      >
-        Modifier
-      </button>
-      <button className="btn btn-danger" onClick={props.onDelete}>
-        Supprimer
-      </button>
+      {show()}
     </>
   );
 };
