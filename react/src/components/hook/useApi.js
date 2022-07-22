@@ -11,7 +11,7 @@ export const useApi = (api_path, data_body, method = "get") => {
       setPending(true);
       axios[method](api_path, data_body)
         .then((response) => {
-          console.log(`useApiSave(${api_path}) response: `, response);
+          console.log(`useApi.${method}(${api_path}) response: `, response);
           setData(response.data);
         })
         .catch((error) => setError(error))

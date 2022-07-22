@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import { useApi } from "../hook/useApi";
 
 const LOGIN_URL = "/logins/auth";
 
-export default function FunLogin() {
+export const logout = () => {
+  // remove user from local storage to log user out
+  localStorage.removeItem("currentUser");
+};
+
+export default function FunLogin(props) {
   const [name, setName] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState();
@@ -13,33 +17,29 @@ export default function FunLogin() {
   // Custom hook useApi
   const auth_params = `?identifier=${name}&password=password`;
   // eslint-disable-next-line
-  const [login, setLogin, apiAuth] = useApi(LOGIN_URL + auth_params); // Custom Hook from context Api
-  console.log("login", login);
+  const [user, setUser, apiAuth] = useApi(LOGIN_URL + auth_params); // Custom Hook from context Api
 
   // const nameRef = useRef();
   const errRef = useRef();
 
+  // Custom hook useAuth
   const { setAuth } = useAuth();
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     setErrMsg("");
   }, [name, password]);
 
   useEffect(() => {
-    if (login.role) {
-      setAuth(name, password);
-      setName("");
-      setPassword("");
-      navigate(from, { replace: true });
+    // login auth ok => login
+    if (user.role) {
+      loginSuccess(user);
+      props.setIsConnected(true);
+      props.setUserConnected(user);
     }
     // eslint-disable-next-line
-  }, [login]);
+  }, [user]);
 
-  const handleSubmit = (e) => {
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
     try {
       apiAuth();
@@ -61,12 +61,19 @@ export default function FunLogin() {
     }
   };
 
+  const loginSuccess = (user) => {
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    setAuth(name, password);
+    setName("");
+    setPassword("");
+  };
+
   useEffect(() => {
     setErrMsg("");
   }, [name, password]);
 
   return (
-    <form className="form-signin" onSubmit={handleSubmit}>
+    <form className="form-signin" onSubmit={handleSubmitLogin}>
       <img
         className="mb-4"
         src="https://www.kindpng.com/picc/m/230-2305239_meme-vector-png-surprised-meme-face-transparent-png.png"
