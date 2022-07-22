@@ -1,7 +1,7 @@
 import "../App.css";
 import Nav from "./Nav";
 import { Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import UsersList from "./domain/user/UsersList";
 import CustomersList from "./domain/customer/CustomersList";
@@ -29,7 +29,6 @@ import CustomerCreate from "./domain/customer/CustomerCreate";
 import OrderCreate from "./domain/order/OrderCreate";
 import UserEdit from "./domain/user/UserEdit";
 import UserCreate from "./domain/user/UserCreate";
-import Dashboard from "./Dashboard";
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -67,10 +66,6 @@ const App = () => {
           setUserConnected={setUserConnected}
         />
       </header>
-      <main className="container mt-2">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/logins" element={<FunLogin />} />
       {console.log("isConnected", isConnected)}
       {!isConnected ? (
         <main className="container mt-2">
@@ -121,10 +116,10 @@ const App = () => {
             <Route path="/users/:id/edit" element={<UserEdit />} />
             <Route path="/users/add" element={<UserCreate />} />
 
-            {/* <Route path="/stocks" element={<UStocksList />} />
-            <Route path="/stocks/:id/view" element={<StockView />} />
-            <Route path="/stocks/:id/edit" element={<StockEdit />} />
-            <Route path="/stocks/add" element={<StockCreate />} /> */}
+            {/*<Route path="/stocks" element={<StocksList />} />
+             <Route path="/stocks/:id/view" element={<StockView />} />
+          <Route path="/stocks/:id/edit" element={<StockEdit />} />
+          <Route path="/stocks/add" element={<StockCreate />} /> */}
 
             <Route path="*" element={<NotFound />} />
           </Routes>
