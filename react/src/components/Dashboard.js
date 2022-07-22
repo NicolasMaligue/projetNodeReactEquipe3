@@ -1,21 +1,18 @@
+import { useContext, useEffect, useState } from "react";
 import { useApiEffect } from "./hook/useApi";
 import QuoteRow from "./domain/quote/QuoteRow";
 import UserRow from "./domain/user/UserRow";
 
 const Dashboard = () => {
 
-    // const [roles, setRoles] = useState([]);
+    const [roles, setRoles] = useState([]);
 
-    // useEffect(() => {
-    //     const roles = JSON.parse(localStorage.getItem('roles'));
-    //     if (roles){
-    //         setRoles(roles);
-    //     } 
-    //     else if(!roles){
-
-    //     }
-
-    const toto = "commercial";
+    useEffect(() => {
+        const role = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(role.role);
+        setRoles(role.role);
+        }
+    );
 
     
   const api_path_quotes = "/quotes";
@@ -31,9 +28,8 @@ const Dashboard = () => {
   const filtered_user = users.filter((filter)=> {
     return filter.role == "Commercial";
   });
-  console.log(filtered_user);
   
-    if(toto === "commercial"){
+    if(roles === "Commercial"){
         
         return (
             <div className="content">
@@ -61,7 +57,7 @@ const Dashboard = () => {
             </div>
         );
     }
-    if(toto === "patron"){
+    if(roles === "Patron"){
         
         return (
                 
@@ -99,7 +95,7 @@ const Dashboard = () => {
             </div>
             );
     }
-    if(toto === "administrateur"){
+    if(roles === "Administrateur"){
         
         return (
             <div className="content">

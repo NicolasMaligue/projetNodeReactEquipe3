@@ -88,7 +88,7 @@ const App = () => {
       ) : (
         <main className="container mt-2">
           <Routes>
-            <Route path="/" element={<h1>Futur Dashboard ?</h1>} />
+            <Route path="/" element={<Dashboard />} />
 
             <Route path="/orders" element={<OrdersList />} />
             <Route path="/orders/:id/view" element={<OrderView />} />
