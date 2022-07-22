@@ -65,7 +65,7 @@ const App = () => {
             <Route path="/quotes/add" element={<QuoteCreate />} />
 
             <Route path="/invoices" element={<InvoicesList />} />
-            <Route path="/invoices/:id/view" element={<h1>InvoiceView </h1>} />
+            <Route path="/invoices/:id/view" element={<InvoiceView />} />
             <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
             <Route path="/invoices/add" element={<InvoiceCreate />} />
 
@@ -78,38 +78,16 @@ const App = () => {
             <Route path="/customers/:id/view" element={<CustomerView />} />
             <Route path="/customers/:id/edit" element={<CustomerEdit />} />
             <Route path="/customers/add" element={<CustomerCreate />} />
-            <Route path="/orders" element={<OrdersList />} />
-            <Route path="/orders/:id/view" element={<OrderView />} />
-            <Route path="/orders/:id/edit" element={<OrderEdit />} />
-            <Route path="/orders/add" element={<OrderCreate />} />
-
-            <Route path="/quotes" element={<QuotesList />} />
-            <Route path="/quotes/:id/view" element={<QuoteView />} />
-            <Route path="/quotes/:id/edit" element={<QuoteEdit />} />
-            <Route path="/quotes/add" element={<h1>QuoteEdit </h1>} />
-
-            <Route path="/invoices" element={<InvoicesList />} />
-            <Route path="/invoices/:id/view" element={<InvoiceView />} />
-            <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
-            <Route path="/invoices/add" element={<InvoiceCreate />} />
-
-            <Route path="/vehicles" element={<VehiclesList />} />
-            <Route path="/vehicles/:id/view" element={<VehicleView />} />
-            <Route path="/vehicles/:id/edit" element={<h1>VehicleEdit </h1>} />
-            <Route path="/vehicles/add" element={<h1>VehicleEdit </h1>} />
-
-            <Route path="/customers" element={<CustomersList />} />
-            <Route path="/customers/:id/view" element={<CustomerView />} />
-            <Route
-              path="/customers/:id/edit"
-              element={<h1>CustomerEdit </h1>}
-            />
-            <Route path="/customers/add" element={<h1>CustomerEdit </h1>} />
 
             <Route path="/users" element={<UsersList />} />
             <Route path="/users/:id/view" element={<UserView />} />
             <Route path="/users/:id/edit" element={<UserEdit />} />
             <Route path="/users/add" element={<UserCreate />} />
+
+            {/* <Route path="/stocks" element={<UStocksList />} />
+            <Route path="/stocks/:id/view" element={<StockView />} />
+            <Route path="/stocks/:id/edit" element={<StockEdit />} />
+            <Route path="/stocks/add" element={<StockCreate />} /> */}
 
             <Route path="*" element={<NotFound />} />
           </Routes>

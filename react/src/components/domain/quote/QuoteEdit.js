@@ -4,9 +4,6 @@ import {useEffect, useState} from 'react';
 
 const QuoteEdit = () => {
     const [quote, setQuote] = useState({});
-    const [quote_id, setQuoteId] = useState();
-    const [vehicle_id, setVehicleId] = useState();
-    const [customer_id, setCustomerId] = useState();
     const [quote_status, setQuoteStatus] = useState();
     const [quote_creator, setQuoteCreator] = useState("");
     const [quote_customer, setQuoteCustomer] = useState("");
@@ -25,7 +22,6 @@ const QuoteEdit = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const quote_copy = {...quote};
-        quote_copy.id = quote_id;
         quote_copy.status = quote_status;
         quote_copy.creatorId = quote_creator.id;
         quote_copy.customerId = quote_customer.id;
@@ -34,7 +30,6 @@ const QuoteEdit = () => {
         setQuote(quote_copy);
         axios.put(`http://localhost:3001/api${api_path}`,
             {
-                id: quote_id,
                 status: quote_status,
                 creatorId: quote_creator.id,
                 customerId: quote_customer.id,
@@ -51,7 +46,6 @@ const QuoteEdit = () => {
         axios.get(api_path).then((response) => {
             console.log('QuoteEdit: data api : ', response.data);
             setQuote(response.data);
-            setQuoteId(response.data.id);
             setQuoteStatus(response.data.status);
             setQuoteCreator(response.data.creator);
             setQuoteCustomer(response.data.customer);
@@ -100,15 +94,6 @@ const QuoteEdit = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row" className="col-4">N° du devis
-                            </th>
-                            <td><input className="text-center" type="number"
-                                       required min="0"
-                                       value={quote_id || ''}
-                                       onChange={(e) => setQuoteId(
-                                           e.target.value)}></input></td>
-                        </tr>
                         <tr>
                             <th scope="row" className="col-4">Status
                             </th>

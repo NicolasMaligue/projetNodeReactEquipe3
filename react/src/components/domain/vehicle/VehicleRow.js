@@ -21,10 +21,7 @@ const onDelete = () => {
       <td>{props.vehicle.id}</td>
       <td>{props.vehicle.model}</td>
       <td>{props.vehicle.manufacturer}</td>
-      <td>{props.vehicle.type}</td>
-      <td>{props.vehicle.description}</td>
-      <td>{price}€</td>
-      <td>{props.vehicle.quantity}</td>
+      <td>{price} €</td>
       <td>
         <FunActions id={id} onDelete={onDelete} />
       </td>

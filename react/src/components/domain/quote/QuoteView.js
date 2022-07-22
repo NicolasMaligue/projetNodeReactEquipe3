@@ -44,7 +44,7 @@ const QuoteView = () => {
               <th scope="row" className="col-4">
                 N° du devis
               </th>
-              <td>{quote.id}</td>
+              <td>{quote.number}</td>
             </tr>
             <tr>
               <th scope="row">Date du devis</th>

@@ -19,10 +19,11 @@ const UsersList = () => {
           <table className="table table-striped custom-table">
             <thead>
               <tr>
-                <th scope="col">User</th>
+                <th scope="col">N° utilisateur</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Rôle</th>
+                <th scope="col">Statut</th>
                 <th scope="col">
                   <button
                     className="btn btn-success me-2"

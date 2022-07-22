@@ -8,8 +8,8 @@ const QuoteRow = (props) => {
 
   const onDelete = () => {
     axios.delete(`${api_path}/${id}`).then(
-        () => {console.log('DELETE GOOD');}
-    ).catch(() => {console.log('DELETE FAILED');})
+      () => { console.log('DELETE GOOD'); }
+    ).catch(() => { console.log('DELETE FAILED'); })
     const quotes_copy = [...props.quotes]
     quotes_copy.splice(props.index, 1)
     props.setQuotes(quotes_copy)
@@ -18,7 +18,7 @@ const QuoteRow = (props) => {
 
   return (
     <tr>
-      <td>{props.quote.id}</td>
+      <td>{props.quote.number}</td>
       <td>
         {props.quote.customer.firstname} {props.quote.customer.lastname}{" "}
       </td>

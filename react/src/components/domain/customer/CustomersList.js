@@ -27,8 +27,6 @@ const CustomersList = () => {
                 <th scope="col">N° de client</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Code postale</th>
                 <th scope="col">Ville</th>
                 <th scope="col">Contact</th>
                 <th scope="col">Créateur</th>
