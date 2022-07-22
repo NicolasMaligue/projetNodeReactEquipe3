@@ -1,12 +1,10 @@
 import OrderRow from "./OrderRow";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ApiContext } from "../../App";
+import { useApiEffect } from "../../hook/useApi";
 
 const OrdersList = () => {
   const api_path = "/orders";
-  const api = useContext(ApiContext);
-  const [orders, setOrders /*, pending, error*/] = api.useApiEffect(api_path); // Custom Hook from context Api
+  const [orders, setOrders /*, pending, error*/] = useApiEffect(api_path); // Custom Hook useApi
   const navigate = useNavigate();
 
   return (
@@ -51,6 +49,6 @@ const OrdersList = () => {
       </div>
     </div>
   );
-};
+};;
 
 export default OrdersList;

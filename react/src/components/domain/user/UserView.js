@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { ApiContext } from "../../App";
+import { useApiEffect } from "../../hook/useApi";
 
 const UserView = () => {
   const { id } = useParams(); // Unpacking and retrieve id
   console.log("UserView: id: ", id);
 
-  // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [user /*, setUser, pending, error*/] = api.useApiEffect(`/users/${id}`);
+  // Custom hook useApi
+  const [user /*, setUser, pending, error*/] = useApiEffect(`/users/${id}`);
 
   return (
     <div className="content">

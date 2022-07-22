@@ -1,5 +1,5 @@
-import { useState, useContext, useEffect } from "react";
-import { ApiContext } from "../App";
+import { useState, useEffect } from "react";
+import { useApi } from "../hook/useApi";
 import { ENUM } from "../../config/enum.config.js";
 
 const FunActionActiveUser = (props) => {
@@ -22,9 +22,9 @@ const FunActionActiveUser = (props) => {
     setToogle((value) => !value);
   };
 
-  // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [data, setData, effectCallback /*, pending, error*/] = api.useApi(
+  // Custom hook useApi
+  // eslint-disable-next-line
+  const [data, setData, effectCallback /*, pending, error*/] = useApi(
     `/users/${props.user.id}`,
     { active: active },
     "put"

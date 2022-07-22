@@ -1,16 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { ApiContext } from "../../App";
+import { useEffect, useState } from "react";
+import { useApiEffect } from "../../hook/useApi";
 
 const QuoteView = () => {
   const { id } = useParams(); // Unpacking and retrieve id
   console.log("QuoteView: id: ", id);
 
-  // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [quote /*, setQuote, pending, error*/] = api.useApiEffect(
-    `/quotes/${id}`
-  );
+  // Custom hook useApi
+  const [quote /*, setQuote, pending, error*/] = useApiEffect(`/quotes/${id}`);
 
   // State for related models data
   const [creator, setCreator] = useState({});

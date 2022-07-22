@@ -1,13 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { ApiContext } from "../../App";
+import { useState, useEffect } from "react";
+import { useApiEffect } from "../../hook/useApi";
 
 const OrderView = () => {
   const { id } = useParams(); // Unpacking and retrieve id
 
-  // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [order /*, pending, error*/] = api.useApiEffect(`/orders/${id}`);
+  // Custom hook useApi
+  const [order /*, pending, error*/] = useApiEffect(`/orders/${id}`);
 
   // State for related models data
   const [quote, setQuote] = useState({});

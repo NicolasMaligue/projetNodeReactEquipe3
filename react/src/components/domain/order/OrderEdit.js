@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-import { ApiContext } from "../../App";
+import { useEffect, useState } from "react";
+import { useApiEffect } from "../../hook/useApi";
 import { ENUM } from "../../../config/enum.config.js";
 
 const OrderEdit = () => {
@@ -9,8 +9,7 @@ const OrderEdit = () => {
   console.log("OrderEdit: id: ", id);
 
   const api_path = `/orders/${id}`;
-  const api = useContext(ApiContext);
-  const [order, setOrder] = api.useApiEffect(api_path); // Custom Hook from context Api
+  const [order, setOrder] = useApiEffect(api_path); // Custom Hook from context Api
 
   // State for related models data
   const [priority, setPriority] = useState();
@@ -23,7 +22,7 @@ const OrderEdit = () => {
     if (order.priority) setPriority(order.priority);
   }, [order]);
 
-  const [quotes_list] = api.useApiEffect("/quotes"); // Custom Hook from context Api
+  const [quotes_list] = useApiEffect("/quotes"); // Custom Hook from context Api
 
   const priority_list = Object.values(ENUM.order.priority);
   const navigate = useNavigate();
@@ -136,6 +135,6 @@ const OrderEdit = () => {
       </div>
     </div>
   );
-};;
+};;;;
 
 export default OrderEdit;

@@ -1,14 +1,11 @@
-import { useContext, useEffect } from "react";
-import { ApiContext } from "../../App";
+import { useApiEffect } from "../../hook/useApi";
 import VehicleRow from "./VehicleRow";
 import { useNavigate } from "react-router-dom";
 
 const VehiclesList = () => {
   const api_path = "/vehicles";
-  // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [vehicles, setVehicles /*, pending, error*/] =
-    api.useApiEffect(api_path);
+  // Custom hook useApi
+  const [vehicles, setVehicles /*, pending, error*/] = useApiEffect(api_path);
   const navigate = useNavigate();
 
   return (

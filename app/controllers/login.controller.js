@@ -25,8 +25,8 @@ exports.auth = (req, res) => {
       if (data.length > 0) {
         res.send({ role: data[0].user.role });
       } else {
-        res.status(404).send({
-          message: "No user found",
+        res.status(401).send({
+          message: "Unauthorized credentials",
         });
       }
     })

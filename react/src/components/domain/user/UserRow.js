@@ -1,19 +1,22 @@
 import FunActions from "../../fun/FunActions";
-import { ApiContext } from "../../App";
-
+import { useApi } from "../../hook/useApi";
 import FunActionActiveUser from "../../fun/FunActionActiveUser.js";
 import { ENUM } from "../../../config/enum.config.js";
-import { useContext } from "react";
 
 const UserRow = (props) => {
   const id = props.user.id;
   const login_role = "Administrateur"; //hack without role from login
-  const api_path = "/users";
+  const api_path = `/users/${id}`;
 
-  const api = useContext(ApiContext);
+  // eslint-disable-next-line
+  const [user, setUser, apiDelete /*, pending, error*/] = useApi(
+    api_path,
+    {},
+    "delete"
+  );
 
   const onDelete = () => {
-    const [user, setUser /*, pending, error*/] = api.useApiEffect(api_path, {}, "delete");
+    apiDelete();
     const users_copy = [...props.users];
     users_copy.splice(props.index, 1);
     props.setUsers(users_copy);
@@ -34,6 +37,6 @@ const UserRow = (props) => {
       </td>
     </tr>
   );
-};;
+};
 
 export default UserRow;

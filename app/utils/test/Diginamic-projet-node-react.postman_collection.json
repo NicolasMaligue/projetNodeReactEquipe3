@@ -423,7 +423,7 @@
 			]
 		},
 		{
-			"name": "Stock",
+			"name": "Stocks",
 			"item": [
 				{
 					"name": "Add stock",
@@ -841,29 +841,27 @@
 			"item": [
 				{
 					"name": "Auth",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"identifier\": \"lionel\",\n    \"password\": \"password\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{api_url}}/logins/auth",
+							"raw": "{{api_url}}/logins/auth?identifier=lionel&password=password",
 							"host": [
 								"{{api_url}}"
 							],
 							"path": [
 								"logins",
 								"auth"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "lionel"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								}
 							]
 						}
 					},
@@ -1128,32 +1126,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Add login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"identifier\": \"Nicolas\",\n    \"password\": \"P@$$word\",\n    \"lastname\": \"toto\",\n    \"creatorId\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}/logins",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"logins"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [

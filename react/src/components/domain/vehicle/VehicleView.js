@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { ApiContext } from "../../App";
+import { useApiEffect } from "../../hook/useApi";
 
 const VehicleView = () => {
   const { id } = useParams(); // Unpacking and retrieve id
   console.log("VehicleView: id: ", id);
 
-  // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [vehicle /*, setVehicle, pending, error*/] = api.useApiEffect(
+  // Custom hook useApi
+  const [vehicle /*, setVehicle, pending, error*/] = useApiEffect(
     `/vehicles/${id}`
   );
 

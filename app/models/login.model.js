@@ -18,7 +18,10 @@ module.exports = (sequelize, Sequelize) => {
    * field userId auto added to the login table
    * as foreign key for User.id
    */
-  Login.belongsTo(User, { foreignKey: { allowNull: false } });
+  Login.belongsTo(User, {
+    foreignKey: { allowNull: false },
+    onDelete: "cascade",
+  });
 
   return Login;
 };

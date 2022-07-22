@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
-import axios from "axios";
-import { ApiContext } from "../App";
+import useAuth from "../hook/useAuth";
+import { useApi } from "../hook/useApi";
 
 const LOGIN_URL = "/logins/auth";
 
@@ -10,6 +9,12 @@ export default function FunLogin() {
   const [name, setName] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState();
+
+  // Custom hook useApi
+  const auth_params = `?identifier=${name}&password=password`;
+  // eslint-disable-next-line
+  const [login, setLogin, apiAuth] = useApi(LOGIN_URL + auth_params); // Custom Hook from context Api
+  console.log("login", login);
 
   // const nameRef = useRef();
   const errRef = useRef();
@@ -24,43 +29,20 @@ export default function FunLogin() {
     setErrMsg("");
   }, [name, password]);
 
-  const api = useContext(ApiContext);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      console.log("name", name, "password", password);
-      const auth_body = {
-        data: {
-          identifier: name,
-          password: password,
-        },
-      };
-      // const [login, setLogin, effectCallback] = api.useApi(
-      //   LOGIN_URL,
-      //   auth_body
-      // ); // Custom Hook from context Api
-      // console.log("login", login);
-
-      axios
-        .get(
-          LOGIN_URL + `?identifier=${name}&password=password` /*, auth_body*/
-        )
-        .then((response) => {
-          console.log("response.data", response.data);
-        });
-
-      // const response = await axios.get(LOGIN_URL, {
-      //   identifier: name,
-      //   password: password,
-      // }, {
-      //   headers: { "Content-Type": "application/json" },
-      //   withCredentials: true,
-      // });
-      // console.log(response);
+  useEffect(() => {
+    if (login.role) {
       setAuth(name, password);
       setName("");
       setPassword("");
-      //          navigate(from, { replace: true });
+      navigate(from, { replace: true });
+    }
+    // eslint-disable-next-line
+  }, [login]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      apiAuth();
     } catch (err) {
       if (!err?.response) {
         console.log(err);
