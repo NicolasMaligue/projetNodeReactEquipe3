@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useContext } from "react";
 import { ApiContext } from "./App";
 import QuoteRow from "./domain/quote/QuoteRow";
@@ -139,6 +140,20 @@ const Dashboard = () => {
             </div>
             );
     }
+=======
+import React, { Component } from 'react';
+
+class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {  };
+    }
+    render() {
+        return (
+            <h1>Hello</h1>
+        );
+    }
+>>>>>>> 5e348ecc9763937a6ff19a5e31653af75adfd19e
 }
 
 export default Dashboard;
