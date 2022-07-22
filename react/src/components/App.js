@@ -29,7 +29,10 @@ import CustomerCreate from "./domain/customer/CustomerCreate";
 import OrderCreate from "./domain/order/OrderCreate";
 import UserEdit from "./domain/user/UserEdit";
 import UserCreate from "./domain/user/UserCreate";
-import Dashboard from "./Dashboard";
+import StocksList from './domain/stock/StocksList';
+import StockView from './domain/stock/StockView';
+import StockEdit from './domain/stock/StockEdit';
+import StockCreate from './domain/stock/StockCreate';
 
 // Axios default api config values
 axios.defaults.baseURL = "http://localhost:3001/api";
@@ -117,10 +120,10 @@ const App = () => {
             <Route path="/users/:id/edit" element={<UserEdit />} />
             <Route path="/users/add" element={<UserCreate />} />
 
-            {/* <Route path="/stocks" element={<UStocksList />} />
-            <Route path="/stocks/:id/view" element={<StockView />} />
-            <Route path="/stocks/:id/edit" element={<StockEdit />} />
-            <Route path="/stocks/add" element={<StockCreate />} /> */}
+          <Route path="/stocks" element={<StocksList />} />
+          <Route path="/stocks/:id/view" element={<StockView />} />
+          <Route path="/stocks/:id/edit" element={<StockEdit />} />
+          {/*<Route path="/stocks/add" element={<StockCreate />} /> */}
 
             <Route path="*" element={<NotFound />} />
           </Routes>

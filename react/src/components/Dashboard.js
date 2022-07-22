@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { useApi, useApiEffect } from "./hook/useApi";
+import { useApiEffect } from "./hook/useApi";
 import QuoteRow from "./domain/quote/QuoteRow";
 import UserRow from "./domain/user/UserRow";
 
@@ -21,16 +20,14 @@ const Dashboard = () => {
     
   const api_path_quotes = "/quotes";
   // Custom hook api.useApi
-  const api_quote = useContext(ApiContext);
-  const [quotes, setQuotes] = api_quote.useApiEffect(api_path_quotes);
+  const [quotes, setQuotes] = useApiEffect(api_path_quotes);
   const filtered_quote = quotes.filter((filter)=> {
     return filter.status == "En attente";
   });
 
   const api_path_user = "/users";
   // Custom hook api.useApi
-  const api_user = useContext(ApiContext);
-  const [users, setUsers] = api_user.useApiEffect(api_path_user);
+  const [users, setUsers] = useApiEffect(api_path_user);
   const filtered_user = users.filter((filter)=> {
     return filter.role == "Commercial";
   });

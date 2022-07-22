@@ -25,11 +25,7 @@ const OrderRow = (props) => {
   return (
     <tr>
       <td>{props.order.number}</td>
-      <td>
-        <a href="/">
-          {customer.firstname} {customer.lastname}
-        </a>
-      </td>
+      <td>{customer.firstname} {customer.lastname}</td>
       <td>{customer.mobile || customer.phone}</td>
       <td>{props.order.priority}</td>
       <td>

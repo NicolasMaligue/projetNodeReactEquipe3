@@ -27,11 +27,7 @@ const CustomerRow = (props) => {
       <td>{props.customer.firstname}</td>
       <td>{props.customer.city}</td>
       <td>{props.customer.mobile || props.customer.phone}</td>
-      <td>
-        <a href="/">
-          {props.customer.creator.firstname} {props.customer.creator.lastname}
-        </a>
-      </td>
+      <td>{props.customer.creator.firstname} {props.customer.creator.lastname}</td>
       {/* données créateur */}
       <td>
         <FunActions id={id} onDelete={onDelete} />

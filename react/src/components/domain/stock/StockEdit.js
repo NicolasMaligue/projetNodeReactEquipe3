@@ -2,7 +2,7 @@ import axios from 'axios';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 
-const VehicleEdit = () => {
+const StockEdit = () => {
 const [vehicle, setVehicle] = useState({});
 const [vehicle_id, setVehicleId] = useState();
 const [vehicle_mod, setVehicleModel] = useState();
@@ -10,6 +10,7 @@ const [vehicle_man, setVehicleMan] = useState();
 const [vehicle_type, setVehicleType] = useState();
 const [vehicle_desc, setVehicleDesc] = useState();
 const [vehicle_pric, setVehiclePrice] = useState();
+const [vehicle_qty, setVehicleQuantity] = useState();
 
 
 const {id} = useParams(); // Unpacking and retrieve id
@@ -30,6 +31,7 @@ const handleSubmit = (e) => {
     type: vehicle_type,
     description: vehicle_desc,
     price: vehicle_pric,
+    quantity: vehicle_qty
   }).then(() => {
     console.log('PUT GOOD');
   }).catch(() => {console.log('PUT FAIL');});
@@ -47,6 +49,7 @@ useEffect(() => {
     setVehicleType(response.data.type);
     setVehicleDesc(response.data.description);
     setVehiclePrice(response.data.price);
+    setVehicleQuantity(response.data.quantity);
   }).catch((error) => console.log(error));
 }, []);
 
@@ -124,6 +127,18 @@ return (
               </input>
             </td>
           </tr>
+          <tr>
+            <th scope="row" className="col-4">Quantité
+            </th>
+            <td>
+              <input className="text-center" type="number"
+                required 
+                value={vehicle_qty || ''}
+                onChange={(e) => setVehicleQuantity(
+                e.target.value)}>
+              </input>
+            </td>
+          </tr>
         </tbody>
       </table>
     <button className="btn btn-success"
@@ -140,4 +155,4 @@ return (
 );
 };
 
-export default VehicleEdit;
+export default StockEdit;

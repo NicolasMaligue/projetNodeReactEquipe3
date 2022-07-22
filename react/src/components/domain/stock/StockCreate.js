@@ -2,7 +2,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 
-const VehicleCreate = () => {
+const StockCreate = () => {
 
 const [vehicle_mod, setVehicleModel] = useState();
 const [vehicle_man, setVehicleMan] = useState();
@@ -113,4 +113,4 @@ return (
 );
 };
               
-export default VehicleCreate;
+export default StockCreate;
