@@ -1,11 +1,11 @@
-import { useApiEffect } from "../../hook/useApi";
 import QuoteRow from "./QuoteRow";
 import { useNavigate } from "react-router-dom";
+import { useApiEffect } from "../../hook/useApi";
 
-const QuotesList = () => {
+const QuotesList = (props) => {
   const api_path = "/quotes";
   const navigate = useNavigate();
-  // Custom hook useApi
+  // Custom hook api.useApi
   const [quotes, setQuotes /*, pending, error*/] = useApiEffect(api_path);
 
   return (
@@ -40,6 +40,7 @@ const QuotesList = () => {
                     quote={quote}
                     quotes={quotes}
                     setQuotes={setQuotes}
+                    role={props.role}
                   />
                 );
               })}

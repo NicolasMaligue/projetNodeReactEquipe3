@@ -1,8 +1,9 @@
-import { useApiEffect } from "../../hook/useApi";
+import { useContext } from "react";
+import { ApiContext } from "../../App";
 import UserRow from "./UserRow";
 import { useNavigate } from "react-router-dom";
 
-const UsersList = () => {
+const UsersList = (props) => {
   const api_path = "/users";
   // Custom hook useApi
   const [users, setUsers /*, pending, error*/] = useApiEffect(api_path);
@@ -17,7 +18,7 @@ const UsersList = () => {
           <table className="table table-striped custom-table">
             <thead>
               <tr>
-                <th scope="col">N° utilisateur</th>
+                <th scope="col">User</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Rôle</th>
@@ -41,6 +42,7 @@ const UsersList = () => {
                     index={index}
                     users={users}
                     setUsers={setUsers}
+                    role={props.role}
                   />
                 );
               })}

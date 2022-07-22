@@ -2,11 +2,28 @@ import { useApiEffect } from "../../hook/useApi";
 import VehicleRow from "./VehicleRow";
 import { useNavigate } from "react-router-dom";
 
-const VehiclesList = () => {
+const VehiclesList = (props) => {
   const api_path = "/vehicles";
   // Custom hook useApi
   const [vehicles, setVehicles /*, pending, error*/] = useApiEffect(api_path);
   const navigate = useNavigate();
+
+  const show = () => {
+    if (props.role === "Patron" || props.role === "Administrateur") {
+      return (
+        <>
+          <th scope="col">
+            <button
+              className="btn btn-success me-2"
+              onClick={() => navigate(`${api_path}/add`)}
+            >
+              Créer
+            </button>
+          </th>
+        </>
+      );
+    }
+  };
 
   return (
     <div className="content">
@@ -19,15 +36,11 @@ const VehiclesList = () => {
                 <th scope="col">Véhicule</th>
                 <th scope="col">Modèle</th>
                 <th scope="col">Marque</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
                 <th scope="col">Prix</th>
-                <th scope="col">
-                  <button
-                    className="btn btn-success me-2"
-                    onClick={() => navigate(`${api_path}/add`)}
-                  >
-                    Créer
-                  </button>
-                </th>
+                <th scope="col">Quantité</th>
+                {show()}
               </tr>
             </thead>
             <tbody>
@@ -39,6 +52,7 @@ const VehiclesList = () => {
                     index={index}
                     vehicles={vehicles}
                     setVehicles={setVehicles}
+                    role={props.role}
                   />
                 );
               })}
