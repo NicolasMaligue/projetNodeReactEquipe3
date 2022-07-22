@@ -12,6 +12,11 @@ const Nav = (props) => {
               <button className="btn btn-light">Utilisateurs</button>
             </NavLink>
           </li>
+          <li className="nav-item px-3">
+            <NavLink to="/stocks">
+              <button className="btn btn-light">Stock</button>
+            </NavLink>
+          </li>
         </>
       );
     }
@@ -77,6 +82,11 @@ const Nav = (props) => {
           <li className="nav-item px-3">
             <NavLink to="/vehicles">
               <button className="btn btn-light">Véhicules</button>
+            </NavLink>
+          </li>
+          <li className="nav-item px-3">
+            <NavLink to="/stocks">
+              <button className="btn btn-light">Stock</button>
             </NavLink>
           </li>
           <li className="nav-item px-3">

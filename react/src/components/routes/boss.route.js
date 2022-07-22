@@ -21,11 +21,13 @@ import CustomerView from "../domain/customer/CustomerView";
 import CustomerEdit from "../domain/customer/CustomerEdit";
 import CustomerCreate from "../domain/customer/CustomerCreate";
 import NotFound from "../NotFound";
+import Dashboard from "../Dashboard";
 
 const BossRoute = (props) => {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Dashboard role={props.role} />} />
         <Route path="/orders" element={<OrdersList role={props.role} />} />
         <Route path="/orders/:id/view" element={<OrderView />} />
         <Route path="/orders/:id/edit" element={<OrderEdit />} />

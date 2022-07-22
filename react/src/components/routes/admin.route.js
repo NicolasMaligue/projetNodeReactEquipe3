@@ -5,11 +5,16 @@ import UserView from "../domain/user/UserView";
 import UserEdit from "../domain/user/UserEdit";
 import UserCreate from "../domain/user/UserCreate";
 import NotFound from "../NotFound";
+import StocksList from "../domain/stock/StocksList";
+import StockView from "../domain/stock/StockView";
+import StockEdit from "../domain/stock/StockEdit";
+import Dashboard from "../Dashboard";
 
 const AdminRoute = (props) => {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Dashboard role={props.role} />} />
         <Route path="/users" element={<UsersList role={props.role} />} />
         <Route
           role={props.role}
@@ -18,6 +23,11 @@ const AdminRoute = (props) => {
         />
         <Route path="/users/:id/edit" element={<UserEdit />} />
         <Route path="/users/add" element={<UserCreate />} />
+
+        <Route path="/stocks" element={<StocksList role={props.role} />} />
+        <Route path="/stocks/:id/view" element={<StockView />} />
+        <Route path="/stocks/:id/edit" element={<StockEdit />} />
+        {/*<Route path="/stocks/add" element={<StockCreate />} /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

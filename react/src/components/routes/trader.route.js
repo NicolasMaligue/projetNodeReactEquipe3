@@ -19,11 +19,16 @@ import CustomerView from "../domain/customer/CustomerView";
 import CustomerEdit from "../domain/customer/CustomerEdit";
 import CustomerCreate from "../domain/customer/CustomerCreate";
 import NotFound from "../NotFound";
+import StocksList from "../domain/stock/StocksList";
+import StockView from "../domain/stock/StockView";
+import StockEdit from "../domain/stock/StockEdit";
+import Dashboard from "../Dashboard";
 
 const TraderRoute = (props) => {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Dashboard role={props.role} />} />
         <Route path="/orders" element={<OrdersList />} />
         <Route path="/orders/:id/view" element={<OrderView />} />
         <Route path="/orders/:id/edit" element={<OrderEdit />} />
@@ -41,6 +46,11 @@ const TraderRoute = (props) => {
 
         <Route path="/vehicles" element={<VehiclesList />} />
         <Route path="/vehicles/:id/view" element={<VehicleView />} />
+
+        <Route path="/stocks" element={<StocksList role={props.role} />} />
+        <Route path="/stocks/:id/view" element={<StockView />} />
+        <Route path="/stocks/:id/edit" element={<StockEdit />} />
+        {/*<Route path="/stocks/add" element={<StockCreate />} /> */}
 
         <Route
           path="/customers"

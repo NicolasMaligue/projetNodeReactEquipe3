@@ -35,8 +35,6 @@ const OrdersList = (props) => {
                 <th scope="col">Order</th>
                 <th scope="col">Customer</th>
                 <th scope="col">Vehicle</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Status</th>
                 <th scope="col">Priority</th>
                 {show()}
               </tr>

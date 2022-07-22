@@ -36,10 +36,7 @@ const VehiclesList = (props) => {
                 <th scope="col">Véhicule</th>
                 <th scope="col">Modèle</th>
                 <th scope="col">Marque</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
                 <th scope="col">Prix</th>
-                <th scope="col">Quantité</th>
                 {show()}
               </tr>
             </thead>

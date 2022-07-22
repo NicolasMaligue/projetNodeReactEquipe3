@@ -41,10 +41,9 @@ const InvoicesList = (props) => {
           <table className="table table-striped custom-table">
             <thead>
               <tr>
-                <th scope="col">Invoice</th>
+                <th scope="col">N° de facture</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
-                <th scope="col">Véhicule</th>
                 <th scope="col">Date de création</th>
                 <th scope="col">Order</th>
                 {show()}

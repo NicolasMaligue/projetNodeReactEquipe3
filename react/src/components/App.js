@@ -85,10 +85,7 @@ const App = () => {
       ) : (
         <main className="container mt-2">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-
             {role_view()}
-
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
