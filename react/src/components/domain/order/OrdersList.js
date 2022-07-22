@@ -2,10 +2,27 @@ import OrderRow from "./OrderRow";
 import { useNavigate } from "react-router-dom";
 import { useApiEffect } from "../../hook/useApi";
 
-const OrdersList = () => {
+const OrdersList = (props) => {
   const api_path = "/orders";
-  const [orders, setOrders /*, pending, error*/] = useApiEffect(api_path); // Custom Hook useApi
+  const [orders, setOrders /*, pending, error*/] = useApiEffect(api_path); // Custom Hook from context Api
   const navigate = useNavigate();
+
+  const show = () => {
+    if (props.role === "Patron" || props.role === "Administrateur") {
+      return (
+        <>
+          <th scope="col">
+            <button
+              className="btn btn-success me-2"
+              onClick={() => navigate(`${api_path}/add`)}
+            >
+              Créer
+            </button>
+          </th>
+        </>
+      );
+    }
+  };
 
   return (
     <div className="content">
@@ -15,18 +32,11 @@ const OrdersList = () => {
           <table className="table table-striped custom-table">
             <thead>
               <tr>
-                <th scope="col">N° de commande</th>
-                <th scope="col">Client</th>
-                <th scope="col">Téléphone</th>
-                <th scope="col">Priorité</th>
-                <th scope="col">
-                  <button
-                    className="btn btn-success me-2"
-                    onClick={() => navigate(`${api_path}/add`)}
-                  >
-                    Créer
-                  </button>
-                </th>
+                <th scope="col">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Vehicle</th>
+                <th scope="col">Priority</th>
+                {show()}
               </tr>
             </thead>
             <tbody>
@@ -38,6 +48,7 @@ const OrdersList = () => {
                     index={index}
                     orders={orders}
                     setOrders={setOrders}
+                    role={props.role}
                   />
                 );
               })}
@@ -47,6 +58,6 @@ const OrdersList = () => {
       </div>
     </div>
   );
-};;
+};
 
 export default OrdersList;

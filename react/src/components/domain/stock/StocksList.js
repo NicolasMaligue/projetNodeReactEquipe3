@@ -2,11 +2,28 @@ import { useApiEffect } from "../../hook/useApi";
 import StockRow from "./StockRow";
 import { useNavigate } from "react-router-dom";
 
-const StocksList = () => {
+const StocksList = (props) => {
   const api_path = "/stocks";
   // Custom hook useApi
   const [stocks, setStocks /*, pending, error*/] = useApiEffect(api_path);
   const navigate = useNavigate();
+
+  const show = () => {
+    if (props.role === "Administrateur") {
+      return (
+        <>
+          <th scope="col">
+            <button
+              className="btn btn-success me-2"
+              onClick={() => navigate(`${api_path}/add`)}
+            >
+              Créer
+            </button>
+          </th>
+        </>
+      );
+    }
+  };
 
   return (
     <div className="content">
@@ -20,14 +37,7 @@ const StocksList = () => {
                 <th scope="col">Modèle</th>
                 <th scope="col">Marque</th>
                 <th scope="col">Quantité</th>
-                <th scope="col">
-                  <button
-                    className="btn btn-success me-2"
-                    onClick={() => navigate(`${api_path}/add`)}
-                  >
-                    Créer
-                  </button>
-                </th>
+                {show()}
               </tr>
             </thead>
             <tbody>
@@ -39,6 +49,7 @@ const StocksList = () => {
                     index={index}
                     stocks={stocks}
                     setStocks={setStocks}
+                    role={props.role}
                   />
                 );
               })}

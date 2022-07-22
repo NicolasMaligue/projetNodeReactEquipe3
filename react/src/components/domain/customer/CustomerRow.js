@@ -30,7 +30,7 @@ const CustomerRow = (props) => {
       <td>{props.customer.creator.firstname} {props.customer.creator.lastname}</td>
       {/* données créateur */}
       <td>
-        <FunActions id={id} onDelete={onDelete} />
+        <FunActions id={id} onDelete={onDelete} role={props.role} />
       </td>
     </tr>
   );

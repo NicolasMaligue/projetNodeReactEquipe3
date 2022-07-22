@@ -31,7 +31,7 @@ const UserRow = (props) => {
       <td>{props.user.role}</td>
       <td>{props.user.active}</td>
       <td>
-        <FunActions id={id} onDelete={onDelete} />
+        <FunActions role={props.role} id={id} onDelete={onDelete} />
         {login_role === ENUM.user.role.admin && (
           <FunActionActiveUser user={props.user} />
         )}

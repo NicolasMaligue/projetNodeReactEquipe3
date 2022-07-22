@@ -29,7 +29,7 @@ const OrderRow = (props) => {
       <td>{customer.mobile || customer.phone}</td>
       <td>{props.order.priority}</td>
       <td>
-        <FunActions id={id} onDelete={onDelete} />
+        <FunActions id={id} onDelete={onDelete} role={props.role} />
       </td>
     </tr>
   );
