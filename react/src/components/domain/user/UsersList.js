@@ -3,11 +3,11 @@ import { ApiContext } from "../../App";
 import UserRow from "./UserRow";
 import { useNavigate } from "react-router-dom";
 
-const UsersList = () => {
+const UsersList = (props) => {
   const api_path = "/users";
-    // Custom hook api.useApi
-    const api = useContext(ApiContext);
-    const [users, setUsers/*, pending, error*/] = api.useApiEffect(api_path);
+  // Custom hook api.useApi
+  const api = useContext(ApiContext);
+  const [users, setUsers /*, pending, error*/] = api.useApiEffect(api_path);
 
   const navigate = useNavigate();
 
@@ -42,6 +42,7 @@ const UsersList = () => {
                     index={index}
                     users={users}
                     setUsers={setUsers}
+                    role={props.role}
                   />
                 );
               })}

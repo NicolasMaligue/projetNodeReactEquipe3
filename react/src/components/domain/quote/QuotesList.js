@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ApiContext } from "../../App";
 import QuoteRow from "./QuoteRow";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const QuotesList = () => {
+const QuotesList = (props) => {
   const api_path = "/quotes";
   const navigate = useNavigate();
   // Custom hook api.useApi
@@ -23,12 +23,28 @@ const QuotesList = () => {
                 <th scope="col">Véhicule</th>
                 <th scope="col">Date du devis</th>
                 <th scope="col">Status</th>
-                <th scope="col"><button className="btn btn-success me-2" onClick={() => navigate(`${api_path}/add`)}>Créer</button></th>
+                <th scope="col">
+                  <button
+                    className="btn btn-success me-2"
+                    onClick={() => navigate(`${api_path}/add`)}
+                  >
+                    Créer
+                  </button>
+                </th>
               </tr>
             </thead>
             <tbody>
               {quotes.map((quote, index) => {
-                return <QuoteRow key={index} index={index} quote={quote} quotes={quotes} setQuotes={setQuotes}/>;
+                return (
+                  <QuoteRow
+                    key={index}
+                    index={index}
+                    quote={quote}
+                    quotes={quotes}
+                    setQuotes={setQuotes}
+                    role={props.role}
+                  />
+                );
               })}
             </tbody>
           </table>

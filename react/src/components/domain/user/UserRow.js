@@ -13,7 +13,11 @@ const UserRow = (props) => {
   const api = useContext(ApiContext);
 
   const onDelete = () => {
-    const [user, setUser /*, pending, error*/] = api.useApiEffect(api_path, {}, "delete");
+    const [user, setUser /*, pending, error*/] = api.useApiEffect(
+      api_path,
+      {},
+      "delete"
+    );
     const users_copy = [...props.users];
     users_copy.splice(props.index, 1);
     props.setUsers(users_copy);
@@ -27,13 +31,13 @@ const UserRow = (props) => {
       <td>{props.user.firstname}</td>
       <td>{props.user.role}</td>
       <td>
-        <FunActions id={id} onDelete={onDelete} />
+        <FunActions role={props.role} id={id} onDelete={onDelete} />
         {login_role === ENUM.user.role.admin && (
           <FunActionActiveUser user={props.user} />
         )}
       </td>
     </tr>
   );
-};;
+};
 
 export default UserRow;

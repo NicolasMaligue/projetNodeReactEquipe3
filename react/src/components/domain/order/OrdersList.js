@@ -3,11 +3,28 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiContext } from "../../App";
 
-const OrdersList = () => {
+const OrdersList = (props) => {
   const api_path = "/orders";
   const api = useContext(ApiContext);
   const [orders, setOrders /*, pending, error*/] = api.useApiEffect(api_path); // Custom Hook from context Api
   const navigate = useNavigate();
+
+  const show = () => {
+    if (props.role === "boss" || props.role === "admin") {
+      return (
+        <>
+          <th scope="col">
+            <button
+              className="btn btn-success me-2"
+              onClick={() => navigate(`${api_path}/add`)}
+            >
+              Créer
+            </button>
+          </th>
+        </>
+      );
+    }
+  };
 
   return (
     <div className="content">
@@ -23,14 +40,7 @@ const OrdersList = () => {
                 <th scope="col">Contact</th>
                 <th scope="col">Status</th>
                 <th scope="col">Priority</th>
-                <th scope="col">
-                  <button
-                    className="btn btn-success me-2"
-                    onClick={() => navigate(`${api_path}/add`)}
-                  >
-                    Créer
-                  </button>
-                </th>
+                {show()}
               </tr>
             </thead>
             <tbody>
@@ -42,6 +52,7 @@ const OrdersList = () => {
                     index={index}
                     orders={orders}
                     setOrders={setOrders}
+                    role={props.role}
                   />
                 );
               })}

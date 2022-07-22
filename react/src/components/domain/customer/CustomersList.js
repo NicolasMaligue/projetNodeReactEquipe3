@@ -3,7 +3,7 @@ import axios from "axios";
 import CustomerRow from "./CustomerRow";
 import { useNavigate } from "react-router-dom";
 
-const CustomersList = () => {
+const CustomersList = (props) => {
   const [customers, setCustomers] = useState([]);
   const api_path = "/customers";
   const navigate = useNavigate();
@@ -51,6 +51,7 @@ const CustomersList = () => {
                     index={index}
                     customers={customers}
                     setCustomers={setCustomers}
+                    role={props.role}
                   />
                 );
               })}
