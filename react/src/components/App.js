@@ -67,10 +67,13 @@ const App = () => {
           setUserConnected={setUserConnected}
         />
       </header>
+<<<<<<< HEAD
       <main className="container mt-2">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/logins" element={<FunLogin />} />
+=======
+>>>>>>> wip_nico_ui_dashboard_v2
       {console.log("isConnected", isConnected)}
       {!isConnected ? (
         <main className="container mt-2">
