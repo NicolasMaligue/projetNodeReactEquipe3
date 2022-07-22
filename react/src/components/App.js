@@ -67,12 +67,6 @@ const App = () => {
           setUserConnected={setUserConnected}
         />
       </header>
-<<<<<<< HEAD
-      <main className="container mt-2">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/logins" element={<FunLogin />} />
-=======
       {console.log("isConnected", isConnected)}
       {!isConnected ? (
         <main className="container mt-2">
@@ -92,7 +86,6 @@ const App = () => {
         <main className="container mt-2">
           <Routes>
             <Route path="/" element={<h1>Futur Dashboard ?</h1>} />
->>>>>>> 360bd95ee3d0c317d14620492cc2de8de66271f0
 
             <Route path="/orders" element={<OrdersList />} />
             <Route path="/orders/:id/view" element={<OrderView />} />
