@@ -1,14 +1,12 @@
-import { useContext } from "react";
-import { ApiContext } from "../../App";
 import QuoteRow from "./QuoteRow";
 import { useNavigate } from "react-router-dom";
+import { useApiEffect } from "../../hook/useApi";
 
 const QuotesList = (props) => {
   const api_path = "/quotes";
   const navigate = useNavigate();
   // Custom hook api.useApi
-  const api = useContext(ApiContext);
-  const [quotes, setQuotes /*, pending, error*/] = api.useApiEffect(api_path);
+  const [quotes, setQuotes /*, pending, error*/] = useApiEffect(api_path);
 
   return (
     <div className="content">

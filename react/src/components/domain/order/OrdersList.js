@@ -1,16 +1,14 @@
 import OrderRow from "./OrderRow";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ApiContext } from "../../App";
+import { useApiEffect } from "../../hook/useApi";
 
 const OrdersList = (props) => {
   const api_path = "/orders";
-  const api = useContext(ApiContext);
-  const [orders, setOrders /*, pending, error*/] = api.useApiEffect(api_path); // Custom Hook from context Api
+  const [orders, setOrders /*, pending, error*/] = useApiEffect(api_path); // Custom Hook from context Api
   const navigate = useNavigate();
 
   const show = () => {
-    if (props.role === "boss" || props.role === "admin") {
+    if (props.role === "Patron" || props.role === "Administrateur") {
       return (
         <>
           <th scope="col">

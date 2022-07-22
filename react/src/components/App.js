@@ -19,6 +19,7 @@ const App = () => {
   // eslint-disable-next-line
   const [userConnected, setUserConnected] = useState({});
   const [isConnected, setIsConnected] = useState(false);
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -31,25 +32,28 @@ const App = () => {
     if (currentUser) {
       const user = JSON.parse(currentUser);
       setUserConnected(user);
+      setUserRole(user.role);
       setIsConnected(true);
     }
     // eslint-disable-next-line
   }, [currentUser]);
 
-  const admin = "admin";
-  const boss = "boss";
-  const dealer = "dealer";
-  const role = "dealer";
+  const admin = "Administrateur";
+  const boss = "Patron";
+  const dealer = "Commercial";
+  const role = userRole;
 
   const role_view = () => {
-    if (role === admin) {
-      return <Route path="/*" element={<AdminRoute role={role} />} />;
-    }
-    if (role === boss) {
-      return <Route path="/*" element={<BossRoute role={role} />} />;
-    }
-    if (role === dealer) {
-      return <Route path="/*" element={<TraderRoute role={role} />} />;
+    if (isConnected) {
+      if (role === admin) {
+        return <Route path="/*" element={<AdminRoute role={role} />} />;
+      }
+      if (role === boss) {
+        return <Route path="/*" element={<BossRoute role={role} />} />;
+      }
+      if (role === dealer) {
+        return <Route path="/*" element={<TraderRoute role={role} />} />;
+      }
     }
   };
 
@@ -60,6 +64,7 @@ const App = () => {
           isConnected={isConnected}
           setIsConnected={setIsConnected}
           setUserConnected={setUserConnected}
+          role={role}
         />
       </header>
       {console.log("isConnected", isConnected)}

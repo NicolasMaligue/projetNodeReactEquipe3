@@ -9,7 +9,7 @@ const InvoicesList = (props) => {
   const navigate = useNavigate();
 
   const show = () => {
-    if (props.role === "boss" || props.role === "admin") {
+    if (props.role === "Patron" || props.role === "Administrateur") {
       return (
         <>
           <th scope="col">

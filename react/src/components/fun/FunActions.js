@@ -6,7 +6,7 @@ const FunActions = (props) => {
   const id = props.id;
 
   const show = () => {
-    if (props.role === "boss" || props.role === "admin") {
+    if (props.role === "Patron" || props.role === "Administrateur") {
       return (
         <>
           <button
@@ -21,7 +21,7 @@ const FunActions = (props) => {
         </>
       );
     }
-    if (props.role === "dealer") {
+    if (props.role === "Commercial") {
       return (
         <>
           <button
