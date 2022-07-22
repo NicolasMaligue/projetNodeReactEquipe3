@@ -9,7 +9,7 @@ const OrderCreate = () => {
   const [quotes_list, setQuotesList] = useState({});
   const priority_list = ["Très Urgent", "Urgent", "Normal", "Non prioritaire"];
 
-  const api_path = `/orders`;
+  const api_path = "/orders";
   const quotes_path = "/quotes";
   const navigate = useNavigate();
 
@@ -101,7 +101,7 @@ const OrderCreate = () => {
           <button
             className="btn btn-danger"
             onClick={() => {
-              navigate("/orders", { replace: true });
+              navigate(api_path, { replace: true });
             }}
           >
             Annuler

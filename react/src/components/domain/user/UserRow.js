@@ -29,6 +29,7 @@ const UserRow = (props) => {
       <td>{props.user.lastname}</td>
       <td>{props.user.firstname}</td>
       <td>{props.user.role}</td>
+      <td>{props.user.active}</td>
       <td>
         <FunActions id={id} onDelete={onDelete} />
         {login_role === ENUM.user.role.admin && (

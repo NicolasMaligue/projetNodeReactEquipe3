@@ -3,16 +3,14 @@ import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 
 const InvoiceCreate = () => {
-  
-const [vehicle_id, setVehicleId] = useState();
+
 const [vehicle_mod, setVehicleModel] = useState();
 const [vehicle_man, setVehicleMan] = useState();
 const [vehicle_type, setVehicleType] = useState();
 const [vehicle_desc, setVehicleDesc] = useState();
 const [vehicle_pric, setVehiclePrice] = useState();
-const [vehicle_qty, setVehicleQuantity] = useState();
   
-  const api_path = `/vehicles`;
+  const api_path = "/vehicles";
   const navigate = useNavigate();
   
   const handleSubmit = (e) => {
@@ -24,7 +22,6 @@ const [vehicle_qty, setVehicleQuantity] = useState();
       type: vehicle_type,
       description: vehicle_desc,
       price: vehicle_pric,
-      quantity: vehicle_qty
     }).then(() => {
       console.log('POST GOOD');
     }).catch(() => {console.log('POST FAIL');});
@@ -100,17 +97,6 @@ return (
               </input>
               </td>
             </tr>
-          <tr>
-            <th scope="row" className="col-4">Quantité
-            </th>
-            <td>
-              <input className="text-center" type="number"
-                required 
-                onChange={(e) => setVehicleQuantity(
-                e.target.value)}>
-              </input>
-            </td>
-          </tr>
         </tbody>
       </table>
     <button className="btn btn-success"
@@ -118,7 +104,7 @@ return (
     </button>
     <button className="btn btn-danger"
     onClick={() => {
-    navigate(api_path - 1, {replace: true});
+    navigate(api_path, {replace: true});
     }}>Annuler
     </button>
     </form>

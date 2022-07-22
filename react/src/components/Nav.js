@@ -24,7 +24,8 @@ class Nav extends Component {
                 <li className="nav-item px-3"><NavLink to="/orders"><button className="btn btn-light">Commandes</button></NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/invoices"><button className="btn btn-light">Factures</button></NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/vehicles"><button className="btn btn-light">Véhicules</button></NavLink></li>
-                <li className="nav-item px-3"><NavLink to="/customers"><button className="btn btn-light">Véhicules</button></NavLink></li>
+                <li className="nav-item px-3"><NavLink to="/stocks"><button className="btn btn-light">Stock</button></NavLink></li>
+                <li className="nav-item px-3"><NavLink to="/customers"><button className="btn btn-light">Clients</button></NavLink></li>
                 <li className="nav-item px-3"><NavLink to="/users"><button className="btn btn-light">Utilisateurs</button></NavLink></li>
               </ul>
             </div>

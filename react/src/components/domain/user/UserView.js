@@ -40,6 +40,10 @@ const UserView = () => {
               <th scope="row">Rôle</th>
               <td>{user.role}</td>
             </tr>
+            <tr>
+              <th scope="row">Statut</th>
+              <td>{user.active}</td>
+            </tr>
           </tbody>
         </table>
       </div>

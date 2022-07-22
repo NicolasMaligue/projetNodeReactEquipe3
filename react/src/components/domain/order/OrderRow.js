@@ -24,24 +24,13 @@ const OrderRow = (props) => {
 
   return (
     <tr>
-      <td>{id}</td>
+      <td>{props.order.number}</td>
       <td>
         <a href="/">
           {customer.firstname} {customer.lastname}
         </a>
       </td>
-      <td>
-        {vehicle.manufacturer} {vehicle.model}
-        {/* <small className="d-block">
-                      Far far away, behind the word mountains
-                    </small> */}
-      </td>
       <td>{customer.mobile || customer.phone}</td>
-      <td>
-        <a href="/" className="btn btn-success">
-          {props.order.quote.status}
-        </a>
-      </td>
       <td>{props.order.priority}</td>
       <td>
         <FunActions id={id} onDelete={onDelete} />

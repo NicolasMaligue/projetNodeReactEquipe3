@@ -25,8 +25,6 @@ const CustomerRow = (props) => {
       <td>{props.customer.id}</td>
       <td>{props.customer.lastname}</td>
       <td>{props.customer.firstname}</td>
-      <td>{props.customer.address}</td>
-      <td>{props.customer.zip}</td>
       <td>{props.customer.city}</td>
       <td>{props.customer.mobile || props.customer.phone}</td>
       <td>

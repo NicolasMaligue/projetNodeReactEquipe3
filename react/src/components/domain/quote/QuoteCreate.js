@@ -73,7 +73,7 @@ const QuoteCreate = () => {
   return (
     <div className="content">
       <div className="container">
-        <h1 className="mb-5">Création du client</h1>
+        <h1 className="mb-5">Création d'un devis</h1>
 
         <form className="d-flex row gap-3" onSubmit={handleSubmit}>
           <table className="table table-responsive table-striped table-bordered">
@@ -113,7 +113,7 @@ const QuoteCreate = () => {
                     className="text-center"
                     value={quote_customer.id || ""}
                     onChange={(e) => {
-                    setQuoteCustomer(customers_list[e.target.selectedIndex]);
+                    setQuoteCustomer(customers_list[e.target.selectedIndex -1]);
                     }}
                 >
                     <option>Sélectionner un client</option>
@@ -134,7 +134,7 @@ const QuoteCreate = () => {
                     className="text-center"
                     value={quote_creator.id || ""}
                     onChange={(e) => {
-                    setQuoteCreator(creators_list[e.target.selectedIndex]);
+                    setQuoteCreator(creators_list[e.target.selectedIndex -1]);
                     }}
                 >
                     <option>Sélectionner le commercial</option>
@@ -155,7 +155,7 @@ const QuoteCreate = () => {
                     className="text-center"
                     value={quote_vehicle.id || ""}
                     onChange={(e) => {
-                        setQuoteVehicle(vehicles_list[e.target.selectedIndex]);
+                        setQuoteVehicle(vehicles_list[e.target.selectedIndex -1]);
                     }}
                 >
                     <option>Sélectionner un véhicule</option>

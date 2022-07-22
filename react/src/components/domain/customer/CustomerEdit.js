@@ -176,9 +176,7 @@ const CustomerEdit = () => {
                     value={customer_zip || ""}
                     pattern="[0-9]{5}"
                     onChange={(e) => {
-                      const result = e.target.value.replace(/[^a-z\s]/gi, "");
-                      const final_result = result.replace(/\s\s+/g, " ");
-                      setCustomerZIP(final_result);
+                      setCustomerZIP(e.target.value);
                     }}
                   ></input>
                 </td>
@@ -205,7 +203,6 @@ const CustomerEdit = () => {
                   <input
                     className="text-center"
                     type="text"
-                    required
                     value={customer_phone || ""}
                     onChange={(e) => {
                       setCustomerPhone(e.target.value);
