@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
     ? { name: { [Op.like]: `%${query_name}%` } } // ie: field table name like '%name query value%'
     : null;
 
-  Stock.findAll({ where: condition })
+  Stock.findAll({ where: condition, include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
@@ -57,7 +57,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Stock.findByPk(id)
+  Stock.findByPk(id, { include: [{ all: true, nested: true }] })
     .then((data) => {
       res.send(data);
     })
